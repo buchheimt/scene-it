@@ -2,11 +2,18 @@ import React from 'react';
 import MovieCard from '../components/MovieCard';
 
 class HomePage extends React.Component {
-  render() {
 
-    const moviesArray = ["nemo", "shrek", "jumanji"]
+  handleOnClick = () => {
+    alert('clicked!');
+  }
+
+  render() {
+    const moviesArray = [
+      {title: "nemo"},
+      {title: "shrek"},
+      {title: "jumanji"}]
     const movies = moviesArray.map(movie => (
-      <MovieCard movie={movie} />
+      <MovieCard movie={movie} handleOnClick={this.handleOnClick} />
     ))
 
     return (

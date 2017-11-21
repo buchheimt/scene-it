@@ -1,7 +1,9 @@
 import React from 'react';
 
-const MovieCard = ({movie}) => (
-  <p>{movie}</p>
+const MovieCard = props => (
+  <div className="movieCard" onClick={props.handleOnClick}>
+    <p>{props.movie.title}</p>
+  </div>
 )
 
 export default MovieCard

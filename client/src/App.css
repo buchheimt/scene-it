@@ -22,6 +22,16 @@
   font-size: large;
 }
 
+.movieCard {
+  box-sizing: border-box;
+  margin: 0 auto;
+  width: 60%;
+  height: 60px;
+  background: #DDD;
+  border-radius: 8px;
+  box-shadow: 0 2px 2px #777;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
