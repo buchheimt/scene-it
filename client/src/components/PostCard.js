@@ -7,6 +7,7 @@ const PostCard = props => {
 
   return (
     <div className="postCard" >
+      <h4>{props.post.title}</h4>
       <p>{props.post.content.split(" ").slice(0, 40).join(' ')}...</p>
     </div>
   )

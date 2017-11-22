@@ -36,6 +36,15 @@
   cursor: pointer;
 }
 
+.postCard {
+  box-sizing: border-box;
+  margin: 0 auto;
+  width: 60%;
+  background: #F6F6F6;
+  border-radius: 8px;
+  box-shadow: 0 2px 2px #777;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

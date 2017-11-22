@@ -18,7 +18,7 @@ class MovieShowPage extends React.Component {
     return (
       <div>
         <div className="movieCard">
-          <h4>{this.props.movie.title}</h4>
+          <h3>{this.props.movie.title}</h3>
           <p>{this.props.movie.description}</p>
         </div>
         {renderPosts}
