@@ -1,14 +1,10 @@
-const rootReducer = (state = {}, action) => {
-  console.log(action);
-  switch (action.type) {
-    case 'STARTING_ADDING_MOVIES':
+import { combineReducers } from 'redux';
+import moviesReducer from './moviesReducer';
+import postsReducer from './postsReducer';
 
-    case 'ADD_MOVIES':
-      return {movies: action.movies};
-    default:
-      return {msg: 'uh oh'}
-  }
-
-}
+const rootReducer = combineReducers({
+  movies: moviesReducer,
+  posts: postsReducer
+})
 
 export default rootReducer;

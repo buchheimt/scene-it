@@ -9,7 +9,7 @@ class HomePage extends React.Component {
   }
 
   render() {
-    let renderMovies
+    let renderMovies;
     if (!!this.props.movies) {
       renderMovies = this.props.movies.map((movie, index) => (
         <MovieCard key={index} movie={movie} routeToMovieShow={this.routeToMovieShow} />

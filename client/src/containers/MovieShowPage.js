@@ -1,7 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { fetchPosts } from '../actions/index'
 
 class MovieShowPage extends React.Component {
+
+  componentDidMount() {
+    this.props.fetchPosts(this.props.movie.id);
+  }
 
   render() {
     return (
@@ -10,7 +16,6 @@ class MovieShowPage extends React.Component {
           <h4>{this.props.movie.title}</h4>
           <p>{this.props.movie.description}</p>
         </div>
-
       </div>
     )
   }
@@ -26,4 +31,10 @@ const mapStateToProps = (state, ownProps) => {
   }
 }
 
-export default connect(mapStateToProps, null)(MovieShowPage);
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({
+    fetchPosts
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MovieShowPage);
