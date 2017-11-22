@@ -1,4 +1,4 @@
-const moviesReducer = (state = [], action) => {
+const movies = (state = [], action) => {
   console.log(action);
   switch (action.type) {
     case 'START_ADDING_MOVIES':
@@ -10,4 +10,4 @@ const moviesReducer = (state = [], action) => {
   }
 }
 
-export default moviesReducer;
+export default movies;

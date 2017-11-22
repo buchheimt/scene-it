@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
-import moviesReducer from './moviesReducer';
-import postsReducer from './postsReducer';
+import movies from './movies';
+import posts from './posts';
 
 const rootReducer = combineReducers({
-  movies: moviesReducer,
-  posts: postsReducer
+  movies,
+  posts
 })
 
 export default rootReducer;
