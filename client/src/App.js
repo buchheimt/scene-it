@@ -7,7 +7,6 @@ import MovieShowPage from './containers/MovieShowPage';
 
 class App extends Component {
   render() {
-    console.log(this.props)
     return (
       <Router>
         <div className="App">
