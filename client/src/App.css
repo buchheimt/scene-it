@@ -32,6 +32,11 @@
   box-shadow: 0 2px 2px #777;
 }
 
+.movieCard:hover {
+  background: #BBB;
+  cursor: pointer;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
