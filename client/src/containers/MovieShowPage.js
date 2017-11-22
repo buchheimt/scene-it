@@ -6,7 +6,11 @@ class MovieShowPage extends React.Component {
   render() {
     return (
       <div>
-        <p>{this.props.movie.title}</p>
+        <div className="movieCard">
+          <h4>{this.props.movie.title}</h4>
+          <p>{this.props.movie.description}</p>
+        </div>
+
       </div>
     )
   }

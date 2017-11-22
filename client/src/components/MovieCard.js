@@ -6,10 +6,10 @@ const MovieCard = props => {
     props.routeToMovieShow(props.movie.id)
   }
 
-  console.log(props)
   return (
     <div className="movieCard" onClick={handleOnClick}>
-      <p>{props.movie.title}</p>
+      <h4>{props.movie.title}</h4>
+      <p>{props.movie.description.split(" ").slice(0, 50).join(' ')}...</p>
     </div>
   )
 }
