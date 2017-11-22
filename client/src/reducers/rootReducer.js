@@ -1,8 +1,10 @@
 const rootReducer = (state = {}, action) => {
   console.log(action);
   switch (action.type) {
-    case 'STUB_MOVIES':
-      return action.stateStub;
+    case 'STARTING_ADDING_MOVIES':
+      
+    case 'ADD_MOVIES':
+      return {movies: action.movies};
     default:
       return state
   }
