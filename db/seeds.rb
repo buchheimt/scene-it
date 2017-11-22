@@ -4,3 +4,16 @@ Movie.create([
     {title: 'It', description: "Seven young outcasts in Derry, Maine, are about to face their worst nightmare -- an ancient, shape-shifting evil that emerges from the sewer every 27 years to prey on the town's children. Banding together over the course of one horrifying summer, the friends must overcome their own personal fears to battle the murderous, bloodthirsty clown known as Pennywise.", release_year: 2017},
     {title: 'John Wick: Chapter 2', description: "Retired super-assassin John Wick's plans to resume a quiet civilian life are cut short when Italian gangster Santino D'Antonio shows up on his doorstep with a gold marker, compelling him to repay past favors. Ordered by Winston, kingpin of secret assassin society The Continental, to respect the organization's ancient code, Wick reluctantly accepts the assignment to travel to Rome to take out D'Antonio's sister, the ruthless capo atop the Italian Camorra crime syndicate.", release_year: 2017},
   ])
+
+  Post.create([
+    {content: "Thoughts about the ending (SPOILERS)", movie_id: 1, user_id: 1},
+    {content: "Thoughts about the ending (SPOILERS)", movie_id: 2, user_id: 1},
+    {content: "Thoughts about the ending (SPOILERS)", movie_id: 3, user_id: 1},
+    {content: "This was way better than I expected!", movie_id: 1, user_id: 1},
+    {content: "This was way better than I expected!", movie_id: 2, user_id: 1},
+    {content: "Did anyone else hate that...(SPOILERS)", movie_id: 1, user_id: 1},
+    {content: "Did anyone else hate that...(SPOILERS)", movie_id: 4, user_id: 1},
+    {content: "How is this movie not more popular?!", movie_id: 2, user_id: 1},
+    {content: "How is this movie not more popular?!", movie_id: 3, user_id: 1},
+    {content: "Do we want a sequel? Yay or nay?", movie_id: 2, user_id: 1},
+    ])
