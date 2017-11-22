@@ -1,22 +1,25 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 class MovieShowPage extends React.Component {
 
   render() {
-
-    const moviesArray = [
-      {title: "nemo", id: 1},
-      {title: "shrek", id: 2},
-      {title: "jumanji", id: 3}]
-
-
-    const movie = moviesArray.find(movie => movie.id === 1 )
     return (
       <div>
-        <p>{movie.title}</p>
+        <p>{this.props.movie.title}</p>
       </div>
     )
   }
 }
 
-export default MovieShowPage;
+const mapStateToProps = (state, ownProps) => {
+  const movie = state.movies.find(movie => movie.id === ownProps.match.params.movieId);
+
+  if (!!movie) {
+    return {movie}
+  } else {
+    return {}
+  }
+}
+
+export default connect(mapStateToProps, null)(MovieShowPage);

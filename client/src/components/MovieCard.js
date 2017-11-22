@@ -6,6 +6,7 @@ const MovieCard = props => {
     props.routeToMovieShow(props.movie.id)
   }
 
+  console.log(props)
   return (
     <div className="movieCard" onClick={handleOnClick}>
       <p>{props.movie.title}</p>
@@ -13,4 +14,4 @@ const MovieCard = props => {
   )
 }
 
-export default MovieCard
+export default MovieCard;
