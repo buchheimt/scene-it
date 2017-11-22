@@ -7,8 +7,13 @@ import rootReducer from './reducers/rootReducer';
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
+// temporary
+import stateStub from './data';
 
-const store = createStore(rootReducer);
+const store = createStore(rootReducer,  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+
+store.dispatch({type: "STUB_MOVIES", stateStub});
+console.log('!!', store.getState());
 
 ReactDOM.render(
   <Provider store={store}>
