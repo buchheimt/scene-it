@@ -27,5 +27,5 @@ Movie.create([
     ])
 
 20.times do
-  Comment.create(content: FILLER_TEXTS.sample, user_id: rand(4), post_id: rand(10))
+  Comment.create(content: FILLER_TEXTS.sample, user_id: rand(4) + 1, post_id: rand(10) + 1)
 end
