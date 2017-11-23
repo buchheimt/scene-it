@@ -7,6 +7,7 @@ import { fetchMovies } from './actions/index'
 import NavBar from './components/NavBar';
 import HomePage from './containers/HomePage';
 import MovieShowPage from './containers/MovieShowPage';
+import PostShowPage from './containers/PostShowPage';
 
 class App extends Component {
 
@@ -22,6 +23,7 @@ class App extends Component {
           <Switch>
             <Route exact path={'/'} component={HomePage} />
             <Route exact path={'/movies/:movieId'} component={MovieShowPage} />
+            <Route exact path={'/movies/:movieId/posts/:postId'} component={PostShowPage} />
           </Switch>
         </div>
       </Router>

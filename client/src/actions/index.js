@@ -15,3 +15,12 @@ export function fetchPosts(movieId) {
       .then(posts => dispatch({type: 'ADD_POSTS', posts}));
   }
 }
+
+export function fetchComments(postId) {
+  return (dispatch) => {
+    dispatch({type: 'STARTING_ADDING_COMMENTS'});
+    return fetch(`/comments?post_id=${postId}`)
+      .then(resp => resp.json())
+      .then(comments => dispatch({type: 'ADD_COMMENTS', comments}));
+  }
+}

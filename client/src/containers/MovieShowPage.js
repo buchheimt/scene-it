@@ -10,9 +10,17 @@ class MovieShowPage extends React.Component {
     this.props.fetchPosts(this.props.movie.id);
   }
 
+  routeToPostShow = post => {
+    this.props.history.push(`${post.movie_id}/posts/${post.id}`)
+  }
+
   render() {
-    const renderPosts = this.props.posts.map(post => (
-      <PostCard post={post} />
+    const renderPosts = this.props.posts.map((post, index) => (
+      <PostCard
+        key={index}
+        post={post}
+        routeToPostShow={this.routeToPostShow}
+      />
     ))
 
     return (
