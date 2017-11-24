@@ -25,8 +25,8 @@ class CommentCard extends React.Component {
     this.props.addComment({
       content: this.state.value,
       post_id: this.props.comment.post_id,
-      user_id: 1,
-      id: 50
+      user_id: 1, //!!!!!!!!!!!!!!!!!!!!!!!
+      id: 50 //!!!!!!!!!!!!!!!!!!!!!
     });
     this.setState({
       value: ''

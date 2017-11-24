@@ -1,7 +1,9 @@
 class CommentsController < ApplicationController
 
-  def index
-    render json: Comment.find_by_post(params[:post_id])
+  def create
+    authenticate
+    binding.pry
+    comment = Comment.new(params)
   end
 
 end

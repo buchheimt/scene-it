@@ -30,5 +30,12 @@ export function toggleActive(commentId) {
 }
 
 export function addComment(comment) {
+  return (dispatch) => {
+    dispatch({type: 'START_ADDING_COMMENT'});
+    return fetch('/comments', {
+      method: 'POST',
+      body: comment
+    })
+  }
   return {type: 'ADD_COMMENT', comment};
 }
