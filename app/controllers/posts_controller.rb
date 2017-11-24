@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
 
-  def index
-    render json: Post.find_by_movie(params[:movie_id])
+  def show
+    render json: Post.find_by_id(params[:id])
   end
 
 end
