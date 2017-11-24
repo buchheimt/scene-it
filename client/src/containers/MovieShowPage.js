@@ -40,10 +40,9 @@ const mapStateToProps = (state, ownProps) => {
   const movie = state.movies.find(movie => movie.id == ownProps.match.params.movieId);
 
   if (!!movie) {
-    console.log('!!!!', movie.id)
     return {movie: movie, posts: state.posts.filter(post => post.movie_id == movie.id)}
   } else {
-    return {movie: [], posts: []}
+    return {movie: {}, posts: []}
   }
 }
 

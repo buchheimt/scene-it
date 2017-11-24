@@ -11,7 +11,7 @@ const posts = (state = [], action) => {
         return state;
       }
     case 'ADD_POST':
-      const postIndex = state.find(post => post.id == action.post.id);
+      const postIndex = state.indexOf(state.find(post => post.id == action.post.id));
       return [
         ...state.slice(0, postIndex),
         action.post,
