@@ -5,6 +5,13 @@ const movies = (state = [], action) => {
       return state;
     case 'ADD_MOVIES':
       return action.movies;
+    case 'ADD_MOVIE':
+      const movieIndex = state.find(movie => movie.id == action.movie.id);
+      return [
+        ...state.slice(0, movieIndex),
+        action.movie,
+        ...state.slice(movieIndex + 1)
+      ]
     default:
       return state;
   }

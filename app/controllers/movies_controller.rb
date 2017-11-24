@@ -5,7 +5,7 @@ class MoviesController < ApplicationController
   end
 
   def show
-    render json: Movie.first, serializer: DetailedMovieSerializer, root: :person
+    render json: Movie.find_by_id(params[:id]), serializer: DetailedMovieSerializer, root: :person
   end
 
 end

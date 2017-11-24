@@ -7,12 +7,12 @@ export function fetchMovies() {
   }
 }
 
-export function fetchPosts(movieId) {
+export function fetchMovie(movieId) {
   return (dispatch) => {
-    dispatch({type: 'STARTING_ADDING_POSTS'});
-    return fetch(`/posts?movie_id=${movieId}`)
+    dispatch({type: 'STARTING_ADDING_MOVIE'});
+    return fetch(`/movies/${movieId}`)
       .then(resp => resp.json())
-      .then(posts => dispatch({type: 'ADD_POSTS', posts}));
+      .then(movie => dispatch({type: 'ADD_MOVIE', movie}));
   }
 }
 

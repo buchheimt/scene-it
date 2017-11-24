@@ -1,17 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchPosts } from '../actions/index';
+import { fetchMovie } from '../actions/index';
 import PostCard from '../components/PostCard';
 
 class MovieShowPage extends React.Component {
 
-  componentWillMount() {
-
-  }
-
   componentDidMount() {
-    this.props.fetchPosts(this.props.movie.id);
+    this.props.fetchMovie(this.props.match.params.movieId);
   }
 
   routeToPostShow = post => {
@@ -40,18 +36,19 @@ class MovieShowPage extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
+  // debugger
   const movie = state.movies.find(movie => movie.id == ownProps.match.params.movieId);
 
   if (!!movie) {
     return {movie: movie, posts: state.posts.filter(post => post.movie_id === movie.id)}
   } else {
-    return {}
+    return {movie: [], posts: []}
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators({
-    fetchPosts
+    fetchMovie
   }, dispatch)
 }
 
