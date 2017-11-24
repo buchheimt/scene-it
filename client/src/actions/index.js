@@ -24,3 +24,11 @@ export function fetchPost(postId) {
       .then(post => dispatch({type: 'ADD_POST', post}));
   }
 }
+
+export function toggleActive(commentId) {
+  return {type: 'TOGGLE_ACTIVE', commentId};
+}
+
+export function addComment(comment) {
+  return {type: 'ADD_COMMENT', comment};
+}

@@ -10,6 +10,20 @@ const comments = (state = [], action) => {
       } else {
         return state;
       }
+    case 'TOGGLE_ACTIVE':
+      state.forEach(comment => comment.active = false);
+      let comment = state.find(comment => comment.id == action.commentId);
+      comment.active = true;
+      return [
+        ...state.slice(0, state.indexOf(comment)),
+        comment,
+        ...state.slice(state.indexOf(comment) + 1)
+      ]
+    case 'ADD_COMMENT':
+      return [
+        ...state,
+        action.comment
+      ]
     default:
       return state;
   }

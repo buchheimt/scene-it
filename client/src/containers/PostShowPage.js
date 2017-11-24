@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchPost } from '../actions/index';
+import { fetchPost, toggleActive, addComment } from '../actions/index';
 import CommentCard from '../components/CommentCard';
 
 class PostShowPage extends React.Component {
@@ -14,6 +14,8 @@ class PostShowPage extends React.Component {
     const renderComments = this.props.comments.map((comment, index) => (
       <CommentCard
         key={index}
+        toggleActive={this.props.toggleActive}
+        addComment={this.props.addComment}
         comment={comment}
       />
     ))
@@ -42,7 +44,9 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators({
-    fetchPost
+    fetchPost,
+    toggleActive,
+    addComment
   }, dispatch)
 }
 
