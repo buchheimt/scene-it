@@ -6,6 +6,10 @@ import PostCard from '../components/PostCard';
 
 class MovieShowPage extends React.Component {
 
+  componentWillMount() {
+
+  }
+
   componentDidMount() {
     this.props.fetchPosts(this.props.movie.id);
   }
