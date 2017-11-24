@@ -16,11 +16,11 @@ export function fetchMovie(movieId) {
   }
 }
 
-export function fetchComments(postId) {
+export function fetchPost(postId) {
   return (dispatch) => {
-    dispatch({type: 'STARTING_ADDING_COMMENTS'});
-    return fetch(`/comments?post_id=${postId}`)
+    dispatch({type: 'STARTING_ADDING_POST'});
+    return fetch(`/posts/${postId}`)
       .then(resp => resp.json())
-      .then(comments => dispatch({type: 'ADD_COMMENTS', comments}));
+      .then(post => dispatch({type: 'ADD_POST', post}));
   }
 }

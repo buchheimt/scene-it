@@ -3,10 +3,10 @@ const comments = (state = [], action) => {
   switch (action.type) {
     case 'START_ADDING_COMMENTS':
       return state;
-    case 'ADD_COMMENTS':
-      if (!!action.comments[0]) {
-        const commentsNonmatch = state.filter(comment => comment.post_id !== action.comments[0].post_id);
-        return [...commentsNonmatch, ...action.comments].sort((a,b) => a.id > b.id);
+    case 'ADD_POST':
+      if (!!action.post.comments[0]) {
+        const commentsNonmatch = state.filter(comment => comment.post_id !== action.post.id);
+        return [...commentsNonmatch, ...action.post.comments].sort((a,b) => a.id > b.id);
       } else {
         return state;
       }

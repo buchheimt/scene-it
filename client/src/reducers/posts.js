@@ -4,9 +4,19 @@ const posts = (state = [], action) => {
     case 'START_ADDING_POSTS':
       return state;
     case 'ADD_MOVIE':
-      const postsNonmatch = state.filter(post => post.movie_id !== action.movie.id);
-      console.log(action.movie.posts)
-      return [...postsNonmatch, ...action.movie.posts].sort((a,b) => a.id > b.id);
+      if (!!action.movie.posts) {
+        const postsNonmatch = state.filter(post => post.movie_id !== action.movie.id);
+        return [...postsNonmatch, ...action.movie.posts].sort((a,b) => a.id > b.id);
+      } else {
+        return state;
+      }
+    case 'ADD_POST':
+      const postIndex = state.find(post => post.id == action.post.id);
+      return [
+        ...state.slice(0, postIndex),
+        action.post,
+        ...state.slice(postIndex + 1)
+      ]
     default:
       return state;
   }

@@ -15,6 +15,7 @@ class MovieShowPage extends React.Component {
   }
 
   render() {
+    console.log(this.props)
     const renderPosts = this.props.posts.map((post, index) => (
       <PostCard
         key={index}
@@ -36,11 +37,11 @@ class MovieShowPage extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  // debugger
   const movie = state.movies.find(movie => movie.id == ownProps.match.params.movieId);
 
   if (!!movie) {
-    return {movie: movie, posts: state.posts.filter(post => post.movie_id === movie.id)}
+    console.log('!!!!', movie.id)
+    return {movie: movie, posts: state.posts.filter(post => post.movie_id == movie.id)}
   } else {
     return {movie: [], posts: []}
   }

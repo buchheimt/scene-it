@@ -1,13 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchComments } from '../actions/index';
+import { fetchPost } from '../actions/index';
 import CommentCard from '../components/CommentCard';
 
 class PostShowPage extends React.Component {
 
   componentDidMount() {
-    this.props.fetchComments(this.props.post.id);
+    this.props.fetchPost(this.props.post.id);
   }
 
   render() {
@@ -42,7 +42,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators({
-    fetchComments
+    fetchPost
   }, dispatch)
 }
 
