@@ -1,3 +1,5 @@
+import sessionApi from '../api/SessionApi';
+
 export function fetchMovies() {
   return (dispatch) => {
     dispatch({type: 'STARTING_ADDING_MOVIES'});
@@ -38,4 +40,17 @@ export function addComment(comment) {
     })
   }
   return {type: 'ADD_COMMENT', comment};
+}
+
+export function loginSuccess() {
+  return {type: 'LOG_IN_SUCCESS'}
+}
+
+export function logInUser(credentials) {
+  return (dispatch) => {
+    return sessionApi.login(credentials)
+      .then(resp => {sessionStorage.setItem('jwt', resp.jwt);
+      dispatch(loginSuccess());
+    });
+  }
 }

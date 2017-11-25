@@ -6,6 +6,7 @@ import './App.css';
 import { fetchMovies } from './actions/index'
 import NavBar from './components/NavBar';
 import HomePage from './containers/HomePage';
+import LoginForm from './components/LoginForm';
 import MovieShowPage from './containers/MovieShowPage';
 import PostShowPage from './containers/PostShowPage';
 
@@ -20,6 +21,7 @@ class App extends Component {
       <Router>
         <div className="App">
           <NavBar />
+          <LoginForm />
           <Switch>
             <Route exact path={'/'} component={HomePage} />
             <Route exact path={'/movies/:movieId'} component={MovieShowPage} />

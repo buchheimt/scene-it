@@ -15,7 +15,6 @@ class MovieShowPage extends React.Component {
   }
 
   render() {
-    console.log(this.props)
     const renderPosts = this.props.posts.map((post, index) => (
       <PostCard
         key={index}
