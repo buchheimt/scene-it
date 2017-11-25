@@ -42,15 +42,19 @@ export function addComment(comment) {
   return {type: 'ADD_COMMENT', comment};
 }
 
-export function loginSuccess() {
-  return {type: 'LOG_IN_SUCCESS'}
+export function loginSuccess(userInfo) {
+  return {type: 'LOG_IN_SUCCESS', userInfo}
 }
 
 export function logInUser(credentials) {
   return (dispatch) => {
     return sessionApi.login(credentials)
-      .then(resp => {sessionStorage.setItem('jwt', resp.jwt);
-      dispatch(loginSuccess());
+      .then(resp => {
+        sessionStorage.setItem('jwt', resp.jwt);
+        dispatch(loginSuccess({
+          username: resp.username,
+          email: resp.email
+        }));
     });
   }
 }
