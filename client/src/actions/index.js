@@ -70,20 +70,9 @@ export function authenticateUser() {
         return dispatch({type: 'AUTHENTICATE_USER', credentials});
       });
   }
+}
 
-
-  // alert('going')
-  //
-  //   alert(!!sessionStorage.jwt)
-  //   if (!!sessionStorage.jwt) {
-  //     alert ('in if')
-  //     return fetch('/authenticate', {
-  //       method: 'GET',
-  //       headers: {'AUTHORIZATION': `Bearer ${sessionStorage.jwt}`}
-  //     }).then(resp => resp.json())
-  //       .then(credentials => {type: 'AUTHENTICATE_USER', credentials});
-  //   } else {
-  //     return {type: 'NOT_LOGGED_IN'};
-  //   }
-  // }
+export function logoutUser() {
+  sessionStorage.clear()
+  return {type: 'LOGOUT_USER'};
 }

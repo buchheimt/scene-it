@@ -1,15 +1,45 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { Button } from 'react-bootstrap';
+import { logoutUser } from '../actions/index';
+import LoginForm from './LoginForm';
 
-const NavBar = props => (
-  <header className="App-header">
-    <h1 className="App-title">Scene It</h1>
-    <p>{props.username}</p>
-  </header>
-)
+const NavBar = props => {
 
-const mapStateToProps = state => {
-  return {username: state.session.username}
+  let renderSession;
+  if (props.loggedIn) {
+    renderSession = (
+      <div>
+        <span>{props.username}</span>
+        <Button onClick={props.logoutUser}>Sign Out</Button>
+      </div>
+    )
+  } else {
+    renderSession = (
+      <LoginForm />
+    )
+  }
+
+  return (
+    <header className="App-header">
+      <h1 className="App-title">Scene It</h1>
+      {renderSession}
+    </header>
+  )
 }
 
-export default connect(mapStateToProps, null)(NavBar);
+const mapStateToProps = state => {
+  return {
+    loggedIn: state.session.loggedIn,
+    username: state.session.username
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({
+    logoutUser
+  }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

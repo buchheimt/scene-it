@@ -9,7 +9,6 @@ class Auth
   end
 
   def self.decode(token)
-    #binding.pry
     JWT.decode(token, auth_secret, ALGORITHM).first
   end
 
