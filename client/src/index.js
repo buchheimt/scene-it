@@ -7,9 +7,12 @@ import thunk from 'redux-thunk';
 import rootReducer from './reducers/rootReducer';
 import './index.css';
 import App from './App';
+import { authenticateUser } from './actions/index';
 import registerServiceWorker from './registerServiceWorker';
 
 const store = createStore(rootReducer,  compose(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()));
+
+store.dispatch(authenticateUser());
 
 ReactDOM.render(
   <Provider store={store}>

@@ -9,8 +9,18 @@ class SessionsController < ApplicationController
         username: user.username,
         email: user.email
       }
-    else
+    end
+  end
 
+  def show
+    user = current_user
+    if (!!user)
+      render json: {
+        username: user.username,
+        email: user.email
+      }
+    else
+      render json: {}
     end
   end
 
