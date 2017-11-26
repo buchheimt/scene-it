@@ -7,6 +7,7 @@ class CommentsController < ApplicationController
     if comment.save
       render json: comment
     end
+    puts comment.errors.full_messages
   end
 
   private

@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchPost, toggleActive, addComment } from '../actions/index';
+import MyForm from '../components/MyForm';
 import CommentCard from '../components/CommentCard';
 
 class PostShowPage extends React.Component {
@@ -10,8 +11,12 @@ class PostShowPage extends React.Component {
     this.props.fetchPost(this.props.match.params.postId);
   }
 
+  onSubmit = values => {
+    console.log('!!!!!!',values)
+    this.props.addComment(values);
+  }
+
   render() {
-    console.log('in comp', this.props.comments)
     const renderComments = this.props.comments.map((comment, index) => (
       <CommentCard
         key={index}
@@ -26,6 +31,12 @@ class PostShowPage extends React.Component {
         <div className="postCard">
           <h3>{this.props.post.title}</h3>
           <p>{this.props.post.content}</p>
+          <MyForm
+            fields={['content']}
+            onSubmit={this.onSubmit}
+            onSubmitText="Reply"
+            hiddenValues={{post_id: this.props.post.id}}
+          />
         </div>
         {renderComments}
       </div>
