@@ -32,14 +32,17 @@ export function toggleActive(commentId) {
 }
 
 export function addComment(comment) {
+  console.log('commen!!!!!', comment)
   return (dispatch) => {
     dispatch({type: 'START_ADDING_COMMENT'});
     return fetch('/comments', {
       method: 'POST',
-      body: comment
-    })
+      headers: {
+        'Content-Type': 'application/json',
+        'AUTHORIZATION': `Bearer ${sessionStorage.jwt}`},
+      body: JSON.stringify({comment})
+    }).then(() => dispatch({type: 'ADD_COMMENT', comment}));
   }
-  return {type: 'ADD_COMMENT', comment};
 }
 
 export function loginSuccess(userInfo) {
