@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Button, FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
 
 class CommentCard extends React.Component {
@@ -29,6 +30,7 @@ class CommentCard extends React.Component {
     this.setState({
       value: ''
     });
+    this.props.toggleActive(this.props.comment.id);
   }
 
   render() {
@@ -56,10 +58,16 @@ class CommentCard extends React.Component {
     return (
       <div className="commentCard" >
         <p>{this.props.comment.content}</p>
-        {renderReply}
+        {this.props.loggedIn ? renderReply : ''}
       </div>
     )
   }
 }
 
-export default CommentCard;
+const mapStateToProps = state => {
+  return {
+    loggedIn: state.session.loggedIn
+  }
+}
+
+export default connect(mapStateToProps, null)(CommentCard);

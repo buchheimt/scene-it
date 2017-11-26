@@ -11,9 +11,10 @@ const comments = (state = [], action) => {
         return state;
       }
     case 'TOGGLE_ACTIVE':
-      state.forEach(comment => comment.active = false);
       let comment = state.find(comment => comment.id == action.commentId);
-      comment.active = true;
+      const activeState = comment.active;
+      state.forEach(comment => comment.active = false);
+      comment.active = !activeState;
       return [
         ...state.slice(0, state.indexOf(comment)),
         comment,
