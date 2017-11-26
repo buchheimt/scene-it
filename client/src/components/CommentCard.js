@@ -64,8 +64,9 @@ class CommentCard extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
   return {
+    comment: state.comments.find(comment => comment.id == ownProps.commentId),
     loggedIn: state.session.loggedIn
   }
 }

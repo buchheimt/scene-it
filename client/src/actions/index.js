@@ -32,7 +32,6 @@ export function toggleActive(commentId) {
 }
 
 export function addComment(comment) {
-  console.log('commen!!!!!', comment)
   return (dispatch) => {
     dispatch({type: 'START_ADDING_COMMENT'});
     return fetch('/comments', {

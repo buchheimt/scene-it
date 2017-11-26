@@ -23,7 +23,7 @@ const NavBar = props => {
 
   return (
     <header className="App-header">
-      <h1 className="App-title">Scene It</h1>
+      <a className="App-title" href="/">Scene It</a>
       {renderSession}
     </header>
   )

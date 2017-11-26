@@ -11,13 +11,12 @@ class PostShowPage extends React.Component {
   }
 
   render() {
-    console.log(this.props)
     const renderComments = this.props.comments.map((comment, index) => (
       <CommentCard
         key={index}
         toggleActive={this.props.toggleActive}
         addComment={this.props.addComment}
-        comment={comment}
+        commentId={comment.id}
       />
     ))
 

@@ -12,13 +12,13 @@ const comments = (state = [], action) => {
       }
     case 'TOGGLE_ACTIVE':
       let comment = state.find(comment => comment.id == action.commentId);
-      const activeState = comment.active;
-      state.forEach(comment => comment.active = false);
-      comment.active = !activeState;
+      let newComments = state.map(comment => {
+        return {...comment, active: false};
+      })
       return [
-        ...state.slice(0, state.indexOf(comment)),
-        comment,
-        ...state.slice(state.indexOf(comment) + 1)
+        ...newComments.slice(0, state.indexOf(comment)),
+        {...comment, active: !comment.active},
+        ...newComments.slice(state.indexOf(comment) + 1)
       ]
     case 'ADD_COMMENT':
       return [

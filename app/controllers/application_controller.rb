@@ -27,6 +27,7 @@ class ApplicationController < ActionController::Base
   end
 
   def auth_present?
-    !!request.env.fetch("HTTP_AUTHORIZATION", "").scan(/Bearer/).flatten.first
+    !!request.env.fetch("HTTP_AUTHORIZATION", "").scan(/Bearer/).flatten.first &&
+    !request.env.fetch("HTTP_AUTHORIZATION", "").scan(/undefined/).flatten.first
   end
 end
