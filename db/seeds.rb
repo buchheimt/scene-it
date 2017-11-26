@@ -26,6 +26,13 @@ Movie.create([
     {title: "Do we want a sequel? Yay or nay?", content: FILLER_TEXTS.sample, movie_id: 2, user_id: 1},
     ])
 
+User.create([
+  {username: 'tyler', email: 't@g.c', password: '123456'},
+  {username: 'emma', email: 'e@g.c', password: '123456'},
+  {username: 'arya', email: 'a@g.c', password: '123456'},
+  {username: 'sansa', email: 's@g.c', password: '123456'}
+  ])
+
 20.times do
   Comment.create(content: FILLER_TEXTS.sample, user_id: rand(4) + 1, post_id: rand(10) + 1)
 end

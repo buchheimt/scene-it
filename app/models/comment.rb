@@ -1,6 +1,7 @@
 class Comment < ApplicationRecord
 
   belongs_to :post
+  belongs_to :user
   delegate :movie, to: :post
 
   def self.find_by_post(post_id)
