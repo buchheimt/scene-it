@@ -57,6 +57,7 @@ class CommentCard extends React.Component {
 
     return (
       <div className="commentCard" >
+        <p>{this.props.comment.username} - {this.props.comment.score}</p>
         <p>{this.props.comment.content}</p>
         {this.props.loggedIn ? renderReply : ''}
       </div>
@@ -65,8 +66,11 @@ class CommentCard extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
+  const comment = state.comments.find(comment => comment.id == ownProps.commentId);
+  const post = state.posts.find(post => post.id == comment.post_id);
+  const user = post.users.find(user => user.id == comment.user_id);
   return {
-    comment: state.comments.find(comment => comment.id == ownProps.commentId),
+    comment: {...comment, username: user.username },
     loggedIn: state.session.loggedIn
   }
 }
