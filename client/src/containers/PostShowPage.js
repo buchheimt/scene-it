@@ -11,6 +11,7 @@ class PostShowPage extends React.Component {
   }
 
   render() {
+    console.log('in comp', this.props.comments)
     const renderComments = this.props.comments.map((comment, index) => (
       <CommentCard
         key={index}

@@ -4,9 +4,13 @@ const comments = (state = [], action) => {
     case 'START_ADDING_COMMENTS':
       return state;
     case 'ADD_POST':
+      console.log('!!!state', state)
+      console.log("!!!new comments for this post", action.post.comments)
       if (!!action.post.comments) {
         const commentsNonmatch = state.filter(comment => comment.post_id != action.post.id);
-        return [...commentsNonmatch, ...action.post.comments].sort((a,b) => a.id > b.id);
+        console.log('!!!unsorted',[...commentsNonmatch, ...action.post.comments])
+        console.log([...commentsNonmatch, ...action.post.comments].sort((a,b) => a.id > b.id));
+        return [...commentsNonmatch, ...action.post.comments].sort((a,b) => a.id - b.id);
       } else {
         return state;
       }

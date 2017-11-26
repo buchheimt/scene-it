@@ -40,7 +40,8 @@ export function addComment(comment) {
         'Content-Type': 'application/json',
         'AUTHORIZATION': `Bearer ${sessionStorage.jwt}`},
       body: JSON.stringify({comment})
-    }).then(() => dispatch({type: 'ADD_COMMENT', comment}));
+    }).then(resp => resp.json())
+      .then(comment => dispatch({type: 'ADD_COMMENT', comment}));
   }
 }
 
