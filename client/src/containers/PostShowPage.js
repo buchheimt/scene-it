@@ -12,7 +12,6 @@ class PostShowPage extends React.Component {
   }
 
   onSubmit = values => {
-    console.log('!!!!!!',values)
     this.props.addComment(values);
   }
 
@@ -26,17 +25,21 @@ class PostShowPage extends React.Component {
       />
     ))
 
+    const renderRootForm = (
+      <MyForm
+        fields={['content']}
+        onSubmit={this.onSubmit}
+        onSubmitText="Reply"
+        hiddenValues={{post_id: this.props.post.id}}
+      />
+    )
+
     return (
       <div>
         <div className="postCard">
           <h3>{this.props.post.title}</h3>
           <p>{this.props.post.content}</p>
-          <MyForm
-            fields={['content']}
-            onSubmit={this.onSubmit}
-            onSubmitText="Reply"
-            hiddenValues={{post_id: this.props.post.id}}
-          />
+          { this.props.session.loggedIn ? renderRootForm :  ''}
         </div>
         {renderComments}
       </div>
@@ -48,9 +51,13 @@ const mapStateToProps = (state, ownProps) => {
   const post = state.posts.find(post => post.id == ownProps.match.params.postId);
 
   if (!!post) {
-    return {post: post, comments: state.comments.filter(comment => comment.post_id == post.id)}
+    return {
+      post: post,
+      comments: state.comments.filter(comment => comment.post_id == post.id),
+      session: {loggedIn: state.session.loggedIn}
+    }
   } else {
-    return {post: {}, comments: []}
+    return {post: {}, comments: [], session: {loggedIn: state.session.loggedIn}}
   }
 }
 
