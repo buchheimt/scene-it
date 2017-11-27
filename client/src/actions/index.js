@@ -107,3 +107,18 @@ export function subtractPoint(commentId) {
       .then(comment => dispatch({type: 'SUBTRACT_POINT', comment}));
   }
 }
+
+export function createPost(values) {
+  return (dispatch) => {
+    dispatch({type: "CREATING_POST"});
+    return fetch('/posts', {
+      method: 'POST',
+      headers: {
+        'AUTHORIZATION': `Bearer ${sessionStorage.jwt}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({post: values})
+    }).then(resp => resp.json())
+      .then(post => dispatch({type: 'CREATE_POST', post}))
+  }
+}

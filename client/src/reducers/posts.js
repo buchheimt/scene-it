@@ -18,6 +18,16 @@ const posts = (state = [], action) => {
         action.post,
         ...state.slice(postIndex + 1)
       ]
+    case 'CREATE_POST':
+      return [
+        ...state,
+        {
+          id: action.post.id,
+          title: action.post.title,
+          content: action.post.content,
+          movie_id: action.post.movie_id
+        }
+      ]
     case 'ADD_COMMENT':
       postIndex = state.indexOf(state.find(post => post.id == action.comment.post_id));
       return [

@@ -11,10 +11,6 @@ class PostShowPage extends React.Component {
     this.props.fetchPost(this.props.match.params.postId);
   }
 
-  onSubmit = values => {
-    this.props.addComment(values);
-  }
-
   render() {
     const renderComments = this.props.comments.map((comment, index) => (
       <ConnectedCommentCard
@@ -28,7 +24,7 @@ class PostShowPage extends React.Component {
     const renderRootForm = (
       <MyForm
         fields={['content']}
-        onSubmit={this.onSubmit}
+        onSubmit={this.props.addComment}
         onSubmitText="Reply"
         hiddenValues={{post_id: this.props.post.id}}
       />

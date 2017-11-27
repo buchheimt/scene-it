@@ -7,7 +7,7 @@ class MyForm extends React.Component {
     super();
 
     this.state = {
-    values: {}
+      values: {}
     }
   }
 
