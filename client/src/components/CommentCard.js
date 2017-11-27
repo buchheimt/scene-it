@@ -30,7 +30,8 @@ class CommentCard extends React.Component {
     if (this.state.value !== '') {
       this.props.addComment({
         content: this.state.value,
-        post_id: this.props.comment.post_id
+        post_id: this.props.comment.post_id,
+        parent_id: this.props.comment.id
       });
       this.setState({
         value: ''
@@ -40,6 +41,9 @@ class CommentCard extends React.Component {
   }
 
   render() {
+    console.log("comment doc!!!!", this.props.comment)
+    console.log('childs!!!', this.props.childrenComments)
+    console.log('!!all props', this.props)
     let renderReply;
     let renderVoteOptions = (
       <div>
@@ -78,16 +82,30 @@ class CommentCard extends React.Component {
       renderReply = (<Button bsSize="small" onClick={this.handleOnClick}>Reply</Button>)
     }
 
+    let renderChildrenComments = this.props.childrenComments.map((comment, index) => (
+      <ConnectedCommentCard
+        key={index}
+        toggleActive={this.props.toggleActive}
+        addComment={this.props.addComment}
+        commentId={comment.id}
+      />
+    ))
+
     return (
       <div className="commentCard" >
         <Row className="show-grid">
-          <Col xs={3} md={2}>
+          <Col xs={3} md={1}>
             {this.props.loggedIn ? renderVoteOptions : ''}
           </Col>
-          <Col xs={9} md={10}>
+          <Col xs={9} md={11}>
             <p>{this.props.comment.username}</p>
             <p>{this.props.comment.content}</p>
             {this.props.loggedIn ? renderReply : ''}
+          </Col>
+        </Row>
+        <Row>
+          <Col sm={11} smOffset={1}>
+            {!!this.props.childrenComments ? renderChildrenComments : ''}
           </Col>
         </Row>
       </div>
@@ -99,9 +117,11 @@ const mapStateToProps = (state, ownProps) => {
   const comment = state.comments.find(comment => comment.id == ownProps.commentId);
   const post = state.posts.find(post => post.id == comment.post_id);
   const user = !!post.users ? post.users.find(user => user.id == comment.user_id) : {};
+  const childrenComments = state.comments.filter(comment => comment.parent_id == ownProps.commentId)
   return {
     comment: {...comment, username: user.username },
-    loggedIn: state.session.loggedIn
+    loggedIn: state.session.loggedIn,
+    childrenComments
   }
 }
 
@@ -112,4 +132,6 @@ const mapDispatchToProps = (dispatch) => {
   }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CommentCard);
+const ConnectedCommentCard = connect(mapStateToProps, mapDispatchToProps)(CommentCard);
+
+export default ConnectedCommentCard;

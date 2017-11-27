@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchPost, toggleActive, addComment } from '../actions/index';
 import MyForm from '../components/MyForm';
-import CommentCard from '../components/CommentCard';
+import ConnectedCommentCard from '../components/CommentCard';
 
 class PostShowPage extends React.Component {
 
@@ -17,7 +17,7 @@ class PostShowPage extends React.Component {
 
   render() {
     const renderComments = this.props.comments.map((comment, index) => (
-      <CommentCard
+      <ConnectedCommentCard
         key={index}
         toggleActive={this.props.toggleActive}
         addComment={this.props.addComment}
@@ -53,7 +53,7 @@ const mapStateToProps = (state, ownProps) => {
   if (!!post) {
     return {
       post: post,
-      comments: state.comments.filter(comment => comment.post_id == post.id),
+      comments: state.comments.filter(comment => comment.post_id == post.id && !comment.parent_id),
       session: {loggedIn: state.session.loggedIn}
     }
   } else {
