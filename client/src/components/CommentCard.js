@@ -1,6 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { addPoint, subtractPoint } from '../actions/index';
 import { Button, FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
+import FAPlus from 'react-icons/lib/fa/plus';
+import FAMinus from 'react-icons/lib/fa/minus';
 
 class CommentCard extends React.Component {
   constructor() {
@@ -57,6 +61,12 @@ class CommentCard extends React.Component {
 
     return (
       <div className="commentCard" >
+        <button className="vote" onClick={e => this.props.addPoint(this.props.comment.id)}>
+          <FAPlus className='plusIcon' color='#9D9' size={20} />
+        </button>
+        <button className="vote" onClick={e => this.props.subtractPoint(this.props.comment.id)} >
+          <FAMinus className='minusIcon' color='#D99' size={20} />
+        </button>
         <p>{this.props.comment.username} - {this.props.comment.score}</p>
         <p>{this.props.comment.content}</p>
         {this.props.loggedIn ? renderReply : ''}
@@ -68,11 +78,18 @@ class CommentCard extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   const comment = state.comments.find(comment => comment.id == ownProps.commentId);
   const post = state.posts.find(post => post.id == comment.post_id);
-  const user = post.users.find(user => user.id == comment.user_id);
+  const user = !!post.users ? post.users.find(user => user.id == comment.user_id) : {};
   return {
     comment: {...comment, username: user.username },
     loggedIn: state.session.loggedIn
   }
 }
 
-export default connect(mapStateToProps, null)(CommentCard);
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    addPoint,
+    subtractPoint
+  }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CommentCard);

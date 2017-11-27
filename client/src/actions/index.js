@@ -79,3 +79,11 @@ export function logoutUser() {
   sessionStorage.clear()
   return {type: 'LOGOUT_USER'};
 }
+
+export function addPoint(commentId) {
+  return {type: 'ADD_POINT', commentId};
+}
+
+export function subtractPoint(commentId) {
+  return {type: 'SUBTRACT_POINT', commentId};
+}

@@ -61,8 +61,17 @@
   box-shadow: 0 2px 2px #777;
 }
 
-.commentCard:hover {
-  background: #999;
+.plusIcon:hover {
+  fill: #5A5;
+}
+
+.minusIcon:hover {
+  fill: #A55;
+}
+
+button.vote {
+  border: none;
+  background: none;
   cursor: pointer;
 }
 
