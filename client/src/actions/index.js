@@ -81,9 +81,29 @@ export function logoutUser() {
 }
 
 export function addPoint(commentId) {
-  return {type: 'ADD_POINT', commentId};
+  return (dispatch) => {
+    return fetch(`/comments/${commentId}`, {
+      method: 'PATCH',
+      headers: {
+        'AUTHORIZATION': `Bearer ${sessionStorage.jwt}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({id: commentId, updateAction: 'addPoint'})
+    }).then(resp => resp.json())
+      .then(comment => dispatch({type: 'ADD_POINT', comment}));
+  }
 }
 
 export function subtractPoint(commentId) {
-  return {type: 'SUBTRACT_POINT', commentId};
+  return (dispatch) => {
+    return fetch(`/comments/${commentId}`, {
+      method: 'PATCH',
+      headers: {
+        'AUTHORIZATION': `Bearer ${sessionStorage.jwt}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({id: commentId, updateAction: 'subtractPoint'})
+    }).then(resp => resp.json())
+      .then(comment => dispatch({type: 'SUBTRACT_POINT', comment}));
+  }
 }

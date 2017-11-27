@@ -28,18 +28,16 @@ const comments = (state = [], action) => {
         action.comment
       ]
     case 'ADD_POINT':
-      commentsNonmatch = state.filter(comment => comment.id != action.commentId);
-      comment = state.find(comment => comment.id == action.commentId);
+      commentsNonmatch = state.filter(comment => comment.id != action.comment.id);
       return [
         ...commentsNonmatch,
-        {...comment, score: comment.score + 1}
+        action.comment
       ].sort((a,b) => a.id - b.id);
     case 'SUBTRACT_POINT':
-      commentsNonmatch = state.filter(comment => comment.id != action.commentId);
-      comment = state.find(comment => comment.id == action.commentId);
+      commentsNonmatch = state.filter(comment => comment.id != action.comment.id);
       return [
         ...commentsNonmatch,
-        {...comment, score: comment.score - 1}
+        action.comment
       ].sort((a,b) => a.id - b.id);
     default:
       return state;
