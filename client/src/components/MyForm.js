@@ -28,6 +28,7 @@ class MyForm extends React.Component {
   render() {
     const renderFields = this.props.fields.map((field, index) => (
       <FormControl
+        bsSize="small"
         key={index}
         type={field === 'password' ? 'password' : 'text'}
         name={field}
@@ -41,7 +42,7 @@ class MyForm extends React.Component {
       <form onSubmit={this.handleOnSubmit}>
         <FormGroup>
           {renderFields}
-          <Button type="submit">
+          <Button bsSize="small" type="submit">
             {this.props.onSubmitText}
           </Button>
         </FormGroup>

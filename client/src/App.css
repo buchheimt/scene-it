@@ -7,6 +7,12 @@
   height: 80px;
 }*/
 
+.wrapper {
+  max-width: 960px;
+  width: 85%;
+  margin: 0 auto;
+}
+
 .App-header {
   background-color: #222;
   height: 60px;
@@ -74,11 +80,11 @@
   fill: #A55;
 }
 
-/*button.vote {
+button.vote {
   border: none;
   background: none;
   cursor: pointer;
-}*/
+}
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

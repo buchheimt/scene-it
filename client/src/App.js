@@ -20,11 +20,13 @@ class App extends Component {
       <Router>
         <div className="App">
           <NavBar />
-          <Switch>
-            <Route exact path={'/'} component={HomePage} />
-            <Route exact path={'/movies/:movieId'} component={MovieShowPage} />
-            <Route exact path={'/movies/:movieId/posts/:postId'} component={PostShowPage} />
-          </Switch>
+          <div className="wrapper">
+            <Switch>
+              <Route exact path={'/'} component={HomePage} />
+              <Route exact path={'/movies/:movieId'} component={MovieShowPage} />
+              <Route exact path={'/movies/:movieId/posts/:postId'} component={PostShowPage} />
+            </Switch>
+          </div>
         </div>
       </Router>
     );

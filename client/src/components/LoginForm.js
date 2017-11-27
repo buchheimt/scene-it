@@ -35,6 +35,7 @@ class LoginForm extends React.Component {
             <Row>
               <Col xs={5}>
                 <FormControl
+                  bsSize="small"
                   type="text"
                   name="email"
                   value={this.state.credentials.email}
@@ -44,6 +45,7 @@ class LoginForm extends React.Component {
               </Col>
               <Col xs={5}>
                 <FormControl
+                  bsSize="small"
                   type="password"
                   name="password"
                   value={this.state.credentials.password}
@@ -52,7 +54,7 @@ class LoginForm extends React.Component {
                 />
               </Col>
               <Col xs={2}>
-                <Button type="submit">
+                <Button bsSize="small" type="submit">
                   Submit
                 </Button>
               </Col>

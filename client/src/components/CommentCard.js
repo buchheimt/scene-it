@@ -27,14 +27,16 @@ class CommentCard extends React.Component {
 
   handleOnSubmit = e => {
     e.preventDefault();
-    this.props.addComment({
-      content: this.state.value,
-      post_id: this.props.comment.post_id
-    });
-    this.setState({
-      value: ''
-    });
-    this.props.toggleActive(this.props.comment.id);
+    if (this.state.value !== '') {
+      this.props.addComment({
+        content: this.state.value,
+        post_id: this.props.comment.post_id
+      });
+      this.setState({
+        value: ''
+      });
+      this.props.toggleActive(this.props.comment.id);
+    }
   }
 
   render() {
@@ -42,10 +44,11 @@ class CommentCard extends React.Component {
     let renderVoteOptions = (
       <div>
         <button className="vote" onClick={e => this.props.addPoint(this.props.comment.id)}>
-          <FAPlus className='plusIcon' color='#9D9' size={20} />
-        </button>
+          <FAPlus className='plusIcon' color='#9D9' size={15} />
+        </button><br />
+        <p className="mt-3">{this.props.comment.score}</p>
         <button className="vote" onClick={e => this.props.subtractPoint(this.props.comment.id)} >
-          <FAMinus className='minusIcon' color='#D99' size={20} />
+          <FAMinus className='minusIcon' color='#D99' size={15} />
         </button>
       </div>
     )
@@ -59,29 +62,29 @@ class CommentCard extends React.Component {
               placeholder="Reply"
               onChange={this.handleChange}
             />
-            <Button type="submit">
+            <Button bsSize="small" type="submit">
               Submit
             </Button>
           </FormGroup>
         </form>
       )
     } else {
-      renderReply = (<Button onClick={this.handleOnClick}>Reply</Button>)
+      renderReply = (<Button bsSize="small" onClick={this.handleOnClick}>Reply</Button>)
     }
 
     return (
-      <Grid className="commentCard" >
+      <div className="commentCard" >
         <Row className="show-grid">
           <Col xs={3} md={2}>
             {this.props.loggedIn ? renderVoteOptions : ''}
           </Col>
           <Col xs={9} md={10}>
-            <p>{this.props.comment.username} - {this.props.comment.score}</p>
+            <p>{this.props.comment.username}</p>
             <p>{this.props.comment.content}</p>
             {this.props.loggedIn ? renderReply : ''}
           </Col>
         </Row>
-      </Grid>
+      </div>
     )
   }
 }

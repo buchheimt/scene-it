@@ -15,7 +15,7 @@ const NavBar = props => {
           <p className="pt-2">{props.username}</p>
         </Col>
         <Col xs={4}>
-          <Button onClick={props.logoutUser}>Sign Out</Button>
+          <Button bsSize="small" onClick={props.logoutUser}>Sign Out</Button>
         </Col>
       </Row>
     )
