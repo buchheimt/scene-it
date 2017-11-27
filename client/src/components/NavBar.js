@@ -11,10 +11,10 @@ const NavBar = props => {
   if (props.loggedIn) {
     renderSession = (
       <Row>
-        <Col xs={4} xsOffset={2}>
+        <Col xs={3} xsOffset={6}>
           <p className="pt-2">{props.username}</p>
         </Col>
-        <Col xs={4}>
+        <Col xs={3}>
           <Button bsSize="small" onClick={props.logoutUser}>Sign Out</Button>
         </Col>
       </Row>

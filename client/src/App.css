@@ -35,10 +35,10 @@
   font-size: large;
 }
 
-/*.movieCard {
+.movieCard {
+  margin: 25px;
+  padding: 10px;
   box-sizing: border-box;
-  margin: 0 auto;
-  width: 60%;
   background: #DDD;
   border-radius: 8px;
   box-shadow: 0 2px 2px #777;
@@ -49,28 +49,32 @@
   cursor: pointer;
 }
 
+.pageTitle {
+  background: #EEE;
+}
+
 .postCard {
+  margin: 15px;
+  padding: 10px;
   box-sizing: border-box;
-  margin: 0 auto;
-  width: 60%;
   background: #F6F6F6;
   border-radius: 8px;
   box-shadow: 0 2px 2px #777;
-}*/
+}
 
-/*.postCard:hover {
+.postCard:hover {
   background: #999;
   cursor: pointer;
-}*/
+}
 
-/*.commentCard {
+.commentCard {
+  padding: 10px;
+  margin: 10px;
   box-sizing: border-box;
-  margin: 0 auto;
-  width: 60%;
   background: #F6F6F6;
   border-radius: 8px;
   box-shadow: 0 2px 2px #777;
-}*/
+}
 
 .plusIcon:hover {
   fill: #5A5;

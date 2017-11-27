@@ -23,6 +23,9 @@ class MyForm extends React.Component {
   handleOnSubmit = e => {
     e.preventDefault();
     this.props.onSubmit({...this.state.values, ...this.props.hiddenValues});
+    this.setState({
+      values: {}
+    })
   }
 
   render() {

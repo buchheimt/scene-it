@@ -56,15 +56,21 @@ class CommentCard extends React.Component {
       renderReply = (
         <form onSubmit={this.handleOnSubmit}>
           <FormGroup>
-            <FormControl
-              type="text"
-              value={this.state.value}
-              placeholder="Reply"
-              onChange={this.handleChange}
-            />
-            <Button bsSize="small" type="submit">
-              Submit
-            </Button>
+            <Row>
+              <Col xs={9} md={10}>
+                <FormControl
+                  type="text"
+                  value={this.state.value}
+                  placeholder="Reply"
+                  onChange={this.handleChange}
+                />
+              </Col>
+              <Col xs={3} md={2}>
+                <Button bsSize="small" type="submit">
+                  Submit
+                </Button>
+              </Col>
+            </Row>
           </FormGroup>
         </form>
       )
