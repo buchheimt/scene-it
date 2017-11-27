@@ -39,6 +39,16 @@ class CommentCard extends React.Component {
 
   render() {
     let renderReply;
+    let renderVoteOptions = (
+      <div>
+        <button className="vote" onClick={e => this.props.addPoint(this.props.comment.id)}>
+          <FAPlus className='plusIcon' color='#9D9' size={20} />
+        </button>
+        <button className="vote" onClick={e => this.props.subtractPoint(this.props.comment.id)} >
+          <FAMinus className='minusIcon' color='#D99' size={20} />
+        </button>
+      </div>
+    )
     if (!!this.props.comment.active) {
       renderReply = (
         <form onSubmit={this.handleOnSubmit}>
@@ -61,12 +71,7 @@ class CommentCard extends React.Component {
 
     return (
       <div className="commentCard" >
-        <button className="vote" onClick={e => this.props.addPoint(this.props.comment.id)}>
-          <FAPlus className='plusIcon' color='#9D9' size={20} />
-        </button>
-        <button className="vote" onClick={e => this.props.subtractPoint(this.props.comment.id)} >
-          <FAMinus className='minusIcon' color='#D99' size={20} />
-        </button>
+        {this.props.loggedIn ? renderVoteOptions : ''}
         <p>{this.props.comment.username} - {this.props.comment.score}</p>
         <p>{this.props.comment.content}</p>
         {this.props.loggedIn ? renderReply : ''}
