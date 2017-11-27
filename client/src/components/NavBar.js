@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Button } from 'react-bootstrap';
+import { Button, Grid, Row, Col } from 'react-bootstrap';
 import { logoutUser } from '../actions/index';
 import LoginForm from './LoginForm';
 
@@ -10,10 +10,14 @@ const NavBar = props => {
   let renderSession;
   if (props.loggedIn) {
     renderSession = (
-      <div>
-        <span>{props.username}</span>
-        <Button onClick={props.logoutUser}>Sign Out</Button>
-      </div>
+      <Row>
+        <Col xs={4} xsOffset={2}>
+          <p className="pt-2">{props.username}</p>
+        </Col>
+        <Col xs={4}>
+          <Button onClick={props.logoutUser}>Sign Out</Button>
+        </Col>
+      </Row>
     )
   } else {
     renderSession = (
@@ -23,8 +27,16 @@ const NavBar = props => {
 
   return (
     <header className="App-header">
-      <a className="App-title" href="/">Scene It</a>
-      {renderSession}
+      <Grid>
+        <Row className="show-grid">
+          <Col xs={4} md={3}>
+            <a className="App-title" href="/">Scene It</a>
+          </Col>
+          <Col xs={8} md={9}>
+            {renderSession}
+          </Col>
+        </Row>
+      </Grid>
     </header>
   )
 }

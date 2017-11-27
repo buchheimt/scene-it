@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { addPoint, subtractPoint } from '../actions/index';
-import { Button, FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
+import { Grid, Row, Col, Button, FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
 import FAPlus from 'react-icons/lib/fa/plus';
 import FAMinus from 'react-icons/lib/fa/minus';
 
@@ -70,12 +70,18 @@ class CommentCard extends React.Component {
     }
 
     return (
-      <div className="commentCard" >
-        {this.props.loggedIn ? renderVoteOptions : ''}
-        <p>{this.props.comment.username} - {this.props.comment.score}</p>
-        <p>{this.props.comment.content}</p>
-        {this.props.loggedIn ? renderReply : ''}
-      </div>
+      <Grid className="commentCard" >
+        <Row className="show-grid">
+          <Col xs={3} md={2}>
+            {this.props.loggedIn ? renderVoteOptions : ''}
+          </Col>
+          <Col xs={9} md={10}>
+            <p>{this.props.comment.username} - {this.props.comment.score}</p>
+            <p>{this.props.comment.content}</p>
+            {this.props.loggedIn ? renderReply : ''}
+          </Col>
+        </Row>
+      </Grid>
     )
   }
 }

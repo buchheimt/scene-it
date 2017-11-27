@@ -4,6 +4,7 @@
   "private": true,
   "proxy": "http://localhost:4000/",
   "dependencies": {
+    "bootstrap": "^3.3.7",
     "es6-promise": "^4.1.1",
     "isomorphic-fetch": "^2.2.1",
     "react": "^16.1.1",

@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormGroup, FormControl, Button } from 'react-bootstrap';
+import { Grid, Row, Col, FormGroup, FormControl, Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { logInUser } from '../actions/index';
@@ -32,23 +32,31 @@ class LoginForm extends React.Component {
     return (
       <form onSubmit={this.handleOnSubmit}>
         <FormGroup>
-          <FormControl
-            type="text"
-            name="email"
-            value={this.state.credentials.email}
-            placeholder="Email"
-            onChange={this.handleChange}
-          />
-          <FormControl
-            type="password"
-            name="password"
-            value={this.state.credentials.password}
-            placeholder="Password"
-            onChange={this.handleChange}
-          />
-          <Button type="submit">
-            Submit
-          </Button>
+            <Row>
+              <Col xs={5}>
+                <FormControl
+                  type="text"
+                  name="email"
+                  value={this.state.credentials.email}
+                  placeholder="Email"
+                  onChange={this.handleChange}
+                />
+              </Col>
+              <Col xs={5}>
+                <FormControl
+                  type="password"
+                  name="password"
+                  value={this.state.credentials.password}
+                  placeholder="Password"
+                  onChange={this.handleChange}
+                />
+              </Col>
+              <Col xs={2}>
+                <Button type="submit">
+                  Submit
+                </Button>
+              </Col>
+            </Row>
         </FormGroup>
       </form>
     )

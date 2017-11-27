@@ -6,6 +6,8 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './reducers/rootReducer';
 import './index.css';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/css/bootstrap-theme.css';
 import App from './App';
 import { authenticateUser } from './actions/index';
 import registerServiceWorker from './registerServiceWorker';

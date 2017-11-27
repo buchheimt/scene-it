@@ -1,11 +1,11 @@
-.App {
+/*.App {
   text-align: center;
 }
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
-}
+}*/
 
 .App-header {
   background-color: #222;
@@ -20,11 +20,16 @@
   color: white;
 }
 
+.App-title:hover {
+  text-decoration: none;
+  color: #BBB
+}
+
 .App-intro {
   font-size: large;
 }
 
-.movieCard {
+/*.movieCard {
   box-sizing: border-box;
   margin: 0 auto;
   width: 60%;
@@ -45,21 +50,21 @@
   background: #F6F6F6;
   border-radius: 8px;
   box-shadow: 0 2px 2px #777;
-}
+}*/
 
-.postCard:hover {
+/*.postCard:hover {
   background: #999;
   cursor: pointer;
-}
+}*/
 
-.commentCard {
+/*.commentCard {
   box-sizing: border-box;
   margin: 0 auto;
   width: 60%;
   background: #F6F6F6;
   border-radius: 8px;
   box-shadow: 0 2px 2px #777;
-}
+}*/
 
 .plusIcon:hover {
   fill: #5A5;
@@ -69,11 +74,11 @@
   fill: #A55;
 }
 
-button.vote {
+/*button.vote {
   border: none;
   background: none;
   cursor: pointer;
-}
+}*/
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
