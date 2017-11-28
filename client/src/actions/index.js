@@ -101,15 +101,20 @@ export function addPoint(id, format) {
 
 export function subtractPoint(id, format) {
   return (dispatch) => {
-    return fetch(`/${format}s/${id}`, {
-      method: 'PATCH',
+    return fetch(`/${format}_points`, {
+      method: 'POST',
       headers: {
         'AUTHORIZATION': `Bearer ${sessionStorage.jwt}`,
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({id, updateAction: 'subtractPoint'})
+      body: JSON.stringify({
+        [`${format}_point`]: {
+          [`${format}_id`]: id,
+          value: -1
+        }
+      })
     }).then(resp => resp.json())
-      .then(content => dispatch({type: `SUBTRACT_POINT_FROM_${format.toUpperCase()}`, [format]: content}));
+      .then(content => dispatch({type: `UPDATE_${format.toUpperCase()}`, [format]: content}));
   }
 }
 

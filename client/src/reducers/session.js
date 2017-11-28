@@ -8,14 +8,16 @@ export default function sessionReducer(state = {
       return {
         loggedIn: !!sessionStorage.jwt,
         username: action.userInfo.username,
-        email: action.userInfo.email
+        email: action.userInfo.email,
+        id: action.userInfo.id
       }
     case 'AUTHENTICATE_USER':
       if (!!sessionStorage.jwt) {
         return {
           loggedIn: !!sessionStorage.jwt,
           username: action.credentials.username,
-          email: action.credentials.email
+          email: action.credentials.email,
+          id: action.credentials.id
         }
       } else {
         return state;

@@ -49,6 +49,7 @@ class CommentCard extends React.Component {
         score={{
           net: this.props.comment.net_score,
           percentage: this.props.comment.percentage_score}}
+        voted={this.props.session.voted}
         format='comment'
       />
     )
@@ -91,12 +92,12 @@ class CommentCard extends React.Component {
       <div className="commentCard" >
         <Row className="show-grid">
           <Col xs={2} sm={1}>
-            {this.props.loggedIn ? renderScore : ''}
+            {this.props.session.loggedIn ? renderScore : ''}
           </Col>
           <Col xs={10} sm={11}>
             <p>{this.props.comment.username} - <span className="tertiary">{this.props.comment.timestamp}</span></p>
             <p>{this.props.comment.content}</p>
-            {this.props.loggedIn ? renderReply : ''}
+            {this.props.session.loggedIn ? renderReply : ''}
           </Col>
         </Row>
         <Row>
@@ -114,9 +115,17 @@ const mapStateToProps = (state, ownProps) => {
   const post = state.posts.find(post => post.id == comment.post_id);
   const user = !!post.users ? post.users.find(user => user.id == comment.user_id) : {};
   const childrenComments = state.comments.filter(comment => comment.parent_id == ownProps.commentId)
+  let userCommentPoint;
+  if (!!post.comment_points) {
+    userCommentPoint = post.comment_points.find(cp => cp.user_id == state.session.id && cp.comment_id == comment.id)
+  }
+
   return {
     comment: {...comment, username: user.username },
-    loggedIn: state.session.loggedIn,
+    session: {
+      loggedIn: state.session.loggedIn,
+      voted: !!userCommentPoint ? userCommentPoint.value : 0
+    },
     childrenComments
   }
 }

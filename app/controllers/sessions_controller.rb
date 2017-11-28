@@ -7,7 +7,8 @@ class SessionsController < ApplicationController
       render json: {
         jwt: jwt,
         username: user.username,
-        email: user.email
+        email: user.email,
+        id: user.id
       }
     end
   end
@@ -17,7 +18,8 @@ class SessionsController < ApplicationController
     if (!!user)
       render json: {
         username: user.username,
-        email: user.email
+        email: user.email,
+        id: user.id
       }
     else
       render json: {}
