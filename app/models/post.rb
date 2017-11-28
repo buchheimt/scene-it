@@ -15,4 +15,13 @@ class Post < ApplicationRecord
     self.comments.size > 0 ? self.comments.size : 0
   end
 
+  def net_score
+    self.post_points.inject(0) {|sum, pp| sum += pp.value}
+  end
+
+  def percentage_score
+    decimal_score = self.post_points.count {|pp| pp.value == 1} / self.post_points.size.to_f * 100
+    self.post_points.size != 0 ? number_to_percentage(decimal_score, precision: 0) : ''
+  end
+
 end
