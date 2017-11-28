@@ -21,10 +21,10 @@ const MovieCard = props => {
   return (
     <div className="movieCard" >
       <Row className="show-grid">
-        <Col xs={3} md={1}>
+        <Col xs={2} sm={1}>
           {props.loggedIn ? renderScore : ''}
         </Col>
-        <Col xs={9} md={11} >
+        <Col xs={10} sm={11} >
           <div onClick={handleOnClick} >
             <h4>{props.movie.title} ({props.movie.release_year})</h4>
             <p>{props.movie.description.split(" ").slice(0, 40).join(' ')}...</p>

@@ -23,7 +23,7 @@ const PostCard = props => {
   return (
     <div className="postCard" >
       <Row className="show-grid">
-        <Col xs={2} sm={1}>
+        <Col xs={2} sm={1} >
           {props.loggedIn ? renderScore : ''}
         </Col>
         <Col xs={10} sm={11} >

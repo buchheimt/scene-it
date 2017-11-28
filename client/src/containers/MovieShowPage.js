@@ -43,6 +43,7 @@ class MovieShowPage extends React.Component {
           <p>{this.props.movie.description}</p>
           {this.props.session.loggedIn ? renderPostForm : ''}
         </div>
+        <h5 className="text-center">{this.props.movie.post_count} posts ({this.props.movie.comment_count} comments)</h5>
         {renderPosts}
       </div>
     )
