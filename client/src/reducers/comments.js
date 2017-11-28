@@ -27,7 +27,7 @@ const comments = (state = [], action) => {
         ...state,
         action.comment
       ]
-    case 'ADD_POINT_TO_COMMENT':
+    case 'UPDATE_COMMENT':
       commentsNonmatch = state.filter(comment => comment.id != action.comment.id);
       return [
         ...commentsNonmatch,

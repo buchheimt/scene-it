@@ -4,6 +4,7 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many :comments
   has_many :users, through: :comments
+  has_many :post_points
 
   def self.find_by_movie(movie_id)
     where(movie_id: movie_id.to_i)

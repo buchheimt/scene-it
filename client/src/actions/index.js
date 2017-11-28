@@ -82,15 +82,20 @@ export function logoutUser() {
 
 export function addPoint(id, format) {
   return (dispatch) => {
-    return fetch(`/${format}s/${id}`, {
-      method: 'PATCH',
+    return fetch(`/${format}_points`, {
+      method: 'POST',
       headers: {
         'AUTHORIZATION': `Bearer ${sessionStorage.jwt}`,
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({id, updateAction: 'addPoint'})
+      body: JSON.stringify({
+        [`${format}_point`]: {
+          [`${format}_id`]: id,
+          value: 1
+        }
+      })
     }).then(resp => resp.json())
-      .then(content => dispatch({type: `ADD_POINT_TO_${format.toUpperCase()}`, [format]: content}));
+      .then(content => dispatch({type: `UPDATE_${format.toUpperCase()}`, [format]: content}));
   }
 }
 

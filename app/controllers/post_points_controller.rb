@@ -1,0 +1,5 @@
+class PostPointsController < ApplicationController
+
+
+
+end

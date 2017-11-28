@@ -46,7 +46,9 @@ class CommentCard extends React.Component {
         addPoint={this.props.addPoint}
         subtractPoint={this.props.subtractPoint}
         id={this.props.comment.id}
-        score={this.props.comment.score}
+        score={{
+          net: this.props.comment.net_score,
+          percentage: this.props.comment.percentage_score}}
         format='comment'
       />
     )
