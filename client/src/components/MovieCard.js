@@ -1,4 +1,6 @@
 import React from 'react';
+import Score from './Score';
+import { Row, Col } from 'react-bootstrap';
 
 const MovieCard = props => {
 
@@ -6,10 +8,29 @@ const MovieCard = props => {
     props.routeToMovieShow(props.movie.id)
   }
 
+  let renderScore = (
+    <Score
+      addPoint={props.addPoint}
+      subtractPoint={props.subtractPoint}
+      id={props.movie.id}
+      score={props.movie.score}
+      format='movie'
+    />
+  )
+
   return (
-    <div className="movieCard" onClick={handleOnClick}>
-      <h4>{props.movie.title}</h4>
-      <p>{props.movie.description.split(" ").slice(0, 40).join(' ')}...</p>
+    <div className="movieCard" >
+      <Row className="show-grid">
+        <Col xs={3} md={1}>
+          {props.loggedIn ? renderScore : ''}
+        </Col>
+        <Col xs={9} md={11} >
+          <div className="movieCardBody" onClick={handleOnClick} >
+            <h4>{props.movie.title}</h4>
+            <p>{props.movie.description.split(" ").slice(0, 40).join(' ')}...</p>
+          </div>
+        </Col>
+      </Row>
     </div>
   )
 }

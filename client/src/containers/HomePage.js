@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { addPoint, subtractPoint } from '../actions/index';
 import MovieCard from '../components/MovieCard';
 
 class HomePage extends React.Component {
@@ -15,6 +17,9 @@ class HomePage extends React.Component {
         <MovieCard
           key={index}
           movie={movie}
+          loggedIn={this.props.session.loggedIn}
+          addPoint={this.props.addPoint}
+          subtractPoint={this.props.subtractPoint}
           routeToMovieShow={this.routeToMovieShow}
         />
       ))
@@ -33,8 +38,16 @@ class HomePage extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    movies: state.movies
+    movies: state.movies,
+    session: {loggedIn: state.session.loggedIn}
   }
 }
 
-export default connect(mapStateToProps, null)(HomePage);
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators({
+    addPoint,
+    subtractPoint
+  }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

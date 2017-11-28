@@ -62,7 +62,7 @@
   box-shadow: 0 2px 2px #777;
 }
 
-.postCard:hover {
+.postCardBody:hover {
   background: #999;
   cursor: pointer;
 }

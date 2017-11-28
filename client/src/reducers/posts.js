@@ -1,6 +1,7 @@
 const posts = (state = [], action) => {
   console.log(action);
   let postIndex;
+  let postsNonmatch;
   switch (action.type) {
     case 'START_ADDING_POSTS':
       return state;
@@ -38,6 +39,18 @@ const posts = (state = [], action) => {
         ].sort((a,b) => a.id - b.id)},
         ...state.slice(postIndex + 1)
       ]
+    case 'ADD_POINT_TO_POST':
+      postsNonmatch = state.filter(post => post.id != action.post.id);
+      return [
+        ...postsNonmatch,
+        action.post
+      ].sort((a,b) => a.id - b.id);
+    case 'SUBTRACT_POINT_FROM_POST':
+      postsNonmatch = state.filter(post => post.id != action.post.id);
+      return [
+        ...postsNonmatch,
+        action.post
+      ].sort((a,b) => a.id - b.id);
     default:
       return state;
   }
