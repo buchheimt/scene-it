@@ -51,6 +51,19 @@ const posts = (state = [], action) => {
         ...postsNonmatch,
         action.post
       ].sort((a,b) => a.id - b.id);
+    case 'UPDATE_COMMENT_SCORE':
+      postIndex = state.indexOf(state.find(post => post.id == action.comment_point.comment.post_id));
+      return [
+        ...state.slice(0, postIndex),
+        {
+          ...state[postIndex],
+          comment_points: [
+            ...state[postIndex].comment_points,
+            action.comment_point
+          ]
+        },
+        ...state.slice(postIndex + 1)
+      ]
     default:
       return state;
   }

@@ -5,7 +5,7 @@ class CommentPointsController < ApplicationController
     comment_point = CommentPoint.new(comment_point_params)
     comment_point.user = current_user
     if comment_point.save
-      render json: comment_point.comment
+      render json: comment_point
     else
       binding.pry
     end
