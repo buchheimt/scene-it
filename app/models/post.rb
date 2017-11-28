@@ -10,7 +10,7 @@ class Post < ApplicationRecord
   end
 
   def comment_count
-    self.comments.size
+    self.comments.size > 0 ? self.comments.size : 0
   end
 
 end

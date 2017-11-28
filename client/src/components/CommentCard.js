@@ -92,7 +92,7 @@ class CommentCard extends React.Component {
             {this.props.loggedIn ? renderScore : ''}
           </Col>
           <Col xs={10} sm={11}>
-            <p>{this.props.comment.username} - <span className="secondary">{this.props.comment.timestamp}</span></p>
+            <p>{this.props.comment.username} - <span className="tertiary">{this.props.comment.timestamp}</span></p>
             <p>{this.props.comment.content}</p>
             {this.props.loggedIn ? renderReply : ''}
           </Col>

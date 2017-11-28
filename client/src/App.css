@@ -93,6 +93,11 @@
 }
 
 .secondary {
+  font-size: 1.35rem;
+  color: #555;
+}
+
+.tertiary {
   font-size: 1.25rem;
   color: #888;
 }

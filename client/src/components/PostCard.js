@@ -23,14 +23,14 @@ const PostCard = props => {
   return (
     <div className="postCard" >
       <Row className="show-grid">
-        <Col xs={3} md={1}>
+        <Col xs={2} sm={1}>
           {props.loggedIn ? renderScore : ''}
         </Col>
-        <Col xs={9} md={11} >
+        <Col xs={10} sm={11} >
           <div className="postCardBody" onClick={handleOnClick} >
             <h4>{props.post.title}</h4>
-            <p>{props.post.content.split(" ").slice(0, 40).join(' ')}...</p>
-            <p className="secondary">{props.post.comment_count} comments</p>
+            <p className="secondary">{props.post.content.split(" ").slice(0, 40).join(' ')}...</p>
+            <p className="tertiary">{props.post.comment_count} comments</p>
           </div>
         </Col>
       </Row>
