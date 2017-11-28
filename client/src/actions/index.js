@@ -118,6 +118,24 @@ export function subtractPoint(id, format) {
   }
 }
 
+export function updatePoint(id, format, value) {
+  return (dispatch) => {
+    return fetch(`/${format}_points/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'AUTHORIZATION': `Bearer ${sessionStorage.jwt}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        [`${format}_point`]: {
+          value
+        }
+      })
+    }).then(resp => resp.json())
+      .then(content => dispatch({type: `UPDATE_${format.toUpperCase()}_SCORE`, [`${format}_point`]: content}));
+  }
+}
+
 export function createPost(values) {
   return (dispatch) => {
     dispatch({type: "CREATING_POST"});

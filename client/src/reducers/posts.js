@@ -1,7 +1,9 @@
 const posts = (state = [], action) => {
   console.log(action);
+  let post;
   let postIndex;
   let postsNonmatch;
+  let commentPointIndex;
   switch (action.type) {
     case 'START_ADDING_POSTS':
       return state;
@@ -51,7 +53,7 @@ const posts = (state = [], action) => {
         ...postsNonmatch,
         action.post
       ].sort((a,b) => a.id - b.id);
-    case 'UPDATE_COMMENT_SCORE':
+    case 'CREATE_COMMENT_SCORE':
       postIndex = state.indexOf(state.find(post => post.id == action.comment_point.comment.post_id));
       return [
         ...state.slice(0, postIndex),
@@ -60,6 +62,23 @@ const posts = (state = [], action) => {
           comment_points: [
             ...state[postIndex].comment_points,
             action.comment_point
+          ]
+        },
+        ...state.slice(postIndex + 1)
+      ]
+    case 'UPDATE_COMMENT_SCORE':
+      postIndex = state.indexOf(state.find(post => post.id == action.comment_point.comment.post_id));
+      post = state[postIndex]
+      commentPointIndex = post.comment_points.indexOf(post.comment_points.find(cp => cp.id == action.comment_point.id));
+
+      return [
+        ...state.slice(0, postIndex),
+        {
+          ...state[postIndex],
+          comment_points: [
+            ...post.comment_points.slice(0, commentPointIndex),
+            action.comment_point,
+            ...post.comment_points.slice(commentPointIndex + 1)
           ]
         },
         ...state.slice(postIndex + 1)

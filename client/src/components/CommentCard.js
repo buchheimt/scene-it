@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { addPoint, subtractPoint } from '../actions/index';
+import { addPoint, subtractPoint, updatePoint } from '../actions/index';
 import { Grid, Row, Col, Button, FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
 import Score from './Score';
 
@@ -45,7 +45,9 @@ class CommentCard extends React.Component {
       <Score
         addPoint={this.props.addPoint}
         subtractPoint={this.props.subtractPoint}
+        updatePoint={this.props.updatePoint}
         id={this.props.comment.id}
+        pointId={this.props.session.pointId}
         score={{
           net: this.props.comment.net_score,
           percentage: this.props.comment.percentage_score}}
@@ -124,7 +126,8 @@ const mapStateToProps = (state, ownProps) => {
     comment: {...comment, username: user.username },
     session: {
       loggedIn: state.session.loggedIn,
-      voted: !!userCommentPoint ? userCommentPoint.value : 0
+      voted: !!userCommentPoint ? userCommentPoint.value : 0,
+      pointId: !!userCommentPoint ? userCommentPoint.id : 0
     },
     childrenComments
   }
@@ -133,7 +136,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     addPoint,
-    subtractPoint
+    subtractPoint,
+    updatePoint
   }, dispatch);
 }
 
