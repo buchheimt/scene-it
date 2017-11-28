@@ -7,5 +7,4 @@ Rails.application.routes.draw do
   get '/authenticate', to: 'sessions#show'
   post '/login', to: 'sessions#create'
 
-
 end

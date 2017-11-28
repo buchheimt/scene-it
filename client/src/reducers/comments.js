@@ -27,13 +27,13 @@ const comments = (state = [], action) => {
         ...state,
         action.comment
       ]
-    case 'ADD_POINT':
+    case 'ADD_POINT_TO_COMMENT':
       commentsNonmatch = state.filter(comment => comment.id != action.comment.id);
       return [
         ...commentsNonmatch,
         action.comment
       ].sort((a,b) => a.id - b.id);
-    case 'SUBTRACT_POINT':
+    case 'SUBTRACT_POINT_FROM_COMMENT':
       commentsNonmatch = state.filter(comment => comment.id != action.comment.id);
       return [
         ...commentsNonmatch,

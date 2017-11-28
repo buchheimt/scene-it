@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { addPoint, subtractPoint } from '../actions/index';
 import { Grid, Row, Col, Button, FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
-import FAPlus from 'react-icons/lib/fa/plus';
-import FAMinus from 'react-icons/lib/fa/minus';
+import Score from './Score';
 
 class CommentCard extends React.Component {
   constructor() {
@@ -41,20 +40,15 @@ class CommentCard extends React.Component {
   }
 
   render() {
-    console.log("comment doc!!!!", this.props.comment)
-    console.log('childs!!!', this.props.childrenComments)
-    console.log('!!all props', this.props)
     let renderReply;
-    let renderVoteOptions = (
-      <div>
-        <button className="vote" onClick={e => this.props.addPoint(this.props.comment.id)}>
-          <FAPlus className='plusIcon' color='#9D9' size={15} />
-        </button><br />
-        <p className="mt-3">{this.props.comment.score}</p>
-        <button className="vote" onClick={e => this.props.subtractPoint(this.props.comment.id)} >
-          <FAMinus className='minusIcon' color='#D99' size={15} />
-        </button>
-      </div>
+    let renderScore = (
+      <Score
+        addPoint={this.props.addPoint}
+        subtractPoint={this.props.subtractPoint}
+        id={this.props.comment.id}
+        score={this.props.comment.score}
+        format='comment'
+      />
     )
     if (!!this.props.comment.active) {
       renderReply = (
@@ -95,7 +89,7 @@ class CommentCard extends React.Component {
       <div className="commentCard" >
         <Row className="show-grid">
           <Col xs={3} md={1}>
-            {this.props.loggedIn ? renderVoteOptions : ''}
+            {this.props.loggedIn ? renderScore : ''}
           </Col>
           <Col xs={9} md={11}>
             <p>{this.props.comment.username}</p>

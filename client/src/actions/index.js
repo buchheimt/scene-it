@@ -80,31 +80,31 @@ export function logoutUser() {
   return {type: 'LOGOUT_USER'};
 }
 
-export function addPoint(commentId) {
+export function addPoint(id, format) {
   return (dispatch) => {
-    return fetch(`/comments/${commentId}`, {
+    return fetch(`/${format}s/${id}`, {
       method: 'PATCH',
       headers: {
         'AUTHORIZATION': `Bearer ${sessionStorage.jwt}`,
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({id: commentId, updateAction: 'addPoint'})
+      body: JSON.stringify({id, updateAction: 'addPoint'})
     }).then(resp => resp.json())
-      .then(comment => dispatch({type: 'ADD_POINT', comment}));
+      .then(content => dispatch({type: `ADD_POINT_TO_${format.toUpperCase()}`, [format]: content}));
   }
 }
 
-export function subtractPoint(commentId) {
+export function subtractPoint(id, format) {
   return (dispatch) => {
-    return fetch(`/comments/${commentId}`, {
+    return fetch(`/${format}s/${id}`, {
       method: 'PATCH',
       headers: {
         'AUTHORIZATION': `Bearer ${sessionStorage.jwt}`,
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({id: commentId, updateAction: 'subtractPoint'})
+      body: JSON.stringify({id, updateAction: 'subtractPoint'})
     }).then(resp => resp.json())
-      .then(comment => dispatch({type: 'SUBTRACT_POINT', comment}));
+      .then(content => dispatch({type: `SUBTRACT_POINT_FROM_${format.toUpperCase()}`, [format]: content}));
   }
 }
 
