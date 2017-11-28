@@ -26,7 +26,7 @@ const MovieCard = props => {
         </Col>
         <Col xs={9} md={11} >
           <div onClick={handleOnClick} >
-            <h4>{props.movie.title}</h4>
+            <h4>{props.movie.title} ({props.movie.release_year})</h4>
             <p>{props.movie.description.split(" ").slice(0, 40).join(' ')}...</p>
           </div>
         </Col>

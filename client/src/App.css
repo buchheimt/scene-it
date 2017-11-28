@@ -84,10 +84,23 @@
   fill: #A55;
 }
 
+.text-center {
+  text-align: center;
+}
+
+.center {
+  margin: 0 auto;
+}
+
 button.vote {
+  width: 100%;
   border: none;
   background: none;
   cursor: pointer;
+}
+
+#scoreNet {
+  margin: 5px 0px;
 }
 
 @keyframes App-logo-spin {
