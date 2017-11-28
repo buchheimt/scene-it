@@ -88,10 +88,10 @@ class CommentCard extends React.Component {
     return (
       <div className="commentCard" >
         <Row className="show-grid">
-          <Col xs={3} md={1}>
+          <Col xs={2} sm={1}>
             {this.props.loggedIn ? renderScore : ''}
           </Col>
-          <Col xs={9} md={11}>
+          <Col xs={10} sm={11}>
             <p>{this.props.comment.username} - <span className="secondary">{this.props.comment.timestamp}</span></p>
             <p>{this.props.comment.content}</p>
             {this.props.loggedIn ? renderReply : ''}

@@ -9,4 +9,8 @@ class Post < ApplicationRecord
     where(movie_id: movie_id.to_i)
   end
 
+  def comment_count
+    self.comments.size
+  end
+
 end

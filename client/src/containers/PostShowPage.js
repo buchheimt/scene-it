@@ -36,6 +36,7 @@ class PostShowPage extends React.Component {
           <p>{this.props.post.content}</p>
           { this.props.session.loggedIn ? renderRootForm :  ''}
         </div>
+        <h4 className="text-center">{this.props.post.comment_count} comments</h4>
         {renderComments}
       </div>
     )
