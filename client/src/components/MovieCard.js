@@ -25,7 +25,7 @@ const MovieCard = props => {
           {props.loggedIn ? renderScore : ''}
         </Col>
         <Col xs={9} md={11} >
-          <div className="movieCardBody" onClick={handleOnClick} >
+          <div onClick={handleOnClick} >
             <h4>{props.movie.title}</h4>
             <p>{props.movie.description.split(" ").slice(0, 40).join(' ')}...</p>
           </div>

@@ -29,7 +29,6 @@ class PostShowPage extends React.Component {
         hiddenValues={{post_id: this.props.post.id}}
       />
     )
-
     return (
       <div>
         <div className="postCard">
