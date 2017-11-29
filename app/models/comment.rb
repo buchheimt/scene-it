@@ -17,6 +17,10 @@ class Comment < ApplicationRecord
     self.comment_points.size != 0 ? number_to_percentage(decimal_score, precision: 0) : ''
   end
 
+  def total_points
+    self.comment_points.size
+  end
+
   def timestamp
     "#{time_ago_in_words(self.created_at)} ago"
   end

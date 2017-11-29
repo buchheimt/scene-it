@@ -32,7 +32,10 @@ class App extends Component {
                 </Switch>
               </Col>
               <Col sm={3} md={2}>
-                <Preferences updateSort={this.props.updateSort} />
+                <Preferences
+                  updateSort={this.props.updateSort}
+                  sortMethod={this.props.sortMethod}
+                />
               </Col>
             </Row>
 
@@ -43,6 +46,12 @@ class App extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    sortMethod: state.session.sortMethod
+  }
+}
+
 const mapDispatchToProps = dispatch => {
   return bindActionCreators({
     fetchMovies,
@@ -50,4 +59,4 @@ const mapDispatchToProps = dispatch => {
   }, dispatch)
 }
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

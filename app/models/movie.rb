@@ -25,4 +25,8 @@ class Movie < ApplicationRecord
     self.movie_points.size != 0 ? number_to_percentage(decimal_score, precision: 0) : ''
   end
 
+  def total_points
+    self.movie_points.size
+  end
+
 end

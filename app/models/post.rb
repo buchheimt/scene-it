@@ -27,4 +27,8 @@ class Post < ApplicationRecord
     self.post_points.size != 0 ? number_to_percentage(decimal_score, precision: 0) : ''
   end
 
+  def total_points
+    self.post_points.size
+  end
+
 end
