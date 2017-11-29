@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { addPoint, subtractPoint, updatePoint, removeComment, toggleEdit, updateComment } from '../actions/index';
+import customSort from '../actions/sort';
 import { Grid, Row, Col, Button, FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
 import Score from './Score';
 
@@ -111,7 +112,8 @@ class CommentCard extends React.Component {
       renderReply = (<Button bsSize="small" onClick={this.handleOnReply}>Reply</Button>)
     }
 
-    let renderChildrenComments = this.props.childrenComments.map((comment, index) => (
+    const sortedChildrenComments = customSort[this.props.session.sortMethod](this.props.childrenComments);
+    let renderChildrenComments = sortedChildrenComments.map((comment, index) => (
       <ConnectedCommentCard
         key={index}
         toggleActive={this.props.toggleActive}
@@ -206,7 +208,8 @@ const mapStateToProps = (state, ownProps) => {
       loggedIn: state.session.loggedIn,
       voted: !!userCommentPoint ? userCommentPoint.value : 0,
       pointId: !!userCommentPoint ? userCommentPoint.id : 0,
-      belongsToUser: comment.user_id == state.session.id
+      belongsToUser: comment.user_id == state.session.id,
+      sortMethod: state.session.sortMethod
     },
     childrenComments
   }

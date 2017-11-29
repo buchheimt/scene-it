@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchMovie, createPost, addPoint, subtractPoint, updatePoint } from '../actions/index';
+import customSort from '../actions/sort';
 import PostCard from '../components/PostCard';
 import MyForm from '../components/MyForm';
 
@@ -16,7 +17,8 @@ class MovieShowPage extends React.Component {
   }
 
   render() {
-    const renderPosts = this.props.posts.map((post, index) => {
+    const sortedPosts = customSort[this.props.session.sortMethod](this.props.posts);
+    const renderPosts = sortedPosts.map((post, index) => {
       const postPoint = this.props.movie.post_points.find(pp => pp.user_id == this.props.session.id && pp.post_id == post.id);
       return (
         <PostCard
@@ -69,11 +71,15 @@ const mapStateToProps = (state, ownProps) => {
       posts: state.posts.filter(post => post.movie_id == movie.id),
       session: {
         loggedIn: state.session.loggedIn,
-        id: state.session.id
+        id: state.session.id,
+        sortMethod: state.session.sortMethod
       }
     }
   } else {
-    return {movie: {}, posts: [], session: {loggedIn: state.session.loggedIn}}
+    return {movie: {}, posts: [], session: {
+      loggedIn: state.session.loggedIn,
+      sortMethod: state.session.sortMethod
+    }}
   }
 }
 
@@ -83,7 +89,8 @@ const mapDispatchToProps = dispatch => {
     createPost,
     addPoint,
     subtractPoint,
-    updatePoint
+    updatePoint,
+    customSort
   }, dispatch)
 }
 

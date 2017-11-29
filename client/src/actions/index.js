@@ -182,3 +182,7 @@ export function removeComment(id) {
       .then(comment => dispatch({type: 'UPDATE_COMMENT', comment}))
   }
 }
+
+export function updateSort(sortMethod) {
+  return {type: 'UPDATE_SORT', sortMethod}
+}

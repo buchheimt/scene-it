@@ -2,12 +2,12 @@ import { browserHistory } from 'react-router';
 
 export default function sessionReducer(state = {
     loggedIn: !!sessionStorage.jwt,
-    sort: 'recent'
+    sortMethod: 'recent'
   }, action) {
   switch (action.type) {
     case 'LOG_IN_SUCCESS':
       return {
-        sort: state.sort,
+        sortMethod: state.sortMethod,
         loggedIn: !!sessionStorage.jwt,
         username: action.userInfo.username,
         email: action.userInfo.email,
@@ -16,7 +16,7 @@ export default function sessionReducer(state = {
     case 'AUTHENTICATE_USER':
       if (!!sessionStorage.jwt) {
         return {
-          sort: state.sort,
+          sortMethod: state.sortMethod,
           loggedIn: !!sessionStorage.jwt,
           username: action.credentials.username,
           email: action.credentials.email,
@@ -26,15 +26,9 @@ export default function sessionReducer(state = {
         return state;
       }
     case 'LOGOUT_USER':
-      return {loggedIn: false}
-    case 'SWITCH_TO_RECENT':
-      return {...state, sort: 'recent'};
-    case 'SWITCH_TO_HIGH_SCORE':
-      return {...state, sort: 'popular'};
-    case 'SWITCH_TO_LOW_SCORE':
-      return {...state, sort: 'unpopular'};
-    case 'SWITCH_TO_MOST_POINTS':
-      return {...state, sort: 'controversial'};
+      return {loggedIn: false};
+    case 'UPDATE_SORT':
+      return {...state, sortMethod: action.sortMethod};
     default:
       return state;
   }

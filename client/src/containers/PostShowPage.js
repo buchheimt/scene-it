@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchPost, toggleActive, addComment } from '../actions/index';
+import customSort from '../actions/sort';
 import MyForm from '../components/MyForm';
 import ConnectedCommentCard from '../components/CommentCard';
 
@@ -12,7 +13,8 @@ class PostShowPage extends React.Component {
   }
 
   render() {
-    const renderComments = this.props.comments.map((comment, index) => (
+    const sortedComments = customSort[this.props.session.sortMethod](this.props.comments);
+    const renderComments = sortedComments.map((comment, index) => (
       <ConnectedCommentCard
         key={index}
         toggleActive={this.props.toggleActive}
@@ -50,10 +52,16 @@ const mapStateToProps = (state, ownProps) => {
     return {
       post: post,
       comments: state.comments.filter(comment => comment.post_id == post.id && !comment.parent_id),
-      session: {loggedIn: state.session.loggedIn}
+      session: {
+        loggedIn: state.session.loggedIn,
+        sortMethod: state.session.sortMethod
+      }
     }
   } else {
-    return {post: {}, comments: [], session: {loggedIn: state.session.loggedIn}}
+    return {post: {}, comments: [], session: {
+      loggedIn: state.session.loggedIn,
+      sortMethod: state.session.sortMethod
+    }}
   }
 }
 

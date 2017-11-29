@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Row, Col } from 'react-bootstrap';
 import './App.css';
-import { fetchMovies } from './actions/index';
+import { fetchMovies, updateSort } from './actions/index';
 import NavBar from './components/NavBar';
 import Preferences from './components/Preferences';
 import HomePage from './containers/HomePage';
@@ -32,7 +32,7 @@ class App extends Component {
                 </Switch>
               </Col>
               <Col sm={3} md={2}>
-                <Preferences />
+                <Preferences updateSort={this.props.updateSort} />
               </Col>
             </Row>
 
@@ -45,7 +45,8 @@ class App extends Component {
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators({
-    fetchMovies
+    fetchMovies,
+    updateSort
   }, dispatch)
 }
 

@@ -14,7 +14,7 @@ class HomePage extends React.Component {
   render() {
     let renderMovies;
     if (!!this.props.movies) {
-      const sortedMovies = customSort[this.props.session.sort](this.props.movies)
+      const sortedMovies = customSort[this.props.session.sortMethod](this.props.movies)
       renderMovies = sortedMovies.map((movie, index) => {
         const moviePoint = movie.movie_points.find(mp => mp.user_id == this.props.session.id);
 
@@ -52,7 +52,7 @@ const mapStateToProps = state => {
     session: {
       loggedIn: state.session.loggedIn,
       id: state.session.id,
-      sort: state.session.sort
+      sortMethod: state.session.sortMethod
     }
   }
 }
