@@ -18,7 +18,6 @@ class MovieShowPage extends React.Component {
   render() {
     const renderPosts = this.props.posts.map((post, index) => {
       const postPoint = this.props.movie.post_points.find(pp => pp.user_id == this.props.session.id && pp.post_id == post.id);
-      console.log('pp!!!',postPoint, !!postPoint)
       return (
         <PostCard
           key={index}
@@ -49,8 +48,8 @@ class MovieShowPage extends React.Component {
 
     return (
       <div>
-        <div className="movieCard">
-          <h3>{this.props.movie.title} ({this.props.movie.release_year})</h3>
+        <div className="movieCard text-center">
+          <h3 className="">{this.props.movie.title} ({this.props.movie.release_year})</h3>
           <p>{this.props.movie.description}</p>
           {this.props.session.loggedIn ? renderPostForm : ''}
         </div>

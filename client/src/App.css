@@ -8,8 +8,8 @@
 }*/
 
 .wrapper {
-  max-width: 960px;
-  width: 85%;
+  max-width: 1080px;
+  width: 95%;
   margin: 0 auto;
 }
 
@@ -74,6 +74,18 @@
   background: #F6F6F6;
   border-radius: 8px;
   box-shadow: 0 2px 2px #777;
+}
+
+.preferencesCard {
+  padding: 10px;
+  margin: 10px;
+  border-radius: 4px;
+  box-shadow: 0 2px 2px #777;
+  background: #CCC;
+}
+
+.preferencesCard button {
+  margin: 5px 0;
 }
 
 .plusIcon:hover {

@@ -31,7 +31,7 @@ class PostShowPage extends React.Component {
     )
     return (
       <div>
-        <div className="postCard">
+        <div className="postCard  text-center">
           <h3>{this.props.post.title}</h3>
           <p>{this.props.post.content}</p>
           { this.props.session.loggedIn ? renderRootForm :  ''}
