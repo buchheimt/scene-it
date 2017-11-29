@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { addPoint, subtractPoint, updatePoint } from '../actions/index';
+import customSort from '../actions/sort';
 import MovieCard from '../components/MovieCard';
 
 class HomePage extends React.Component {
@@ -13,7 +14,8 @@ class HomePage extends React.Component {
   render() {
     let renderMovies;
     if (!!this.props.movies) {
-      renderMovies = this.props.movies.map((movie, index) => {
+      const sortedMovies = customSort[this.props.session.sort](this.props.movies)
+      renderMovies = sortedMovies.map((movie, index) => {
         const moviePoint = movie.movie_points.find(mp => mp.user_id == this.props.session.id);
 
         return (
@@ -49,7 +51,8 @@ const mapStateToProps = state => {
     movies: state.movies,
     session: {
       loggedIn: state.session.loggedIn,
-      id: state.session.id
+      id: state.session.id,
+      sort: state.session.sort
     }
   }
 }
