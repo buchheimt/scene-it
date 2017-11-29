@@ -27,6 +27,12 @@ const comments = (state = [], action) => {
         ...state,
         action.comment
       ]
+    case 'UPDATE_COMMENT':
+      commentsNonmatch = state.filter(comment => comment.id != action.comment.id);
+      return [
+        ...commentsNonmatch,
+        action.comment
+      ].sort((a,b) => a.id - b.id);
     case 'CREATE_COMMENT_SCORE':
       commentsNonmatch = state.filter(comment => comment.id != action.comment_point.comment_id);
       return [

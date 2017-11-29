@@ -150,3 +150,31 @@ export function createPost(values) {
       .then(post => dispatch({type: 'CREATE_POST', post}))
   }
 }
+
+export function updateComment(id, values) {
+  return (dispatch) => {
+    dispatch({type: 'UPDATING_COMMENT'});
+    return fetch(`/comments/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'AUTHORIZATION': `Bearer ${sessionStorage.jwt}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({comment: values})
+    }).then(resp => resp.json())
+      .then(comment => dispatch({type: 'UPDATE_COMMENT', comment}))
+  }
+}
+
+export function removeComment(id) {
+  return (dispatch) => {
+    dispatch({type: 'REMOVING_COMMENT'});
+    return fetch(`/comments/${id}`, {
+      method: "DELETE",
+      headers: {
+        'AUTHORIZATION': `Bearer ${sessionStorage.jwt}`,
+      },
+    }).then(resp => resp.json())
+      .then(comment => dispatch({type: 'UPDATE_COMMENT', comment}))
+  }
+}

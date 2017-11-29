@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   resources :movies, only: [:index, :show, :update]
   resources :posts, only: [:show, :create, :update]
-  resources :comments, only: [:create, :update]
+  resources :comments, only: [:create, :update, :destroy]
 
   resources :movie_points, only: [:create, :update]
   resources :post_points, only: [:create, :update]

@@ -11,15 +11,23 @@ class CommentsController < ApplicationController
 
   def update
     authenticate
+    authorize comment
     comment = Comment.find_by_id(params[:id])
-    case params[:updateAction]
-    when 'addPoint'
-      comment.score += 1
-    when 'subtractPoint'
-      comment.score -= 1
-    end
-    if comment.save
+    if comment.update(comment_params)
       render json: comment
+    else
+      binding.pry
+    end
+  end
+
+  def destroy
+    authenticate
+    comment = Comment.find_by_id(params[:id])
+    authorize comment
+    if comment.update(content: '[removed]', status: 0)
+      render json: comment
+    else
+      binding.pry
     end
   end
 

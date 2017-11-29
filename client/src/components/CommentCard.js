@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { addPoint, subtractPoint, updatePoint } from '../actions/index';
+import { addPoint, subtractPoint, updatePoint, removeComment } from '../actions/index';
 import { Grid, Row, Col, Button, FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
 import Score from './Score';
 
@@ -20,8 +20,16 @@ class CommentCard extends React.Component {
     });
   }
 
-  handleOnClick = () => {
+  handleOnReply = () => {
     this.props.toggleActive(this.props.comment.id);
+  }
+
+  handleEditClick = () => {
+
+  }
+
+  handleRemoveClick = () => {
+    this.props.removeComment(this.props.comment.id);
   }
 
   handleOnSubmit = e => {
@@ -78,7 +86,7 @@ class CommentCard extends React.Component {
         </form>
       )
     } else {
-      renderReply = (<Button bsSize="small" onClick={this.handleOnClick}>Reply</Button>)
+      renderReply = (<Button bsSize="small" onClick={this.handleOnReply}>Reply</Button>)
     }
 
     let renderChildrenComments = this.props.childrenComments.map((comment, index) => (
@@ -90,6 +98,20 @@ class CommentCard extends React.Component {
       />
     ))
 
+    let renderEditOptions;
+    if (this.props.session.belongsToUser) {
+      renderEditOptions = (
+        <span>
+          <Button bsSize={'small'} onClick={this.handleEditClick} >
+            Edit
+          </Button>
+          <Button bsSize={'small'} onClick={this.handleRemoveClick} >
+            Remove
+          </Button>
+        </span>
+      )
+    }
+
     return (
       <div className="commentCard" >
         <Row className="show-grid">
@@ -97,9 +119,12 @@ class CommentCard extends React.Component {
             {this.props.session.loggedIn ? renderScore : ''}
           </Col>
           <Col xs={10} sm={11}>
-            <p>{this.props.comment.username} - <span className="tertiary">{this.props.comment.timestamp}</span></p>
+            <p>
+              {!!this.props.comment.status ? this.props.comment.username : '[removed]'} - <span className="tertiary">{this.props.comment.timestamp}</span>
+            </p>
             <p>{this.props.comment.content}</p>
             {this.props.session.loggedIn ? renderReply : ''}
+            {renderEditOptions}
           </Col>
         </Row>
         <Row>
@@ -127,7 +152,8 @@ const mapStateToProps = (state, ownProps) => {
     session: {
       loggedIn: state.session.loggedIn,
       voted: !!userCommentPoint ? userCommentPoint.value : 0,
-      pointId: !!userCommentPoint ? userCommentPoint.id : 0
+      pointId: !!userCommentPoint ? userCommentPoint.id : 0,
+      belongsToUser: comment.user_id == state.session.id
     },
     childrenComments
   }
@@ -137,7 +163,8 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     addPoint,
     subtractPoint,
-    updatePoint
+    updatePoint,
+    removeComment
   }, dispatch);
 }
 
