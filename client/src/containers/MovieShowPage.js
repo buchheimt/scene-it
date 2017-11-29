@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchMovie, createPost, addPoint, subtractPoint } from '../actions/index';
+import { fetchMovie, createPost, addPoint, subtractPoint, updatePoint } from '../actions/index';
 import PostCard from '../components/PostCard';
 import MyForm from '../components/MyForm';
 
@@ -23,9 +23,16 @@ class MovieShowPage extends React.Component {
         loggedIn={this.props.session.loggedIn}
         addPoint={this.props.addPoint}
         subtractPoint={this.props.subtractPoint}
+        updatePoint={this.props.updatePoint}
+
         routeToPostShow={this.routeToPostShow}
       />
     ))
+
+    // session={{
+    //   pointId: ,
+    //   voted:
+    // }}
 
     const renderPostForm = (
       <MyForm
@@ -65,7 +72,8 @@ const mapDispatchToProps = dispatch => {
     fetchMovie,
     createPost,
     addPoint,
-    subtractPoint
+    subtractPoint,
+    updatePoint
   }, dispatch)
 }
 

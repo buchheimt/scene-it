@@ -1,3 +1,6 @@
+include ActionView::Helpers::DateHelper
+include ActionView::Helpers::NumberHelper
+
 class Movie < ApplicationRecord
 
   has_many :posts

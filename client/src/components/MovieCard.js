@@ -12,8 +12,13 @@ const MovieCard = props => {
     <Score
       addPoint={props.addPoint}
       subtractPoint={props.subtractPoint}
+      updatePoint={props.updatePoint}
       id={props.movie.id}
-      score={props.movie.score}
+      pointId={props.session.pointId}
+      score={{
+        net: props.movie.net_score,
+        percentage: props.movie.percentage_score}}
+      voted={props.session.voted}
       format='movie'
     />
   )

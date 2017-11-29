@@ -3,19 +3,22 @@ import { Row, Col } from 'react-bootstrap';
 import Score from './Score';
 
 const PostCard = props => {
-  const handleOnClick = e => {
-    console.log('nn', e.target.nodeName)
-    if (e.target.nodeName !== 'BUTTON' && e.target.nodeName !== 'svg') {
-      props.routeToPostShow(props.post)
-    }
+
+  function handleOnClick() {
+    props.routeToPostShow(props.post)
   }
 
   let renderScore = (
     <Score
       addPoint={props.addPoint}
       subtractPoint={props.subtractPoint}
+      updatePoint={props.updatePoint}
       id={props.post.id}
-      score={props.post.score}
+      //pointId={this.props.session.pointId}
+      score={{
+        net: props.post.net_score,
+        percentage: props.post.percentage_score}}
+      //voted={this.props.session.voted}
       format='post'
     />
   )
