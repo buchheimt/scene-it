@@ -151,16 +151,20 @@ export function createPost(values) {
   }
 }
 
-export function updateComment(id, values) {
+export function toggleEdit(commentId) {
+  return {type: 'TOGGLE_EDIT', commentId}
+}
+
+export function updateComment(comment) {
   return (dispatch) => {
     dispatch({type: 'UPDATING_COMMENT'});
-    return fetch(`/comments/${id}`, {
+    return fetch(`/comments/${comment.id}`, {
       method: 'PATCH',
       headers: {
         'AUTHORIZATION': `Bearer ${sessionStorage.jwt}`,
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({comment: values})
+      body: JSON.stringify({comment})
     }).then(resp => resp.json())
       .then(comment => dispatch({type: 'UPDATE_COMMENT', comment}))
   }

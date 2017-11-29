@@ -2,6 +2,7 @@ const comments = (state = [], action) => {
   console.log(action);
   let comment;
   let commentsNonmatch;
+  let newComments;
   switch (action.type) {
     case 'START_ADDING_COMMENTS':
       return state;
@@ -14,7 +15,7 @@ const comments = (state = [], action) => {
       }
     case 'TOGGLE_ACTIVE':
       comment = state.find(comment => comment.id == action.commentId);
-      let newComments = state.map(comment => {
+      newComments = state.map(comment => {
         return {...comment, active: false};
       })
       return [
@@ -45,6 +46,16 @@ const comments = (state = [], action) => {
         ...commentsNonmatch,
         action.comment_point.comment
       ].sort((a,b) => a.id - b.id);
+    case 'TOGGLE_EDIT':
+      comment = state.find(comment => comment.id == action.commentId);
+      newComments = state.map(comment => {
+        return {...comment, active: false};
+      })
+      return [
+        ...newComments.slice(0, state.indexOf(comment)),
+        {...comment, editable: !comment.editable},
+        ...newComments.slice(state.indexOf(comment) + 1)
+      ]
     default:
       return state;
   }

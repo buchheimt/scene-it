@@ -11,8 +11,8 @@ class CommentsController < ApplicationController
 
   def update
     authenticate
-    authorize comment
     comment = Comment.find_by_id(params[:id])
+    authorize comment
     if comment.update(comment_params)
       render json: comment
     else

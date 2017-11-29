@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { addPoint, subtractPoint, updatePoint, removeComment } from '../actions/index';
+import { addPoint, subtractPoint, updatePoint, removeComment, toggleEdit, updateComment } from '../actions/index';
 import { Grid, Row, Col, Button, FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
 import Score from './Score';
 
@@ -10,13 +10,20 @@ class CommentCard extends React.Component {
     super();
 
     this.state = {
-      value: ''
+      reply: '',
+      edit: ''
     }
+  }
+
+  componentDidMount() {
+    this.setState({
+      edit: this.props.comment.content
+    })
   }
 
   handleChange = e => {
     this.setState({
-      value: e.target.value
+      [e.target.name]: e.target.value
     });
   }
 
@@ -25,25 +32,39 @@ class CommentCard extends React.Component {
   }
 
   handleEditClick = () => {
-
+    this.props.toggleEdit(this.props.comment.id);
   }
 
   handleRemoveClick = () => {
     this.props.removeComment(this.props.comment.id);
   }
 
-  handleOnSubmit = e => {
+  handleReplySubmit = e => {
     e.preventDefault();
-    if (this.state.value !== '') {
+    if (this.state.reply !== '') {
       this.props.addComment({
-        content: this.state.value,
+        content: this.state.reply,
         post_id: this.props.comment.post_id,
         parent_id: this.props.comment.id
       });
       this.setState({
-        value: ''
+        reply: ''
       });
       this.props.toggleActive(this.props.comment.id);
+    }
+  }
+
+  handleEditSubmit = e => {
+    e.preventDefault();
+    if (this.state.edit !== '') {
+      this.props.updateComment({
+        content: this.state.edit,
+        id: this.props.comment.id
+      });
+      this.setState({
+        edit: ''
+      });
+      this.props.toggleEdit(this.props.comment.id);
     }
   }
 
@@ -65,12 +86,13 @@ class CommentCard extends React.Component {
     )
     if (!!this.props.comment.active) {
       renderReply = (
-        <form onSubmit={this.handleOnSubmit}>
+        <form onSubmit={this.handleReplySubmit}>
           <FormGroup>
             <Row>
               <Col xs={9} md={10}>
                 <FormControl
                   type="text"
+                  name="reply"
                   value={this.state.value}
                   placeholder="Reply"
                   onChange={this.handleChange}
@@ -99,16 +121,47 @@ class CommentCard extends React.Component {
     ))
 
     let renderEditOptions;
+    let renderRemoveOption;
     if (this.props.session.belongsToUser) {
-      renderEditOptions = (
-        <span>
-          <Button bsSize={'small'} onClick={this.handleEditClick} >
-            Edit
-          </Button>
-          <Button bsSize={'small'} onClick={this.handleRemoveClick} >
-            Remove
-          </Button>
-        </span>
+      if (this.props.comment.editable) {
+        renderEditOptions = (
+          <form onSubmit={this.handleEditSubmit}>
+            <FormGroup>
+              <Row>
+                <Col xs={9} md={10}>
+                  <FormGroup controlId="formControlsTextarea">
+                    <FormControl
+                      componentClass="textarea"
+                      name="edit"
+                      value={this.state.edit}
+                      onChange={this.handleChange}
+                    />
+                  </FormGroup>
+                </Col>
+                <Col xs={3} md={2}>
+                  <Button bsSize="small" type="submit">
+                    Submit
+                  </Button>
+                </Col>
+              </Row>
+            </FormGroup>
+          </form>
+        )
+      } else {
+        renderEditOptions = (
+          <span>
+            <p>{this.props.comment.content}</p>
+            <Button bsSize={'small'} onClick={this.handleEditClick} >
+              Edit
+            </Button>
+          </span>
+        )
+      }
+
+      renderRemoveOption = (
+        <Button bsSize={'small'} onClick={this.handleRemoveClick} >
+          Remove
+        </Button>
       )
     }
 
@@ -122,9 +175,9 @@ class CommentCard extends React.Component {
             <p>
               {!!this.props.comment.status ? this.props.comment.username : '[removed]'} - <span className="tertiary">{this.props.comment.timestamp}</span>
             </p>
-            <p>{this.props.comment.content}</p>
-            {this.props.session.loggedIn ? renderReply : ''}
             {renderEditOptions}
+            {this.props.session.loggedIn ? renderReply : ''}
+            {renderRemoveOption}
           </Col>
         </Row>
         <Row>
@@ -164,7 +217,9 @@ const mapDispatchToProps = (dispatch) => {
     addPoint,
     subtractPoint,
     updatePoint,
-    removeComment
+    removeComment,
+    toggleEdit,
+    updateComment
   }, dispatch);
 }
 
