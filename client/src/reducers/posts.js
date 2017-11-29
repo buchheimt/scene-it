@@ -83,6 +83,18 @@ const posts = (state = [], action) => {
         },
         ...state.slice(postIndex + 1)
       ]
+    case 'CREATE_POST_SCORE':
+      postsNonmatch = state.filter(post => post.id != action.post_point.post_id);
+      return [
+        ...postsNonmatch,
+        action.post_point.post
+      ].sort((a,b) => a.id - b.id);
+    case 'UPDATE_POST_SCORE':
+      postsNonmatch = state.filter(post => post.id != action.post_point.post_id);
+      return [
+        ...postsNonmatch,
+        action.post_point.post
+      ].sort((a,b) => a.id - b.id);
     default:
       return state;
   }

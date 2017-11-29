@@ -4,6 +4,7 @@ include ActionView::Helpers::NumberHelper
 class Movie < ApplicationRecord
 
   has_many :posts
+  has_many :post_points, through: :posts
   has_many :comments, through: :posts
   has_many :movie_points
 

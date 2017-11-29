@@ -14,11 +14,11 @@ const PostCard = props => {
       subtractPoint={props.subtractPoint}
       updatePoint={props.updatePoint}
       id={props.post.id}
-      //pointId={this.props.session.pointId}
+      pointId={props.session.pointId}
       score={{
         net: props.post.net_score,
         percentage: props.post.percentage_score}}
-      //voted={this.props.session.voted}
+      voted={props.session.voted}
       format='post'
     />
   )

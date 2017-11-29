@@ -16,23 +16,27 @@ class MovieShowPage extends React.Component {
   }
 
   render() {
-    const renderPosts = this.props.posts.map((post, index) => (
-      <PostCard
-        key={index}
-        post={post}
-        loggedIn={this.props.session.loggedIn}
-        addPoint={this.props.addPoint}
-        subtractPoint={this.props.subtractPoint}
-        updatePoint={this.props.updatePoint}
+    const renderPosts = this.props.posts.map((post, index) => {
+      const postPoint = this.props.movie.post_points.find(pp => pp.user_id == this.props.session.id && pp.post_id == post.id);
+      console.log('pp!!!',postPoint, !!postPoint)
+      return (
+        <PostCard
+          key={index}
+          post={post}
+          loggedIn={this.props.session.loggedIn}
+          addPoint={this.props.addPoint}
+          subtractPoint={this.props.subtractPoint}
+          updatePoint={this.props.updatePoint}
+          session={{
+            pointId: !!postPoint ? postPoint.id : 0,
+            voted: !!postPoint ? postPoint.value : 0
+          }}
+          routeToPostShow={this.routeToPostShow}
+        />
+      )
+    })
 
-        routeToPostShow={this.routeToPostShow}
-      />
-    ))
 
-    // session={{
-    //   pointId: ,
-    //   voted:
-    // }}
 
     const renderPostForm = (
       <MyForm
@@ -61,7 +65,14 @@ const mapStateToProps = (state, ownProps) => {
   const movie = state.movies.find(movie => movie.id == ownProps.match.params.movieId);
 
   if (!!movie) {
-    return {movie: movie, posts: state.posts.filter(post => post.movie_id == movie.id), session: {loggedIn: state.session.loggedIn}}
+    return {
+      movie: movie,
+      posts: state.posts.filter(post => post.movie_id == movie.id),
+      session: {
+        loggedIn: state.session.loggedIn,
+        id: state.session.id
+      }
+    }
   } else {
     return {movie: {}, posts: [], session: {loggedIn: state.session.loggedIn}}
   }

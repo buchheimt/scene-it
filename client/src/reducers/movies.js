@@ -1,6 +1,8 @@
 const movies = (state = [], action) => {
   console.log(action);
   let moviesNonmatch;
+  let movieIndex;
+  let postPointIndex;
   let movie;
   switch (action.type) {
     case 'START_ADDING_MOVIES':
@@ -8,7 +10,7 @@ const movies = (state = [], action) => {
     case 'ADD_MOVIES':
       return action.movies.sort((a,b) => a.id - b.id);
     case 'ADD_MOVIE':
-      const movieIndex = state.indexOf(state.find(movie => movie.id == action.movie.id));
+      movieIndex = state.indexOf(state.find(movie => movie.id == action.movie.id));
       return [
         ...state.slice(0, movieIndex),
         action.movie,
@@ -40,6 +42,36 @@ const movies = (state = [], action) => {
           ].sort((a,b) => a.id - b.id)
         }
       ].sort((a,b) => a.id - b.id);
+    case 'CREATE_POST_SCORE':
+      movieIndex = state.indexOf(state.find(movie => movie.id == action.post_point.post.movie_id));
+      return [
+        ...state.slice(0,movieIndex),
+        {
+          ...state[movieIndex],
+          post_points: [
+            ...state[movieIndex].post_points,
+            action.post_point
+          ]
+        },
+        ...state.slice(movieIndex + 1)
+      ]
+    case 'UPDATE_POST_SCORE':
+      movieIndex = state.indexOf(state.find(movie => movie.id == action.post_point.post.movie_id));
+      movie = state[movieIndex]
+      postPointIndex = movie.post_points.indexOf(movie.post_points.find(pp => pp.id == action.post_point.id));
+
+      return [
+        ...state.slice(0, movieIndex),
+        {
+          ...state[movieIndex],
+          post_points: [
+            ...movie.post_points.slice(0, postPointIndex),
+            action.post_point,
+            ...movie.post_points.slice(postPointIndex + 1)
+          ]
+        },
+        ...state.slice(movieIndex + 1)
+      ]
     default:
       return state;
   }

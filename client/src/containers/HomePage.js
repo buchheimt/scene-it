@@ -13,9 +13,7 @@ class HomePage extends React.Component {
   render() {
     let renderMovies;
     if (!!this.props.movies) {
-      console.log(this.props.movies)
       renderMovies = this.props.movies.map((movie, index) => {
-        console.log(movie)
         const moviePoint = movie.movie_points.find(mp => mp.user_id == this.props.session.id);
 
         return (
