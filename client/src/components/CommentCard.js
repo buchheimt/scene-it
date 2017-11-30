@@ -149,21 +149,20 @@ class CommentCard extends React.Component {
             </FormGroup>
           </form>
         )
-      } else {
-        renderEditOptions = (
-          <span>
-            <p>{this.props.comment.content}</p>
-            <Button bsSize={'small'} onClick={this.handleEditClick} >
-              Edit
-            </Button>
-          </span>
-        )
       }
 
       renderRemoveOption = (
         <Button bsSize={'small'} onClick={this.handleRemoveClick} >
           Remove
         </Button>
+      )
+    }
+
+    if (!renderEditOptions) {
+      renderEditOptions = (
+        <span>
+          <p>{this.props.comment.content}</p>
+        </span>
       )
     }
 
