@@ -9,9 +9,9 @@ export default function sessionReducer(state = {
       return {
         sortMethod: state.sortMethod,
         loggedIn: !!sessionStorage.jwt,
-        username: action.userInfo.username,
-        email: action.userInfo.email,
-        id: action.userInfo.id
+        username: action.credentials.username,
+        email: action.credentials.email,
+        id: action.credentials.id,
       }
     case 'AUTHENTICATE_USER':
       if (!!sessionStorage.jwt) {

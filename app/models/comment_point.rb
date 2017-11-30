@@ -11,8 +11,8 @@ class CommentPoint < ApplicationRecord
     end
   end
 
-  def self.find_on_join(user_id, comment_id)
-    where('user_id = ? AND comment_id = ?', user_id, comment_id)
+  def self.find_by_user(id)
+    where('user_id = ?', id)
   end
 
   def self.find_on_join(user_id, comment_id)

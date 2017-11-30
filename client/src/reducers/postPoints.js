@@ -1,43 +1,33 @@
 const postPoints = (state = [], action) => {
   console.log(action);
-  let moviePoints;
-  let moviesNonmatch;
-  let moviePointsNonmatch;
-  let movieIndex;
+  let postPoints;
+  let postsNonmatch;
+  let postPointsNonmatch;
+  let postIndex;
   let postPointIndex;
   let moviePointIndex;
-  let movie;
+  let post;
   switch (action.type) {
-    case 'ADD_MOVIES':
-      moviePoints = action.movies.reduce((output, movie) => {
-        output = [
-          ...output,
-          ...movie.movie_points
-        ]
-        return output
-      }, [])
-      return [
-        ...state.filter(mp => !moviePoints.find(amp => mp.id == amp.id)),
-        ...moviePoints
-      ].sort((a,b) => a.id - b.id)
     case 'ADD_MOVIE':
-      moviePointsNonmatch = state.filter(mp => mp.movie_id != action.movie.id);
+      postPointsNonmatch = state.filter(pp => pp.movie_id != action.movie.id);
       return [
-        ...moviePointsNonmatch,
-        action.movie.movie_points
+        ...postPointsNonmatch,
+        ...action.movie.post_points
       ]
-    case 'ADD_MOVIE_POINTS':
+    case 'ADD_POST':
+
+    case 'ADD_POST_POINTS':
       return [
         ...state.filter(mp => !action.moviePoints.find(amp => mp.id == amp.id)),
         ...action.moviePoints
       ].sort((a,b) => a.id - b.id)
-    case 'CREATE_MOVIE_SCORE':
+    case 'CREATE_POST_SCORE':
       return [
         ...state,
         action.movie_point
       ].sort((a,b) => a.id - b.id);
 
-    case 'UPDATE_MOVIE_SCORE':
+    case 'UPDATE_POST_SCORE':
       moviePointIndex = state.indexOf(state.find(mp => mp.id == action.movie_point.id));
       return [
         ...state.slice(0, moviePointIndex),

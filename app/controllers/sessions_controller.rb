@@ -8,7 +8,10 @@ class SessionsController < ApplicationController
         jwt: jwt,
         username: user.username,
         email: user.email,
-        id: user.id
+        id: user.id,
+        movie_points: MoviePoint.find_by_user(user.id),
+        post_points: PostPoint.find_by_user(user.id),
+        comment_points: CommentPoint.find_by_user(user.id)
       }
     end
   end
@@ -19,7 +22,10 @@ class SessionsController < ApplicationController
       render json: {
         username: user.username,
         email: user.email,
-        id: user.id
+        id: user.id,
+        movie_points: MoviePoint.find_by_user(user.id),
+        post_points: PostPoint.find_by_user(user.id),
+        comment_points: CommentPoint.find_by_user(user.id)
       }
     else
       render json: {}

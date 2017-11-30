@@ -10,8 +10,8 @@ class Post < ApplicationRecord
   has_many :comment_points, through: :comments
   has_many :post_points
 
-  def self.find_by_movie(movie_id)
-    where(movie_id: movie_id.to_i)
+  def username
+    self.user.username
   end
 
   def comment_count
@@ -29,6 +29,10 @@ class Post < ApplicationRecord
 
   def total_points
     self.post_points.size
+  end
+
+  def self.find_by_movie(movie_id)
+    where(movie_id: movie_id.to_i)
   end
 
 end

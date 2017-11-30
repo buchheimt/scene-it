@@ -8,6 +8,10 @@ class Comment < ApplicationRecord
   delegate :movie, to: :post
   has_many :comment_points
 
+  def username
+    self.user.username
+  end
+
   def net_score
     self.comment_points.inject(0) {|sum, cp| sum += cp.value}
   end

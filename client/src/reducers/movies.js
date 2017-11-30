@@ -4,23 +4,16 @@ const movies = (state = [], action) => {
   let movieIndex;
   let postPointIndex;
   let movie;
-  let filteredMovie;
   switch (action.type) {
     case 'START_ADDING_MOVIES':
       return state;
     case 'ADD_MOVIES':
-      return action.movies.map(movie => {
-        filteredMovie = Object.assign({}, movie);
-        delete filteredMovie.movie_points
-        return filteredMovie
-      }).sort((a,b) => a.id - b.id);
+      return action.movies;
     case 'ADD_MOVIE':
       movieIndex = state.indexOf(state.find(movie => movie.id == action.movie.id));
-      filteredMovie = Object.assign({}, action.movie);
-      delete filteredMovie.movie_points;
       return [
         ...state.slice(0, movieIndex),
-        filteredMovie,
+        action.movie,
         ...state.slice(movieIndex + 1)
       ]
     case 'ADD_MOVIE_POINTS':
@@ -29,54 +22,49 @@ const movies = (state = [], action) => {
         ...action.movies
       ].sort((a,b) => a.id - b.id)
     case 'CREATE_MOVIE_SCORE':
-      movieIndex = state.indexOf(action.movie_point.movie);
-      filteredMovie = Object.assign({}, action.movie_point.movie);
-      delete filteredMovie.movie_points;
+      movieIndex = state.indexOf(state.find(movie => movie.id == action.movie_point.movie.id));
       return [
         ...state.slice(0, movieIndex),
-        filteredMovie,
+        action.movie_point.movie,
         ...state.slice(movieIndex + 1)
       ].sort((a,b) => a.id - b.id);
     case 'UPDATE_MOVIE_SCORE':
       movieIndex = state.indexOf(state.find(movie => movie.id == action.movie_point.movie.id));
-      console.log("!!!!!!!!!!!!!!idx", movieIndex, action.movie_point.movie)
-      filteredMovie = Object.assign({}, action.movie_point.movie);
-      delete filteredMovie.movie_points;
       return [
         ...state.slice(0, movieIndex),
-        filteredMovie,
+        action.movie_point.movie,
         ...state.slice(movieIndex + 1)
     ].sort((a,b) => a.id - b.id);
-    case 'CREATE_POST_SCORE':
-      movieIndex = state.indexOf(state.find(movie => movie.id == action.post_point.post.movie_id));
-      return [
-        ...state.slice(0,movieIndex),
-        {
-          ...state[movieIndex],
-          post_points: [
-            ...state[movieIndex].post_points,
-            action.post_point
-          ]
-        },
-        ...state.slice(movieIndex + 1)
-      ]
-    case 'UPDATE_POST_SCORE':
-      movieIndex = state.indexOf(state.find(movie => movie.id == action.post_point.post.movie_id));
-      movie = state[movieIndex]
-      postPointIndex = movie.post_points.indexOf(movie.post_points.find(pp => pp.id == action.post_point.id));
-
-      return [
-        ...state.slice(0, movieIndex),
-        {
-          ...state[movieIndex],
-          post_points: [
-            ...movie.post_points.slice(0, postPointIndex),
-            action.post_point,
-            ...movie.post_points.slice(postPointIndex + 1)
-          ]
-        },
-        ...state.slice(movieIndex + 1)
-      ]
+    // case 'CREATE_POST_SCORE':
+    //   movieIndex = state.indexOf(state.find(movie => movie.id == action.post_point.post.movie_id));
+    //   return [
+    //     ...state.slice(0,movieIndex),
+    //     {
+    //       ...state[movieIndex],
+    //       post_points: [
+    //         ...state[movieIndex].post_points,
+    //         action.post_point
+    //       ]
+    //     },
+    //     ...state.slice(movieIndex + 1)
+    //   ]
+    // case 'UPDATE_POST_SCORE':
+    //   movieIndex = state.indexOf(state.find(movie => movie.id == action.post_point.post.movie_id));
+    //   movie = state[movieIndex]
+    //   postPointIndex = movie.post_points.indexOf(movie.post_points.find(pp => pp.id == action.post_point.id));
+    //
+    //   return [
+    //     ...state.slice(0, movieIndex),
+    //     {
+    //       ...state[movieIndex],
+    //       post_points: [
+    //         ...movie.post_points.slice(0, postPointIndex),
+    //         action.post_point,
+    //         ...movie.post_points.slice(postPointIndex + 1)
+    //       ]
+    //     },
+    //     ...state.slice(movieIndex + 1)
+    //   ]
     default:
       return state;
   }

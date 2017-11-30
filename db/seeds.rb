@@ -73,34 +73,34 @@ FILLER_COMMENTS = [
 ]
 
 FILLER_COMMENTS.each do |comment|
-  (1..50).to_a.sample(20).each do |i|
+  (1..50).to_a.sample(15).each do |i|
     Comment.create(post_id: i, user_id: rand(50) + 1, content: comment)
   end
 end
 
 FILLER_COMMENTS.each do |comment|
-  (1..400).to_a.sample(20).each do |i|
+  (1..300).to_a.sample(10).each do |i|
     parent_comment = Comment.find(i)
     Comment.create(post_id: parent_comment.post.id, user_id: rand(50) + 1, content: comment, parent_id: parent_comment.id)
   end
 end
 
-# 1200 comments total
+# 600 comments total
 FILLER_COMMENTS.each do |comment|
-  (401..800).to_a.sample(10).each do |i|
+  (301..500).to_a.sample(5).each do |i|
     parent_comment = Comment.find(i)
     Comment.create(post_id: parent_comment.post.id, user_id: rand(50) + 1, content: comment, parent_id: parent_comment.id)
   end
 end
 
 User.all.each do |user|
-  (1..10).to_a.sample(8).each do |i|
+  (1..10).to_a.sample(6).each do |i|
     MoviePoint.create(user_id: user.id, movie_id: i, value: [-1, 1].sample)
   end
-  (1..50).to_a.sample(25).each do |i|
+  (1..50).to_a.sample(20).each do |i|
     PostPoint.create(user_id: user.id, post_id: i, value: [-1, 1].sample)
   end
-  (1..1000).to_a.sample(300).each do |i|
+  (1..600).to_a.sample(50).each do |i|
     CommentPoint.create(user_id: user.id, comment_id: i, value: [-1, 1].sample)
   end
 end

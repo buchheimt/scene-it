@@ -8,24 +8,14 @@ const moviePoints = (state = [], action) => {
   let moviePointIndex;
   let movie;
   switch (action.type) {
-    case 'ADD_MOVIES':
-      moviePoints = action.movies.reduce((output, movie) => {
-        output = [
-          ...output,
-          ...movie.movie_points
-        ]
-        return output
-      }, [])
-      return [
-        ...state.filter(mp => !moviePoints.find(amp => mp.id == amp.id)),
-        ...moviePoints
-      ].sort((a,b) => a.id - b.id)
-    case 'ADD_MOVIE':
-      moviePointsNonmatch = state.filter(mp => mp.movie_id != action.movie.id);
-      return [
-        ...moviePointsNonmatch,
-        action.movie.movie_points
-      ]
+    case 'LOG_IN_SUCCESS':
+      return action.credentials.movie_points;
+    case 'AUTHENTICATE_USER':
+      if (!!sessionStorage.jwt) {
+        return action.credentials.movie_points;
+      } else {
+        return state;
+      }
     case 'ADD_MOVIE_POINTS':
       return [
         ...state.filter(mp => !action.moviePoints.find(amp => mp.id == amp.id)),

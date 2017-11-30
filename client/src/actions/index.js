@@ -63,12 +63,9 @@ export function loginSuccess(userInfo) {
 export function logInUser(credentials) {
   return (dispatch) => {
     return sessionApi.login(credentials)
-      .then(resp => {
-        sessionStorage.setItem('jwt', resp.jwt);
-        dispatch(loginSuccess({
-          username: resp.username,
-          email: resp.email
-        }));
+      .then(credentials => {
+        sessionStorage.setItem('jwt', credentials.jwt);
+        dispatch(loginSuccess({credentials}));
     });
   }
 }
