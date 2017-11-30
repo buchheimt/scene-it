@@ -1,5 +1,10 @@
 class PostPointsController < ApplicationController
 
+  def index
+    post_points = PostPoint.find_by_user(params[:user_id])
+    render json: post_points
+  end
+
   def create
     authenticate
     post_point = PostPoint.new(post_point_params)

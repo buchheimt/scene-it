@@ -1,4 +1,4 @@
-const movie_points = (state = [], action) => {
+const moviePoints = (state = [], action) => {
   console.log(action);
   let moviePoints;
   let moviesNonmatch;
@@ -49,4 +49,4 @@ const movie_points = (state = [], action) => {
   }
 }
 
-export default movie_points;
+export default moviePoints;

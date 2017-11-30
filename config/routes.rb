@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   resources :users, only: [] do
     resources :movie_points, only: [:index]
+    resources :post_points, only: [:index]
+    resources :comment_points, only: [:index]
   end
 
   resources :movies, only: [:index, :show, :update]

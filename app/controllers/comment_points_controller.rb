@@ -1,5 +1,10 @@
 class CommentPointsController < ApplicationController
 
+  def index
+    comment_points = CommentPoint.find_by_user(params[:user_id])
+    render json: comment_points
+  end
+
   def create
     authenticate
     comment_point = CommentPoint.new(comment_point_params)

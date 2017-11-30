@@ -15,4 +15,8 @@ class PostPoint < ApplicationRecord
     where('user_id = ? AND post_id = ?', user_id, post_id)
   end
 
+  def self.find_on_join(user_id, post_id)
+    where('user_id = ? AND post_id = ?', user_id, post_id)
+  end
+
 end

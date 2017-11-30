@@ -11,6 +11,10 @@ class MoviePointsShowPage extends React.Component {
     this.props.fetchMoviePoints(this.props.session.id);
   }
 
+  routeToMovieShow = id => {
+    this.props.history.push(`/movies/${id}`)
+  }
+
   render() {
     let renderMovies;
     if (!!this.props.movies) {
