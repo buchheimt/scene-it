@@ -49,6 +49,17 @@ export function fetchPostPoints(id) {
   }
 }
 
+export function fetchCommentPoints(id) {
+  return (dispatch) => {
+    dispatch({type: 'STARTING_ADDING_COMMENT_POINTS'});
+    return fetch(`/users/${id}/comment_points`)
+      .then(resp => resp.json())
+      .then(commentPoints => {
+        dispatch({type: 'ADD_COMMENT_POINTS', commentPoints, comments: commentPoints.map(cp => cp.comment)})
+      })
+  }
+}
+
 export function toggleActive(commentId) {
   return {type: 'TOGGLE_ACTIVE', commentId};
 }
@@ -67,15 +78,17 @@ export function addComment(comment) {
   }
 }
 
-export function loginSuccess(userInfo) {
-  return {type: 'LOG_IN_SUCCESS', userInfo}
+export function loginSuccess(credentials) {
+  return {type: 'LOG_IN_SUCCESS', credentials}
 }
 
 export function logInUser(credentials) {
   return (dispatch) => {
     return sessionApi.login(credentials)
       .then(credentials => {
+        debugger
         sessionStorage.setItem('jwt', credentials.jwt);
+        console.log("!!!!see meeee!", credentials)
         dispatch(loginSuccess({credentials}));
     });
   }

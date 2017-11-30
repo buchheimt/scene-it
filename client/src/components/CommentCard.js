@@ -176,14 +176,14 @@ class CommentCard extends React.Component {
             <p>
               {!!this.props.comment.status ? this.props.comment.username : '[removed]'} - <span className="tertiary">{this.props.comment.timestamp}</span>
             </p>
-            {renderEditOptions}
-            {this.props.session.loggedIn ? renderReply : ''}
-            {renderRemoveOption}
+            {this.props.renderChildren ? renderEditOptions : this.props.comment.content}
+            {this.props.session.loggedIn && this.props.renderChildren ? renderReply : ''}
+            {this.props.renderChildren ? renderRemoveOption : ""}
           </Col>
         </Row>
         <Row>
           <Col sm={11} smOffset={1}>
-            {!!this.props.childrenComments ? renderChildrenComments : ''}
+            {!!this.props.childrenComments && this.props.renderChildren ? renderChildrenComments : ''}
           </Col>
         </Row>
       </div>
@@ -194,12 +194,8 @@ class CommentCard extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   const comment = state.comments.find(comment => comment.id == ownProps.commentId);
   const post = state.posts.find(post => post.id == comment.post_id);
-  const user = !!post.users ? post.users.find(user => user.id == comment.user_id) : {};
   const childrenComments = state.comments.filter(comment => comment.parent_id == ownProps.commentId)
-  let userCommentPoint;
-  if (!!post.comment_points) {
-    userCommentPoint = post.comment_points.find(cp => cp.user_id == state.session.id && cp.comment_id == comment.id)
-  }
+  const userCommentPoint = state.commentPoints.find(cp => cp.user_id == state.session.id && cp.comment_id == comment.id)
 
   return {
     comment,

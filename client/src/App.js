@@ -45,6 +45,7 @@ class App extends Component {
                       updateSort={this.props.updateSort}
                       sortMethod={this.props.sortMethod}
                     />
+                    <hr />
                     <MyLinks userId={this.props.userId} />
                   </div>
                 </Col>

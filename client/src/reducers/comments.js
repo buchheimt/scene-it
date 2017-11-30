@@ -9,7 +9,10 @@ const comments = (state = [], action) => {
     case 'ADD_POST':
       if (!!action.post.comments) {
         commentsNonmatch = state.filter(comment => comment.post_id != action.post.id);
-        return [...commentsNonmatch, ...action.post.comments].sort((a,b) => a.id - b.id);
+        return [
+          ...commentsNonmatch,
+          ...action.post.comments
+        ].sort((a,b) => a.id - b.id);
       } else {
         return state;
       }
@@ -34,6 +37,11 @@ const comments = (state = [], action) => {
         ...commentsNonmatch,
         action.comment
       ].sort((a,b) => a.id - b.id);
+    case 'ADD_COMMENT_POINTS':
+      return [
+        ...state.filter(comment => !action.comments.find(aComment => comment.id == aComment.id)),
+        ...action.comments
+      ].sort((a,b) => a.id - b.id)
     case 'CREATE_COMMENT_SCORE':
       commentsNonmatch = state.filter(comment => comment.id != action.comment_point.comment_id);
       return [

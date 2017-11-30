@@ -20,6 +20,7 @@ class PostShowPage extends React.Component {
         toggleActive={this.props.toggleActive}
         addComment={this.props.addComment}
         commentId={comment.id}
+        renderChildren={true}
       />
     ))
 
