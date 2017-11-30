@@ -13,7 +13,7 @@ class PostPointsShowPage extends React.Component {
   }
 
   routeToPostShow = post => {
-    this.props.history.push(`${post.movie_id}/posts/${post.id}`)
+    this.props.history.push(`/movies/${post.movie_id}/posts/${post.id}`)
   }
 
   render() {

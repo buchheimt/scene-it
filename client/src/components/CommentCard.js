@@ -202,7 +202,7 @@ const mapStateToProps = (state, ownProps) => {
   }
 
   return {
-    comment: {...comment, username: user.username },
+    comment,
     session: {
       loggedIn: state.session.loggedIn,
       voted: !!userCommentPoint ? userCommentPoint.value : 0,
