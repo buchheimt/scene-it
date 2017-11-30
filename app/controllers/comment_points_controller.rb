@@ -2,7 +2,7 @@ class CommentPointsController < ApplicationController
 
   def index
     comment_points = CommentPoint.find_by_user(params[:user_id])
-    render json: comment_points, serializer: CommentPointDetailedSerializer
+    render json: comment_points, each_serializer: CommentPointDetailedSerializer
   end
 
   def create

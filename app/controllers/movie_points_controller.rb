@@ -2,7 +2,7 @@ class MoviePointsController < ApplicationController
 
   def index
     movie_points = MoviePoint.find_by_user(params[:user_id])
-    render json: movie_points, serializer: MoviePointDetailedSerializer
+    render json: movie_points, each_serializer: MoviePointDetailedSerializer
   end
 
   def create

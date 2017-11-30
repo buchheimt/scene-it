@@ -43,7 +43,7 @@ class MoviePointsShowPage extends React.Component {
 
     return (
       <div>
-        <h3>My Rated Movies:</h3>
+        <h3 className="text-center">My Rated Movies:</h3>
         {renderMovies}
       </div>
     )

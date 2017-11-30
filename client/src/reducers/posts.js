@@ -29,6 +29,11 @@ const posts = (state = [], action) => {
         ...state,
         action.post
       ]
+    case 'ADD_POST_POINTS':
+      return [
+        ...state.filter(post => !action.posts.find(aPost => post.id == aPost.id)),
+        ...action.posts
+      ].sort((a,b) => a.id - b.id)
     case 'CREATE_POST_SCORE':
       postIndex = state.indexOf(state.find(post => post.id == action.post_point.post.id));
       return [

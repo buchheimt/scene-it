@@ -2,7 +2,7 @@ class PostPointsController < ApplicationController
 
   def index
     post_points = PostPoint.find_by_user(params[:user_id])
-    render json: post_points, serializer: PostPointDetailedSerializer
+    render json: post_points, each_serializer: PostPointDetailedSerializer
   end
 
   def create

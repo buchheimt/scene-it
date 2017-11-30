@@ -29,11 +29,22 @@ export function fetchPost(postId) {
 
 export function fetchMoviePoints(id) {
   return (dispatch) => {
-    dispatch({type: 'STARTING_ADDING_MOVIES'});
+    dispatch({type: 'STARTING_ADDING_MOVIE_POINTS'});
     return fetch(`/users/${id}/movie_points`)
       .then(resp => resp.json())
       .then(moviePoints => {
         dispatch({type: 'ADD_MOVIE_POINTS', moviePoints, movies: moviePoints.map(mp => mp.movie)})
+      })
+  }
+}
+
+export function fetchPostPoints(id) {
+  return (dispatch) => {
+    dispatch({type: 'STARTING_ADDING_POST_POINTS'});
+    return fetch(`/users/${id}/post_points`)
+      .then(resp => resp.json())
+      .then(postPoints => {
+        dispatch({type: 'ADD_POST_POINTS', postPoints, posts: postPoints.map(pp => pp.post)})
       })
   }
 }
