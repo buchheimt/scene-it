@@ -10,7 +10,10 @@ const posts = (state = [], action) => {
     case 'ADD_MOVIE':
       if (!!action.movie.posts) {
         const postsNonmatch = state.filter(post => post.movie_id !== action.movie.id);
-        return [...postsNonmatch, ...action.movie.posts].sort((a,b) => a.id > b.id);
+        return [
+          ...postsNonmatch,
+          ...action.movie.posts
+        ].sort((a,b) => a.id > b.id);
       } else {
         return state;
       }
@@ -24,76 +27,21 @@ const posts = (state = [], action) => {
     case 'CREATE_POST':
       return [
         ...state,
-        {
-          id: action.post.id,
-          title: action.post.title,
-          content: action.post.content,
-          movie_id: action.post.movie_id
-        }
-      ]
-    case 'ADD_COMMENT':
-      postIndex = state.indexOf(state.find(post => post.id == action.comment.post_id));
-      return [
-        ...state.slice(0, postIndex),
-        {...state[postIndex], users: [
-          ...state[postIndex]['users'],
-          action.comment.user
-        ].sort((a,b) => a.id - b.id)},
-        ...state.slice(postIndex + 1)
-      ]
-    case 'ADD_POINT_TO_POST':
-      postsNonmatch = state.filter(post => post.id != action.post.id);
-      return [
-        ...postsNonmatch,
         action.post
-      ].sort((a,b) => a.id - b.id);
-    case 'SUBTRACT_POINT_FROM_POST':
-      postsNonmatch = state.filter(post => post.id != action.post.id);
-      return [
-        ...postsNonmatch,
-        action.post
-      ].sort((a,b) => a.id - b.id);
-    case 'CREATE_COMMENT_SCORE':
-      postIndex = state.indexOf(state.find(post => post.id == action.comment_point.comment.post_id));
-      return [
-        ...state.slice(0, postIndex),
-        {
-          ...state[postIndex],
-          comment_points: [
-            ...state[postIndex].comment_points,
-            action.comment_point
-          ]
-        },
-        ...state.slice(postIndex + 1)
-      ]
-    case 'UPDATE_COMMENT_SCORE':
-      postIndex = state.indexOf(state.find(post => post.id == action.comment_point.comment.post_id));
-      post = state[postIndex]
-      commentPointIndex = post.comment_points.indexOf(post.comment_points.find(cp => cp.id == action.comment_point.id));
-
-      return [
-        ...state.slice(0, postIndex),
-        {
-          ...state[postIndex],
-          comment_points: [
-            ...post.comment_points.slice(0, commentPointIndex),
-            action.comment_point,
-            ...post.comment_points.slice(commentPointIndex + 1)
-          ]
-        },
-        ...state.slice(postIndex + 1)
       ]
     case 'CREATE_POST_SCORE':
-      postsNonmatch = state.filter(post => post.id != action.post_point.post_id);
+      postIndex = state.indexOf(state.find(post => post.id == action.post_point.post.id));
       return [
-        ...postsNonmatch,
-        action.post_point.post
+        ...state.slice(0, postIndex),
+        action.post_point.post,
+        ...state.slice(postIndex + 1)
       ].sort((a,b) => a.id - b.id);
     case 'UPDATE_POST_SCORE':
-      postsNonmatch = state.filter(post => post.id != action.post_point.post_id);
+      postIndex = state.indexOf(state.find(post => post.id == action.post_point.post.id));
       return [
-        ...postsNonmatch,
-        action.post_point.post
+        ...state.slice(0, postIndex),
+        action.post_point.post,
+        ...state.slice(postIndex + 1)
       ].sort((a,b) => a.id - b.id);
     default:
       return state;

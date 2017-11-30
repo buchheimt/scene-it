@@ -19,7 +19,8 @@ class MovieShowPage extends React.Component {
   render() {
     const sortedPosts = customSort[this.props.session.sortMethod](this.props.posts);
     const renderPosts = sortedPosts.map((post, index) => {
-      const postPoint = this.props.movie.post_points.find(pp => pp.user_id == this.props.session.id && pp.post_id == post.id);
+      const postPoint = this.props.postPoints.find(pp => pp.user_id == this.props.session.id && pp.post_id == post.id);
+
       return (
         <PostCard
           key={index}
@@ -68,6 +69,7 @@ const mapStateToProps = (state, ownProps) => {
   if (!!movie) {
     return {
       movie: movie,
+      postPoints: state.postPoints,
       posts: state.posts.filter(post => post.movie_id == movie.id),
       session: {
         loggedIn: state.session.loggedIn,

@@ -103,7 +103,7 @@ export function addPoint(id, format) {
         }
       })
     }).then(resp => resp.json())
-      .then(content => dispatch({type: `UPDATE_${format.toUpperCase()}_SCORE`, [`${format}_point`]: content}));
+      .then(content => dispatch({type: `CREATE_${format.toUpperCase()}_SCORE`, [`${format}_point`]: content}));
   }
 }
 
@@ -122,7 +122,7 @@ export function subtractPoint(id, format) {
         }
       })
     }).then(resp => resp.json())
-      .then(content => dispatch({type: `UPDATE_${format.toUpperCase()}_SCORE`, [`${format}_point`]: content}));
+      .then(content => dispatch({type: `CREATE_${format.toUpperCase()}_SCORE`, [`${format}_point`]: content}));
   }
 }
 

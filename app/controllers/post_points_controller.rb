@@ -2,7 +2,7 @@ class PostPointsController < ApplicationController
 
   def index
     post_points = PostPoint.find_by_user(params[:user_id])
-    render json: post_points
+    render json: post_points, serializer: PostPointDetailedSerializer
   end
 
   def create
@@ -10,7 +10,7 @@ class PostPointsController < ApplicationController
     post_point = PostPoint.new(post_point_params)
     post_point.user = current_user
     if post_point.save
-      render json: post_point
+      render json: post_point, serializer: PostPointDetailedSerializer
     else
       binding.pry
     end
@@ -21,7 +21,7 @@ class PostPointsController < ApplicationController
     post_point = PostPoint.find_by_id(params[:id])
     if post_point.user == current_user
       if post_point.update(post_point_params)
-        render json: post_point
+        render json: post_point, serializer: PostPointDetailedSerializer
       else
         binding.pry
       end

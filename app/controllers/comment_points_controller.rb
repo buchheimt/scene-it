@@ -2,7 +2,7 @@ class CommentPointsController < ApplicationController
 
   def index
     comment_points = CommentPoint.find_by_user(params[:user_id])
-    render json: comment_points, include: 'comment'
+    render json: comment_points, serializer: CommentPointDetailedSerializer
   end
 
   def create
@@ -10,7 +10,7 @@ class CommentPointsController < ApplicationController
     comment_point = CommentPoint.new(comment_point_params)
     comment_point.user = current_user
     if comment_point.save
-      render json: comment_point, include: 'comment'
+      render json: comment_point, serializer: CommentPointDetailedSerializer
     else
       binding.pry
     end
@@ -21,7 +21,7 @@ class CommentPointsController < ApplicationController
     comment_point = CommentPoint.find_by_id(params[:id])
     if comment_point.user == current_user
       if comment_point.update(comment_point_params)
-        render json: comment_point, include: 'comment'
+        render json: comment_point, serializer: CommentPointDetailedSerializer
       else
         binding.pry
       end

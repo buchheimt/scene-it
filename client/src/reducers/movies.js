@@ -34,37 +34,7 @@ const movies = (state = [], action) => {
         ...state.slice(0, movieIndex),
         action.movie_point.movie,
         ...state.slice(movieIndex + 1)
-    ].sort((a,b) => a.id - b.id);
-    // case 'CREATE_POST_SCORE':
-    //   movieIndex = state.indexOf(state.find(movie => movie.id == action.post_point.post.movie_id));
-    //   return [
-    //     ...state.slice(0,movieIndex),
-    //     {
-    //       ...state[movieIndex],
-    //       post_points: [
-    //         ...state[movieIndex].post_points,
-    //         action.post_point
-    //       ]
-    //     },
-    //     ...state.slice(movieIndex + 1)
-    //   ]
-    // case 'UPDATE_POST_SCORE':
-    //   movieIndex = state.indexOf(state.find(movie => movie.id == action.post_point.post.movie_id));
-    //   movie = state[movieIndex]
-    //   postPointIndex = movie.post_points.indexOf(movie.post_points.find(pp => pp.id == action.post_point.id));
-    //
-    //   return [
-    //     ...state.slice(0, movieIndex),
-    //     {
-    //       ...state[movieIndex],
-    //       post_points: [
-    //         ...movie.post_points.slice(0, postPointIndex),
-    //         action.post_point,
-    //         ...movie.post_points.slice(postPointIndex + 1)
-    //       ]
-    //     },
-    //     ...state.slice(movieIndex + 1)
-    //   ]
+      ].sort((a,b) => a.id - b.id);
     default:
       return state;
   }

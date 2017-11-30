@@ -17,7 +17,6 @@ class HomePage extends React.Component {
       const sortedMovies = customSort[this.props.session.sortMethod](this.props.movies)
       renderMovies = sortedMovies.map((movie, index) => {
         const moviePoint = this.props.moviePoints.find(mp => mp.user_id == this.props.session.id && mp.movie_id == movie.id);
-        //console.log('!!', movie, moviePoint);
 
         return (
           <MovieCard

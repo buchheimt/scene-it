@@ -4,6 +4,7 @@ import moviePoints from './moviePoints';
 import posts from './posts';
 import postPoints from './postPoints';
 import comments from './comments';
+import commentPoints from './comments';
 import session from './session';
 
 const rootReducer = combineReducers({
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   posts,
   postPoints,
   comments,
+  commentPoints,
   session
 })
 

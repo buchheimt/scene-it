@@ -5,34 +5,34 @@ const postPoints = (state = [], action) => {
   let postPointsNonmatch;
   let postIndex;
   let postPointIndex;
-  let moviePointIndex;
+  let commentPointIndex;
   let post;
   switch (action.type) {
-    case 'ADD_MOVIE':
-      postPointsNonmatch = state.filter(pp => pp.movie_id != action.movie.id);
-      return [
-        ...postPointsNonmatch,
-        ...action.movie.post_points
-      ]
-    case 'ADD_POST':
-
+    case 'LOG_IN_SUCCESS':
+      return action.credentials.post_points;
+    case 'AUTHENTICATE_USER':
+      if (!!sessionStorage.jwt) {
+        return action.credentials.post_points;
+      } else {
+        return state;
+      }
     case 'ADD_POST_POINTS':
       return [
-        ...state.filter(mp => !action.moviePoints.find(amp => mp.id == amp.id)),
-        ...action.moviePoints
+        ...state.filter(pp => !action.postPoints.find(app => pp.id == app.id)),
+        ...action.postPoints
       ].sort((a,b) => a.id - b.id)
     case 'CREATE_POST_SCORE':
       return [
         ...state,
-        action.movie_point
+        action.post_point
       ].sort((a,b) => a.id - b.id);
 
     case 'UPDATE_POST_SCORE':
-      moviePointIndex = state.indexOf(state.find(mp => mp.id == action.movie_point.id));
+      postPointIndex = state.indexOf(state.find(pp => pp.id == action.post_point.id));
       return [
-        ...state.slice(0, moviePointIndex),
-        action.movie_point,
-        ...state.slice(moviePointIndex + 1)
+        ...state.slice(0, postPointIndex),
+        action.post_point,
+        ...state.slice(postPointIndex + 1)
       ]
     default:
       return state;
