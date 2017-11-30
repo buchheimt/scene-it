@@ -11,6 +11,10 @@ class MoviePoint < ApplicationRecord
     end
   end
 
+  def self.find_by_user(id)
+    where('user_id = ?', id)
+  end
+
   def self.find_on_join(user_id, movie_id)
     where('user_id = ? AND movie_id = ?', user_id, movie_id)
   end

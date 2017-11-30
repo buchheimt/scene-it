@@ -27,6 +27,17 @@ export function fetchPost(postId) {
   }
 }
 
+export function fetchMoviePoints(id) {
+  return (dispatch) => {
+    dispatch({type: 'STARTING_ADDING_MOVIES'});
+    return fetch(`/users/${id}/movie_points`)
+      .then(resp => resp.json())
+      .then(moviePoints => {
+        dispatch({type: 'ADD_MOVIES', movies: moviePoints.map(mp => mp.movie)})
+      })
+  }
+}
+
 export function toggleActive(commentId) {
   return {type: 'TOGGLE_ACTIVE', commentId};
 }

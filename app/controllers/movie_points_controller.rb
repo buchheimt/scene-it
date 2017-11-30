@@ -1,5 +1,10 @@
 class MoviePointsController < ApplicationController
 
+  def index
+    movie_points = MoviePoint.find_by_user(params[:user_id])
+    render json: movie_points
+  end
+
   def create
     authenticate
     movie_point = MoviePoint.new(movie_point_params)

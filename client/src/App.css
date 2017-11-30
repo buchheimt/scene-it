@@ -76,7 +76,7 @@
   box-shadow: 0 2px 2px #777;
 }
 
-.preferencesCard {
+.sidebar {
   padding: 10px;
   margin: 10px;
   border-radius: 4px;
@@ -84,8 +84,12 @@
   background: #CCC;
 }
 
-.preferencesCard button {
+.sidebar button {
   margin: 5px 0;
+}
+
+.nav-username {
+  padding-top: 5px;
 }
 
 .plusIcon:hover {

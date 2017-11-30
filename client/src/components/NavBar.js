@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Button, Grid, Row, Col } from 'react-bootstrap';
@@ -12,7 +13,7 @@ const NavBar = props => {
     renderSession = (
       <Row>
         <Col xs={3} xsOffset={6}>
-          <p className="pt-2">{props.username}</p>
+          <p className="nav-username">{props.username}</p>
         </Col>
         <Col xs={3}>
           <Button bsSize="small" onClick={props.logoutUser}>Sign Out</Button>
@@ -30,7 +31,9 @@ const NavBar = props => {
       <Grid>
         <Row className="show-grid">
           <Col xs={4} md={3}>
-            <a className="App-title" href="/">Scene It</a>
+            <NavLink to="/" >
+              <p className="App-title">Scene It</p>
+            </NavLink>
           </Col>
           <Col xs={8} md={9}>
             {renderSession}

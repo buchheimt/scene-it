@@ -3,7 +3,7 @@ import { Button } from 'react-bootstrap';
 
 const Preferences = props => {
   return (
-    <div className="preferencesCard text-center">
+    <div className="text-center">
       <h5>Sort By:</h5>
       <Button
         bsSize={"sm"} onClick={() => props.updateSort('popular')} bsStyle={props.sortMethod === "popular" ? "primary" : "default"}

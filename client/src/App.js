@@ -7,9 +7,13 @@ import './App.css';
 import { fetchMovies, updateSort } from './actions/index';
 import NavBar from './components/NavBar';
 import Preferences from './components/Preferences';
+import MyLinks from './components/MyLinks';
 import HomePage from './containers/HomePage';
 import MovieShowPage from './containers/MovieShowPage';
 import PostShowPage from './containers/PostShowPage';
+import MoviePointsShowPage from './containers/MoviePointsShowPage';
+import PostPointsShowPage from './containers/PostPointsShowPage';
+import CommentPointsShowPage from './containers/CommentPointsShowPage';
 
 class App extends Component {
 
@@ -20,27 +24,34 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className="App">
-          <NavBar />
-          <div className="wrapper">
-            <Row>
-              <Col sm={9} md={10}>
-                <Switch>
-                  <Route exact path={'/'} component={HomePage} />
-                  <Route exact path={'/movies/:movieId'} component={MovieShowPage} />
-                  <Route exact path={'/movies/:movieId/posts/:postId'} component={PostShowPage} />
-                </Switch>
-              </Col>
-              <Col sm={3} md={2}>
-                <Preferences
-                  updateSort={this.props.updateSort}
-                  sortMethod={this.props.sortMethod}
-                />
-              </Col>
-            </Row>
-
+        <Route path={'/'}>
+          <div className="App">
+            <NavBar />
+            <div className="wrapper">
+              <Row>
+                <Col sm={9} md={10}>
+                  <Switch>
+                    <Route exact path={'/'} component={HomePage} />
+                    <Route exact path={'/movies/:movieId'} component={MovieShowPage} />
+                    <Route exact path={'/movies/:movieId/posts/:postId'} component={PostShowPage} />
+                    <Route exact path={'/users/:userId/movie_points'} component={MoviePointsShowPage} />
+                    <Route exact path={'/users/:userId/post_points'} component={PostPointsShowPage} />
+                    <Route exact path={'/users/:userId/comment_points'} component={CommentPointsShowPage} />
+                  </Switch>
+                </Col>
+                <Col sm={3} md={2}>
+                  <div className="sidebar">
+                    <Preferences
+                      updateSort={this.props.updateSort}
+                      sortMethod={this.props.sortMethod}
+                    />
+                    <MyLinks userId={this.props.userId} />
+                  </div>
+                </Col>
+              </Row>
+            </div>
           </div>
-        </div>
+        </Route>
       </Router>
     );
   }
@@ -48,7 +59,8 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    sortMethod: state.session.sortMethod
+    sortMethod: state.session.sortMethod,
+    userId: state.session.id
   }
 }
 
