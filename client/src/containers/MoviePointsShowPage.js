@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchMoviePoints } from '../actions/index';
+import customSort from '../actions/sort';
+import MovieCard from '../components/MovieCard';
 
 class MoviePointsShowPage extends React.Component {
 
@@ -14,7 +16,7 @@ class MoviePointsShowPage extends React.Component {
     if (!!this.props.movies) {
       const sortedMovies = customSort[this.props.session.sortMethod](this.props.movies)
       renderMovies = sortedMovies.map((movie, index) => {
-        const moviePoint = movie.movie_points.find(mp => mp.user_id == this.props.session.id);
+        const moviePoint = this.props.moviePoints.find(mp => mp.movie_id == movie.id);
 
         return (
           <MovieCard
@@ -38,23 +40,22 @@ class MoviePointsShowPage extends React.Component {
 
     return (
       <div>
-        BUT THIS IS JUST MY RATINGS GUYS
+        <h3>My Rated Movies:</h3>
         {renderMovies}
       </div>
     )
   }
 }
-
+// this will only fetch current user for now
 const mapStateToProps = state => {
   return {
-    movies: state.movies,
+    movies: state.movies.filter(movie => !!state.moviePoints.find(mp => mp.user_id == state.session.id && mp.movie_id == movie.id)),
+    moviePoints: state.moviePoints.filter(mp => mp.user_id == state.session.id),
     session: {
       loggedIn: state.session.loggedIn,
       id: state.session.id,
       sortMethod: state.session.sortMethod
     }
-  }
-}
   }
 }
 

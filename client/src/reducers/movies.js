@@ -16,6 +16,11 @@ const movies = (state = [], action) => {
         action.movie,
         ...state.slice(movieIndex + 1)
       ]
+    case 'ADD_MOVIE_POINTS':
+      return [
+        ...state.filter(movie => !action.movies.find(aMovie => movie.id == aMovie.id)),
+        ...action.movies
+      ].sort((a,b) => a.id - b.id)
     case 'CREATE_MOVIE_SCORE':
       moviesNonmatch = state.filter(movie => movie.id != action.movie_point.movie_id);
       movie = state.find(movie => movie.id == action.movie_point.movie_id)

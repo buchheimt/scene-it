@@ -33,7 +33,7 @@ export function fetchMoviePoints(id) {
     return fetch(`/users/${id}/movie_points`)
       .then(resp => resp.json())
       .then(moviePoints => {
-        dispatch({type: 'ADD_MOVIES', movies: moviePoints.map(mp => mp.movie)})
+        dispatch({type: 'ADD_MOVIE_POINTS', moviePoints, movies: moviePoints.map(mp => mp.movie)})
       })
   }
 }
