@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchMoviePoints } from '../actions/index';
+import { fetchMoviePoints, addPoint, subtractPoint, updatePoint } from '../actions/index';
 import customSort from '../actions/sort';
 import MovieCard from '../components/MovieCard';
 
@@ -17,7 +17,6 @@ class MoviePointsShowPage extends React.Component {
       const sortedMovies = customSort[this.props.session.sortMethod](this.props.movies)
       renderMovies = sortedMovies.map((movie, index) => {
         const moviePoint = this.props.moviePoints.find(mp => mp.movie_id == movie.id);
-
         return (
           <MovieCard
             key={index}
@@ -61,6 +60,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
+    addPoint,
+    subtractPoint,
+    updatePoint,
     fetchMoviePoints
   }, dispatch)
 }

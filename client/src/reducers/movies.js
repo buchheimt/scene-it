@@ -4,16 +4,23 @@ const movies = (state = [], action) => {
   let movieIndex;
   let postPointIndex;
   let movie;
+  let filteredMovie;
   switch (action.type) {
     case 'START_ADDING_MOVIES':
       return state;
     case 'ADD_MOVIES':
-      return action.movies.sort((a,b) => a.id - b.id);
+      return action.movies.map(movie => {
+        filteredMovie = Object.assign({}, movie);
+        delete filteredMovie.movie_points
+        return filteredMovie
+      }).sort((a,b) => a.id - b.id);
     case 'ADD_MOVIE':
       movieIndex = state.indexOf(state.find(movie => movie.id == action.movie.id));
+      filteredMovie = Object.assign({}, action.movie);
+      delete filteredMovie.movie_points;
       return [
         ...state.slice(0, movieIndex),
-        action.movie,
+        filteredMovie,
         ...state.slice(movieIndex + 1)
       ]
     case 'ADD_MOVIE_POINTS':
@@ -22,31 +29,24 @@ const movies = (state = [], action) => {
         ...action.movies
       ].sort((a,b) => a.id - b.id)
     case 'CREATE_MOVIE_SCORE':
-      moviesNonmatch = state.filter(movie => movie.id != action.movie_point.movie_id);
-      movie = state.find(movie => movie.id == action.movie_point.movie_id)
+      movieIndex = state.indexOf(action.movie_point.movie);
+      filteredMovie = Object.assign({}, action.movie_point.movie);
+      delete filteredMovie.movie_points;
       return [
-        ...moviesNonmatch,
-        {
-          ...action.movie_point.movie,
-          movie_points: [
-            ...movie.movie_points.filter(mp => mp.id == action.movie_point.id),
-            action.movie_point
-          ]
-        }
+        ...state.slice(0, movieIndex),
+        filteredMovie,
+        ...state.slice(movieIndex + 1)
       ].sort((a,b) => a.id - b.id);
     case 'UPDATE_MOVIE_SCORE':
-      moviesNonmatch = state.filter(movie => movie.id != action.movie_point.movie_id);
-      movie = state.find(movie => movie.id == action.movie_point.movie_id)
+      movieIndex = state.indexOf(state.find(movie => movie.id == action.movie_point.movie.id));
+      console.log("!!!!!!!!!!!!!!idx", movieIndex, action.movie_point.movie)
+      filteredMovie = Object.assign({}, action.movie_point.movie);
+      delete filteredMovie.movie_points;
       return [
-        ...moviesNonmatch,
-        {
-          ...action.movie_point.movie,
-          movie_points: [
-            ...movie.movie_points.filter(mp => mp.id != action.movie_point.id),
-            action.movie_point
-          ].sort((a,b) => a.id - b.id)
-        }
-      ].sort((a,b) => a.id - b.id);
+        ...state.slice(0, movieIndex),
+        filteredMovie,
+        ...state.slice(movieIndex + 1)
+    ].sort((a,b) => a.id - b.id);
     case 'CREATE_POST_SCORE':
       movieIndex = state.indexOf(state.find(movie => movie.id == action.post_point.post.movie_id));
       return [
