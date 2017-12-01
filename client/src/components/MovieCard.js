@@ -32,7 +32,7 @@ const MovieCard = props => {
         <Col xs={10} sm={11} >
           <div onClick={handleOnClick} >
             <h4>{props.movie.title} ({props.movie.release_year})</h4>
-            <p>{props.movie.description.split(" ").slice(0, 40).join(' ')}...</p>
+            <p className="secondary">{props.movie.description.split(" ").slice(0, 40).join(' ')}...</p>
             <p className="tertiary">{props.movie.post_count} posts ({props.movie.comment_count} comments)</p>
           </div>
         </Col>

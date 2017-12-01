@@ -48,6 +48,14 @@ const posts = (state = [], action) => {
         action.post_point.post,
         ...state.slice(postIndex + 1)
       ].sort((a,b) => a.id - b.id);
+    case 'ADD_COMMENT':
+      post = state.find(post => post.id == action.comment.post_id);
+      postIndex = state.indexOf(post);
+      return [
+        ...state.slice(0, postIndex),
+        {...post, comment_count: post.comment_count + 1},
+        ...state.slice(postIndex + 1)
+      ]
     default:
       return state;
   }

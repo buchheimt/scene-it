@@ -35,6 +35,14 @@ const movies = (state = [], action) => {
         action.movie_point.movie,
         ...state.slice(movieIndex + 1)
       ].sort((a,b) => a.id - b.id);
+    case 'CREATE_POST':
+      movie = state.find(movie => movie.id == action.post.movie_id);
+      movieIndex = state.indexOf(movie);
+      return [
+        ...state.slice(0, movieIndex),
+        {...movie, post_count: movie.post_count + 1},
+        ...state.slice(movieIndex + 1)
+      ]
     default:
       return state;
   }
