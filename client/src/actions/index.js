@@ -100,8 +100,12 @@ export function logInUser(credentials) {
   return (dispatch) => {
     return sessionApi.login(credentials)
       .then(credentials => {
-        sessionStorage.setItem('jwt', credentials.jwt);
-        return dispatch({type: 'LOG_IN_SUCCESS', credentials});
+        if (credentials.jwt) {
+          sessionStorage.setItem('jwt', credentials.jwt);
+          return dispatch({type: 'LOG_IN_SUCCESS', credentials});
+        } else {
+          return dispatch({type: 'LOG_IN_FAIL', errors: credentials.errors})
+        }
     });
   }
 }

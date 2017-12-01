@@ -10,7 +10,7 @@ const NavBar = props => {
   if (props.session.loggedIn) {
     renderSession = (
       <Row>
-        <Col xs={3} xsOffset={6}>
+        <Col xs={5} xsOffset={4}>
           <FAUser
             className='userIcon'
             color={"#DDD"}

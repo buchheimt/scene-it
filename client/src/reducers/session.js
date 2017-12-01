@@ -11,6 +11,12 @@ export default function sessionReducer(state = {
         username: action.credentials.username,
         id: action.credentials.id,
       };
+    case 'LOG_IN_FAIL':
+      return {
+        sortMethod: state.sortMethod,
+        loggedIn: !!sessionStorage.jwt,
+        loginFailure: action.error
+      }
     case 'AUTHENTICATE_USER':
       if (!!sessionStorage.jwt) {
         return {

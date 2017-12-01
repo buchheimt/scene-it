@@ -198,7 +198,7 @@ class CommentCard extends React.Component {
             </p>
             {this.props.renderChildren && !!this.props.comment.status ? renderEditOptions : this.props.comment.content}
             {this.props.session.loggedIn && this.props.renderChildren && !!this.props.comment.status ? renderReply : ''}
-            {this.props.renderChildren && !!this.props.comment.status ? renderRemoveOption : ""}
+            {this.props.renderChildren && !!this.props.comment.status && !this.props.comment.editable ? renderRemoveOption : ""}
           </Col>
         </Row>
         <Row>
