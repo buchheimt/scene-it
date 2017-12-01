@@ -8,7 +8,7 @@ const movies = (state = [], action) => {
     case 'ADD_MOVIES':
       return action.movies;
     case 'ADD_MOVIE':
-      movieIndex = state.indexOf(state.find(movie => movie.id == action.movie.id));
+      movieIndex = state.indexOf(state.find(movie => movie.id === action.movie.id));
       return [
         ...state.slice(0, movieIndex),
         action.movie,
@@ -21,25 +21,25 @@ const movies = (state = [], action) => {
       ];
     case 'ADD_MOVIE_POINTS':
       return [
-        ...state.filter(movie => !action.movies.find(aMovie => movie.id == aMovie.id)),
+        ...state.filter(movie => !action.movies.find(aMovie => movie.id === aMovie.id)),
         ...action.movies
       ].sort((a,b) => a.id - b.id);
     case 'CREATE_MOVIE_SCORE':
-      movieIndex = state.indexOf(state.find(movie => movie.id == action.movie_point.movie.id));
+      movieIndex = state.indexOf(state.find(movie => movie.id === action.movie_point.movie.id));
       return [
         ...state.slice(0, movieIndex),
         action.movie_point.movie,
         ...state.slice(movieIndex + 1)
       ];
     case 'UPDATE_MOVIE_SCORE':
-      movieIndex = state.indexOf(state.find(movie => movie.id == action.movie_point.movie.id));
+      movieIndex = state.indexOf(state.find(movie => movie.id === action.movie_point.movie.id));
       return [
         ...state.slice(0, movieIndex),
         action.movie_point.movie,
         ...state.slice(movieIndex + 1)
       ];
     case 'CREATE_POST':
-      movie = state.find(movie => movie.id == action.post.movie_id);
+      movie = state.find(movie => movie.id === action.post.movie_id);
       movieIndex = state.indexOf(movie);
       return [
         ...state.slice(0, movieIndex),

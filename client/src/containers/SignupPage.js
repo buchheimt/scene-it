@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { signupUser } from '../actions/index';
-import { Grid, Row, Col, FormGroup, FormControl, Button } from 'react-bootstrap';
+import { Row, Col, FormGroup, FormControl, Button } from 'react-bootstrap';
 
 class SignupPage extends React.Component {
 

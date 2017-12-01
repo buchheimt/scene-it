@@ -9,7 +9,7 @@ const comments = (state = [], action) => {
     case 'ADD_POST':
       if (!!action.post.comments) {
         return [
-          ...state.filter(comment => comment.post_id != action.post.id),
+          ...state.filter(comment => comment.post_id !== action.post.id),
           ...action.post.comments
         ].sort((a,b) => a.id - b.id);
       } else {
@@ -17,11 +17,11 @@ const comments = (state = [], action) => {
       }
     case 'ADD_COMMENTS':
       return [
-        ...state.filter(comment => !action.comments.find(aComment => aComment.id == comment.id)),
+        ...state.filter(comment => !action.comments.find(aComment => aComment.id === comment.id)),
         ...action.comments
-      ].sort((a,b) => a.id > b.id);
+      ].sort((a,b) => a.id - b.id);
     case 'TOGGLE_ACTIVE':
-      comment = state.find(comment => comment.id == action.commentId);
+      comment = state.find(comment => comment.id === action.commentId);
       newComments = state.map(comment => {
         return {...comment, active: false, editable: false};
       });
@@ -36,7 +36,7 @@ const comments = (state = [], action) => {
         action.comment
       ];
     case 'UPDATE_COMMENT':
-      commentIndex = state.indexOf(state.find(comment => comment.id == action.comment.id));
+      commentIndex = state.indexOf(state.find(comment => comment.id === action.comment.id));
       return [
         ...state.slice(0, commentIndex),
         action.comment,
@@ -44,25 +44,25 @@ const comments = (state = [], action) => {
       ];
     case 'ADD_COMMENT_POINTS':
       return [
-        ...state.filter(comment => !action.comments.find(aComment => comment.id == aComment.id)),
+        ...state.filter(comment => !action.comments.find(aComment => comment.id === aComment.id)),
         ...action.comments
       ].sort((a,b) => a.id - b.id)
     case 'CREATE_COMMENT_SCORE':
-      commentIndex = state.indexOf(state.find(comment => comment.id == action.comment_point.comment.id));
+      commentIndex = state.indexOf(state.find(comment => comment.id === action.comment_point.comment.id));
       return [
         ...state.slice(0, commentIndex),
         action.comment_point.comment,
         ...state.slice(commentIndex + 1)
       ];
     case 'UPDATE_COMMENT_SCORE':
-      commentIndex = state.indexOf(state.find(comment => comment.id == action.comment_point.comment.id));
+      commentIndex = state.indexOf(state.find(comment => comment.id === action.comment_point.comment.id));
       return [
         ...state.slice(0, commentIndex),
         action.comment_point.comment,
         ...state.slice(commentIndex + 1)
       ];
     case 'TOGGLE_EDIT':
-      comment = state.find(comment => comment.id == action.commentId);
+      comment = state.find(comment => comment.id === action.commentId);
       newComments = state.map(comment => {
         return {...comment, active: false, editable: false};
       });

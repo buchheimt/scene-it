@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchCommentPoints } from '../actions/index';
 import customSort from '../lib/sort';
-import MyForm from '../components/MyForm';
 import ConnectedCommentCard from '../components/CommentCard';
 
 class CommentPointsPage extends React.Component {
@@ -35,8 +34,8 @@ class CommentPointsPage extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    comments: state.comments.filter(comment => !!state.commentPoints.find(cp => cp.user_id == state.session.id && cp.comment_id == comment.id)),
-    commentPoints: state.commentPoints.filter(cp => cp.user_id == state.session.id),
+    comments: state.comments.filter(comment => !!state.commentPoints.find(cp => cp.user_id === state.session.id && cp.comment_id === comment.id)),
+    commentPoints: state.commentPoints.filter(cp => cp.user_id === state.session.id),
     session: {
       loggedIn: state.session.loggedIn,
       sortMethod: state.session.sortMethod,

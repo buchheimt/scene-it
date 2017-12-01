@@ -12,7 +12,7 @@ const commentPoints = (state = [], action) => {
       }
     case 'ADD_COMMENT_POINTS':
       return [
-        ...state.filter(cp => !action.commentPoints.find(acp => cp.id == acp.id)),
+        ...state.filter(cp => !action.commentPoints.find(acp => cp.id === acp.id)),
         ...action.commentPoints
       ].sort((a,b) => a.id - b.id)
     case 'CREATE_COMMENT_SCORE':
@@ -22,7 +22,7 @@ const commentPoints = (state = [], action) => {
       ];
 
     case 'UPDATE_COMMENT_SCORE':
-      commentPointIndex = state.indexOf(state.find(cp => cp.id == action.comment_point.id));
+      commentPointIndex = state.indexOf(state.find(cp => cp.id === action.comment_point.id));
       return [
         ...state.slice(0, commentPointIndex),
         action.comment_point,

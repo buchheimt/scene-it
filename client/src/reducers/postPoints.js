@@ -12,7 +12,7 @@ const postPoints = (state = [], action) => {
       }
     case 'ADD_POST_POINTS':
       return [
-        ...state.filter(pp => !action.postPoints.find(app => pp.id == app.id)),
+        ...state.filter(pp => !action.postPoints.find(app => pp.id === app.id)),
         ...action.postPoints
       ].sort((a,b) => a.id - b.id);
     case 'CREATE_POST_SCORE':
@@ -22,7 +22,7 @@ const postPoints = (state = [], action) => {
       ];
 
     case 'UPDATE_POST_SCORE':
-      postPointIndex = state.indexOf(state.find(pp => pp.id == action.post_point.id));
+      postPointIndex = state.indexOf(state.find(pp => pp.id === action.post_point.id));
       return [
         ...state.slice(0, postPointIndex),
         action.post_point,

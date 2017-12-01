@@ -1,10 +1,6 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { Button, Grid, Row, Col } from 'react-bootstrap';
 import Preferences from './Preferences';
 import UserLink from './UserLink';
-import FAFilm from 'react-icons/lib/fa/film';
-import FAUser from 'react-icons/lib/fa/user';
 
 const SideBar = props => {
 

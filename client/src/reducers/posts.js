@@ -10,12 +10,12 @@ const posts = (state = [], action) => {
         return [
           ...state.filter(post => post.movie_id !== action.movie.id),
           ...action.movie.posts
-        ].sort((a,b) => a.id > b.id);
+        ].sort((a,b) => a.id - b.id);
       } else {
         return state;
       }
     case 'ADD_POST':
-      postIndex = state.indexOf(state.find(post => post.id == action.post.id));
+      postIndex = state.indexOf(state.find(post => post.id === action.post.id));
       return [
         ...state.slice(0, postIndex),
         action.post,
@@ -23,9 +23,9 @@ const posts = (state = [], action) => {
       ];
     case 'ADD_POSTS':
       return [
-        ...state.filter(post => !action.posts.find(aPost => aPost.id == post.id)),
+        ...state.filter(post => !action.posts.find(aPost => aPost.id === post.id)),
         ...action.posts
-      ].sort((a,b) => a.id > b.id);
+      ].sort((a,b) => a.id - b.id);
     case 'CREATE_POST':
       return [
         ...state,
@@ -33,25 +33,25 @@ const posts = (state = [], action) => {
       ];
     case 'ADD_POST_POINTS':
       return [
-        ...state.filter(post => !action.posts.find(aPost => post.id == aPost.id)),
+        ...state.filter(post => !action.posts.find(aPost => post.id === aPost.id)),
         ...action.posts
       ].sort((a,b) => a.id - b.id);
     case 'CREATE_POST_SCORE':
-      postIndex = state.indexOf(state.find(post => post.id == action.post_point.post.id));
+      postIndex = state.indexOf(state.find(post => post.id === action.post_point.post.id));
       return [
         ...state.slice(0, postIndex),
         action.post_point.post,
         ...state.slice(postIndex + 1)
       ];
     case 'UPDATE_POST_SCORE':
-      postIndex = state.indexOf(state.find(post => post.id == action.post_point.post.id));
+      postIndex = state.indexOf(state.find(post => post.id === action.post_point.post.id));
       return [
         ...state.slice(0, postIndex),
         action.post_point.post,
         ...state.slice(postIndex + 1)
       ];
     case 'CREATE_COMMENT':
-      post = state.find(post => post.id == action.comment.post_id);
+      post = state.find(post => post.id === action.comment.post_id);
       postIndex = state.indexOf(post);
       return [
         ...state.slice(0, postIndex),

@@ -20,7 +20,7 @@ class MoviePointsPage extends React.Component {
     if (!!this.props.movies) {
       const sortedMovies = customSort[this.props.session.sortMethod](this.props.movies)
       renderMovies = sortedMovies.map((movie, index) => {
-        const moviePoint = this.props.moviePoints.find(mp => mp.movie_id == movie.id);
+        const moviePoint = this.props.moviePoints.find(mp => mp.movie_id === movie.id);
         return (
           <MovieCard
             key={index}
@@ -51,8 +51,8 @@ class MoviePointsPage extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    movies: state.movies.filter(movie => !!state.moviePoints.find(mp => mp.user_id == state.session.id && mp.movie_id == movie.id)),
-    moviePoints: state.moviePoints.filter(mp => mp.user_id == state.session.id),
+    movies: state.movies.filter(movie => !!state.moviePoints.find(mp => mp.user_id === state.session.id && mp.movie_id === movie.id)),
+    moviePoints: state.moviePoints.filter(mp => mp.user_id === state.session.id),
     session: {
       loggedIn: state.session.loggedIn,
       id: state.session.id,

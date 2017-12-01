@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { createPoint, updatePoint, removeComment, toggleEdit, updateComment } from '../actions/index';
 import customSort from '../lib/sort';
-import { Grid, Row, Col, Button, FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
+import { Row, Col, Button, FormGroup, FormControl } from 'react-bootstrap';
 import Score from './Score';
 import FAReply from 'react-icons/lib/fa/mail-reply';
 import FAPencil from 'react-icons/lib/fa/pencil';
@@ -212,10 +212,9 @@ class CommentCard extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const comment = state.comments.find(comment => comment.id == ownProps.commentId);
-  const post = state.posts.find(post => post.id == comment.post_id);
-  const childrenComments = state.comments.filter(comment => comment.parent_id == ownProps.commentId)
-  const userCommentPoint = state.commentPoints.find(cp => cp.user_id == state.session.id && cp.comment_id == comment.id)
+  const comment = state.comments.find(comment => comment.id === ownProps.commentId);
+  const childrenComments = state.comments.filter(comment => comment.parent_id === ownProps.commentId)
+  const userCommentPoint = state.commentPoints.find(cp => cp.user_id === state.session.id && cp.comment_id === comment.id)
 
   return {
     comment,
@@ -223,7 +222,7 @@ const mapStateToProps = (state, ownProps) => {
       loggedIn: state.session.loggedIn,
       voted: !!userCommentPoint ? userCommentPoint.value : 0,
       pointId: !!userCommentPoint ? userCommentPoint.id : 0,
-      belongsToUser: comment.user_id == state.session.id,
+      belongsToUser: comment.user_id === state.session.id,
       sortMethod: state.session.sortMethod
     },
     childrenComments

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
 import SortButton from './SortButton';
 
 const Preferences = props => {

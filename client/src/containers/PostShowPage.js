@@ -94,14 +94,14 @@ class PostShowPage extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const post = state.posts.find(post => post.id == ownProps.match.params.postId);
+  const post = state.posts.find(post => post.id === parseInt(ownProps.match.params.postId, 10));
 
   if (!!post) {
-    const postPoint = state.postPoints.find(pp => pp.user_id == state.session.id && pp.post_id == post.id);
+    const postPoint = state.postPoints.find(pp => pp.user_id === state.session.id && pp.post_id === post.id);
 
     return {
       post: post,
-      comments: state.comments.filter(comment => comment.post_id == post.id && !comment.parent_id),
+      comments: state.comments.filter(comment => comment.post_id === post.id && !comment.parent_id),
       session: {
         pointId: !!postPoint ? postPoint.id : 0,
         voted: !!postPoint ? postPoint.value : 0,

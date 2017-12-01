@@ -26,7 +26,7 @@ class MovieShowPage extends React.Component {
   render() {
     const sortedPosts = customSort[this.props.session.sortMethod](this.props.posts);
     const renderPosts = sortedPosts.map((post, index) => {
-      const postPoint = this.props.postPoints.find(pp => pp.user_id == this.props.session.id && pp.post_id == post.id);
+      const postPoint = this.props.postPoints.find(pp => pp.user_id === this.props.session.id && pp.post_id === post.id);
 
       return (
         <Row key={index}>
@@ -102,15 +102,15 @@ class MovieShowPage extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const movie = state.movies.find(movie => movie.id == ownProps.match.params.movieId);
+  const movie = state.movies.find(movie => movie.id === parseInt(ownProps.match.params.movieId, 10));
 
   if (!!movie) {
-    const moviePoint = state.moviePoints.find(mp => mp.user_id == state.session.id && mp.movie_id == movie.id);
+    const moviePoint = state.moviePoints.find(mp => mp.user_id === state.session.id && mp.movie_id === movie.id);
 
     return {
       movie: movie,
       postPoints: state.postPoints,
-      posts: state.posts.filter(post => post.movie_id == movie.id),
+      posts: state.posts.filter(post => post.movie_id === movie.id),
       session: {
         pointId: !!moviePoint ? moviePoint.id : 0,
         voted: !!moviePoint ? moviePoint.value : 0,

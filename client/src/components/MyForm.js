@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
+import { Button, FormGroup, FormControl } from 'react-bootstrap';
 
 class MyForm extends React.Component {
 

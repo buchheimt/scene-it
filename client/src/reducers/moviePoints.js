@@ -12,7 +12,7 @@ const moviePoints = (state = [], action) => {
       }
     case 'ADD_MOVIE_POINTS':
       return [
-        ...state.filter(mp => !action.moviePoints.find(amp => mp.id == amp.id)),
+        ...state.filter(mp => !action.moviePoints.find(amp => mp.id === amp.id)),
         ...action.moviePoints
       ].sort((a,b) => a.id - b.id);
     case 'CREATE_MOVIE_SCORE':
@@ -22,7 +22,7 @@ const moviePoints = (state = [], action) => {
       ];
 
     case 'UPDATE_MOVIE_SCORE':
-      moviePointIndex = state.indexOf(state.find(mp => mp.id == action.movie_point.id));
+      moviePointIndex = state.indexOf(state.find(mp => mp.id === action.movie_point.id));
       return [
         ...state.slice(0, moviePointIndex),
         action.movie_point,

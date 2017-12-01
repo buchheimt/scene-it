@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux';
 import { fetchPosts, createPoint, updatePoint } from '../actions/index';
 import customSort from '../lib/sort';
 import PostCard from '../components/PostCard';
-import MyForm from '../components/MyForm';
 
 class PostsPage extends React.Component {
 
@@ -19,7 +18,7 @@ class PostsPage extends React.Component {
   render() {
     const sortedPosts = customSort[this.props.session.sortMethod](this.props.posts);
     const renderPosts = sortedPosts.map((post, index) => {
-      const postPoint = this.props.postPoints.find(pp => pp.user_id == this.props.session.id && pp.post_id == post.id);
+      const postPoint = this.props.postPoints.find(pp => pp.user_id === this.props.session.id && pp.post_id === post.id);
 
       return (
         <PostCard
@@ -48,8 +47,8 @@ class PostsPage extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    posts: state.posts.filter(post => post.user_id == state.session.id),
-    postPoints: state.postPoints.filter(pp => pp.user_id == state.session.id),
+    posts: state.posts.filter(post => post.user_id === state.session.id),
+    postPoints: state.postPoints.filter(pp => pp.user_id === state.session.id),
     session: {
       loggedIn: state.session.loggedIn,
       id: state.session.id,
