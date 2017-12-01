@@ -6,7 +6,7 @@ import customSort from '../lib/sort';
 import PostCard from '../components/PostCard';
 import MyForm from '../components/MyForm';
 
-class PostPointsShowPage extends React.Component {
+class PostPointsPage extends React.Component {
 
   componentDidMount() {
     this.props.fetchPostPoints(this.props.match.params.userId);
@@ -67,4 +67,4 @@ const mapDispatchToProps = dispatch => {
   }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostPointsShowPage);
+export default connect(mapStateToProps, mapDispatchToProps)(PostPointsPage);

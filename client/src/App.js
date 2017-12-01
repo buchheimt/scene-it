@@ -12,9 +12,9 @@ import LoginPage from './containers/LoginPage';
 import SignupPage from './containers/SignupPage';
 import MovieShowPage from './containers/MovieShowPage';
 import PostShowPage from './containers/PostShowPage';
-import MoviePointsShowPage from './containers/MoviePointsShowPage';
-import PostPointsShowPage from './containers/PostPointsShowPage';
-import CommentPointsShowPage from './containers/CommentPointsShowPage';
+import MoviePointsPage from './containers/MoviePointsPage';
+import PostPointsPage from './containers/PostPointsPage';
+import CommentPointsPage from './containers/CommentPointsPage';
 import PostsPage from './containers/PostsPage';
 import CommentsPage from './containers/CommentsPage';
 
@@ -45,9 +45,9 @@ class App extends Component {
                     <Route exact path={'/signup'} component={SignupPage} />
                     <Route exact path={'/movies/:movieId'} component={MovieShowPage} />
                     <Route exact path={'/movies/:movieId/posts/:postId'} component={PostShowPage} />
-                    <Route exact path={'/users/:userId/movie_points'} component={MoviePointsShowPage} />
-                    <Route exact path={'/users/:userId/post_points'} component={PostPointsShowPage} />
-                    <Route exact path={'/users/:userId/comment_points'} component={CommentPointsShowPage} />
+                    <Route exact path={'/users/:userId/movie_points'} component={MoviePointsPage} />
+                    <Route exact path={'/users/:userId/post_points'} component={PostPointsPage} />
+                    <Route exact path={'/users/:userId/comment_points'} component={CommentPointsPage} />
                     <Route exact path={'/users/:userId/posts'} component={PostsPage} />
                     <Route exact path={'/users/:userId/comments'} component={CommentsPage} />
                   </Switch>

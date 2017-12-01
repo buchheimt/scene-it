@@ -5,7 +5,7 @@ import { fetchMoviePoints, createPoint, updatePoint } from '../actions/index';
 import customSort from '../lib/sort';
 import MovieCard from '../components/MovieCard';
 
-class MoviePointsShowPage extends React.Component {
+class MoviePointsPage extends React.Component {
 
   componentDidMount() {
     this.props.fetchMoviePoints(this.props.match.params.userId);
@@ -48,7 +48,7 @@ class MoviePointsShowPage extends React.Component {
     )
   }
 }
-// this will only fetch current user for now
+
 const mapStateToProps = state => {
   return {
     movies: state.movies.filter(movie => !!state.moviePoints.find(mp => mp.user_id == state.session.id && mp.movie_id == movie.id)),
@@ -69,4 +69,4 @@ const mapDispatchToProps = (dispatch) => {
   }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MoviePointsShowPage);
+export default connect(mapStateToProps, mapDispatchToProps)(MoviePointsPage);

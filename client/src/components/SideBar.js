@@ -8,16 +8,18 @@ import FAUser from 'react-icons/lib/fa/user';
 
 const SideBar = props => {
 
-  const renderUserLinks = ["post", "comment"].map(format => (
+  const renderUserLinks = ["post", "comment"].map((format, index) => (
     <UserLink
+      key={index}
       format={format}
       userId={props.session.userId}
       extension={'s'}
     />
   ));
 
-  const renderUserPointLinks = ["movie", "post", "comment"].map(format => (
+  const renderUserPointLinks = ["movie", "post", "comment"].map((format, index) => (
     <UserLink
+      key={index}
       format={format}
       userId={props.session.userId}
       extension={'_points'}

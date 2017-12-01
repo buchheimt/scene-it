@@ -6,7 +6,7 @@ import customSort from '../lib/sort';
 import MyForm from '../components/MyForm';
 import ConnectedCommentCard from '../components/CommentCard';
 
-class CommentPointsShowPage extends React.Component {
+class CommentPointsPage extends React.Component {
 
   componentDidMount() {
     this.props.fetchCommentPoints(this.props.match.params.userId);
@@ -52,4 +52,4 @@ const mapDispatchToProps = dispatch => {
   }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CommentPointsShowPage);
+export default connect(mapStateToProps, mapDispatchToProps)(CommentPointsPage);

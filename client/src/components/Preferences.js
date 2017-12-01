@@ -3,9 +3,10 @@ import { Button } from 'react-bootstrap';
 import SortButton from './SortButton';
 
 const Preferences = props => {
-  
-  const renderSortButtons = props.sortTypes.map(sortType => (
+
+  const renderSortButtons = props.sortTypes.map((sortType, index) => (
     <SortButton
+      key={index}
       sortMethod={props.sortMethod}
       updateSort={props.updateSort}
       sortType={sortType}
