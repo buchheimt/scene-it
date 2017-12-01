@@ -29,7 +29,14 @@ const NavBar = props => {
     )
   } else {
     renderSession = (
-      <LoginForm />
+      <div>
+        <NavLink to="/login" className="navbar-link">
+          <span>Login</span>
+        </NavLink>
+        <NavLink to="/signup" className="navbar-link">
+          <span>Signup</span>
+        </NavLink>
+      </div>
     )
   }
 
@@ -47,7 +54,7 @@ const NavBar = props => {
               />
             </NavLink>
           </Col>
-          <Col xs={8} md={9}>
+          <Col xs={4} md={5} xsOffset={4}>
             {renderSession}
           </Col>
         </Row>

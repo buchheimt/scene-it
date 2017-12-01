@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   resources :post_points, only: [:create, :update]
   resources :comment_points, only: [:create, :update]
 
+  resources :users, only: [:create]
+
   get '/authenticate', to: 'sessions#show'
   post '/login', to: 'sessions#create'
 

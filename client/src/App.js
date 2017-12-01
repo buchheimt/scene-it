@@ -9,6 +9,8 @@ import NavBar from './components/NavBar';
 import Preferences from './components/Preferences';
 import MyLinks from './components/MyLinks';
 import HomePage from './containers/HomePage';
+import LoginPage from './containers/LoginPage';
+import SignupPage from './containers/SignupPage';
 import MovieShowPage from './containers/MovieShowPage';
 import PostShowPage from './containers/PostShowPage';
 import MoviePointsShowPage from './containers/MoviePointsShowPage';
@@ -32,6 +34,7 @@ class App extends Component {
                 <Col sm={9} md={10}>
                   <Switch>
                     <Route exact path={'/'} component={HomePage} />
+                    <Route exact path={'/login'} component={LoginPage} />
                     <Route exact path={'/movies/:movieId'} component={MovieShowPage} />
                     <Route exact path={'/movies/:movieId/posts/:postId'} component={PostShowPage} />
                     <Route exact path={'/users/:userId/movie_points'} component={MoviePointsShowPage} />

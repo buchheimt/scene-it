@@ -32,33 +32,26 @@ class LoginForm extends React.Component {
     return (
       <form onSubmit={this.handleOnSubmit}>
         <FormGroup>
-            <Row>
-              <Col xs={5}>
-                <FormControl
-                  bsSize="small"
-                  type="text"
-                  name="email"
-                  value={this.state.credentials.email}
-                  placeholder="Email"
-                  onChange={this.handleChange}
-                />
-              </Col>
-              <Col xs={5}>
-                <FormControl
-                  bsSize="small"
-                  type="password"
-                  name="password"
-                  value={this.state.credentials.password}
-                  placeholder="Password"
-                  onChange={this.handleChange}
-                />
-              </Col>
-              <Col xs={2}>
-                <Button bsSize="small" type="submit">
-                  Submit
-                </Button>
-              </Col>
-            </Row>
+          <FormControl
+            bsSize="small"
+            type="text"
+            name="email"
+            value={this.state.credentials.email}
+            placeholder="Email"
+            onChange={this.handleChange}
+          />
+          <br />
+          <FormControl
+            bsSize="small"
+            type="password"
+            name="password"
+            value={this.state.credentials.password}
+            placeholder="Password"
+            onChange={this.handleChange}
+          />
+          <Button bsSize="small" type="submit">
+            Sign In
+          </Button>
         </FormGroup>
       </form>
     )
