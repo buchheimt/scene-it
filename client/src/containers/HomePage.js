@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchMovies, addPoint, subtractPoint, updatePoint } from '../actions/index';
+import { fetchMovies, createMovie, addPoint, subtractPoint, updatePoint } from '../actions/index';
 import customSort from '../actions/sort';
+import MyForm from '../components/MyForm';
 import MovieCard from '../components/MovieCard';
 
 class HomePage extends React.Component {
@@ -16,6 +17,17 @@ class HomePage extends React.Component {
   }
 
   render() {
+    let renderMovieForm;
+    if (!!this.props.session.loggedIn) {
+      renderMovieForm = (
+        <MyForm
+          fields={['title', 'release_year', 'description']}
+          onSubmit={this.props.createMovie}
+          onSubmitText="Add Movie"
+        />
+      )
+    }
+
     let renderMovies;
     if (!!this.props.movies) {
       const sortedMovies = customSort[this.props.session.sortMethod](this.props.movies)
@@ -45,6 +57,7 @@ class HomePage extends React.Component {
     return (
       <div>
         <h3 className="text-center">Movies</h3>
+        {!!this.props.session.loggedIn ? renderMovieForm : ''}
         {renderMovies}
       </div>
     )
@@ -66,6 +79,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return bindActionCreators({
     fetchMovies,
+    createMovie,
     addPoint,
     subtractPoint,
     updatePoint

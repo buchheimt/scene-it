@@ -6,8 +6,8 @@ Rails.application.routes.draw do
     resources :comment_points, only: [:index]
   end
 
-  resources :movies, only: [:index, :show, :update]
-  resources :posts, only: [:show, :create, :update]
+  resources :movies, only: [:index, :show, :create]
+  resources :posts, only: [:show, :create]
   resources :comments, only: [:create, :update, :destroy]
 
   resources :movie_points, only: [:create, :update]

@@ -178,6 +178,21 @@ export function updatePoint(id, format, value) {
   }
 }
 
+export function createMovie(values) {
+  return (dispatch) => {
+    dispatch({type: "CREATING_Movie"});
+    return fetch('/movies', {
+      method: 'POST',
+      headers: {
+        'AUTHORIZATION': `Bearer ${sessionStorage.jwt}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({movie: values})
+    }).then(resp => resp.json())
+      .then(movie => dispatch({type: 'CREATE_MOVIE', movie}))
+  }
+}
+
 export function createPost(values) {
   return (dispatch) => {
     dispatch({type: "CREATING_POST"});

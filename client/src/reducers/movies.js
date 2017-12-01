@@ -14,6 +14,11 @@ const movies = (state = [], action) => {
         action.movie,
         ...state.slice(movieIndex + 1)
       ]
+    case 'CREATE_MOVIE':
+      return [
+        ...state,
+        action.movie
+      ]
     case 'ADD_MOVIE_POINTS':
       return [
         ...state.filter(movie => !action.movies.find(aMovie => movie.id == aMovie.id)),
