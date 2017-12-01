@@ -11,7 +11,7 @@ const SideBar = props => {
   const renderUserLinks = ["post", "comment"].map(format => (
     <UserLink
       format={format}
-      userid={props.userId}
+      userId={props.session.userId}
       extension={'s'}
     />
   ));
@@ -19,7 +19,7 @@ const SideBar = props => {
   const renderUserPointLinks = ["movie", "post", "comment"].map(format => (
     <UserLink
       format={format}
-      userid={props.userId}
+      userId={props.session.userId}
       extension={'_points'}
     />
   ));

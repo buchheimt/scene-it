@@ -8,7 +8,7 @@ import MovieCard from '../components/MovieCard';
 class MoviePointsShowPage extends React.Component {
 
   componentDidMount() {
-    this.props.fetchMoviePoints(this.props.session.id);
+    this.props.fetchMoviePoints(this.props.match.params.userId);
   }
 
   routeToMovieShow = id => {

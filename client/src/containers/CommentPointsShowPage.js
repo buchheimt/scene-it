@@ -9,7 +9,7 @@ import ConnectedCommentCard from '../components/CommentCard';
 class CommentPointsShowPage extends React.Component {
 
   componentDidMount() {
-    this.props.fetchCommentPoints(this.props.session.id);
+    this.props.fetchCommentPoints(this.props.match.params.userId);
   }
 
   render() {

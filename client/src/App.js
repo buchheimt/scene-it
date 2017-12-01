@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Row, Col } from 'react-bootstrap';
 import './App.css';
-import { updateSort, logoutUser } from './actions/index';
+import { authenticateUser, updateSort, logoutUser } from './actions/index';
 import NavBar from './components/NavBar';
 import SideBar from './components/SideBar';
 import HomePage from './containers/HomePage';
@@ -17,6 +17,11 @@ import PostPointsShowPage from './containers/PostPointsShowPage';
 import CommentPointsShowPage from './containers/CommentPointsShowPage';
 
 class App extends Component {
+
+  componentWillMount() {
+    this.props.authenticateUser();
+  }
+
   render() {
     return (
       <Router>
@@ -75,6 +80,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators({
+    authenticateUser,
     updateSort,
     logoutUser
   }, dispatch)

@@ -9,7 +9,7 @@ import MyForm from '../components/MyForm';
 class PostPointsShowPage extends React.Component {
 
   componentDidMount() {
-    this.props.fetchPostPoints(this.props.session.id);
+    this.props.fetchPostPoints(this.props.match.params.userId);
   }
 
   routeToPostShow = post => {
