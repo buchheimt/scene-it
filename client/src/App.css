@@ -113,7 +113,7 @@
 .sidebar {
   position: fixed;
   padding: 10px;
-  margin: 10px;
+  margin: 10px 0 0;
   top: 70px;
   border-radius: 4px;
   box-shadow: 0 2px 2px #777;
@@ -169,7 +169,8 @@
 }
 
 .navLink {
-  display: inline-block;
+  text-align: center;
+  display: block;
   padding: 5px 10px;
   color: #555;
   border-radius: 5px;

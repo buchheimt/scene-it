@@ -4,10 +4,9 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Row, Col } from 'react-bootstrap';
 import './App.css';
-import { updateSort } from './actions/index';
+import { updateSort, logoutUser } from './actions/index';
 import NavBar from './components/NavBar';
-import Preferences from './components/Preferences';
-import MyLinks from './components/MyLinks';
+import SideBar from './components/SideBar';
 import HomePage from './containers/HomePage';
 import LoginPage from './containers/LoginPage';
 import SignupPage from './containers/SignupPage';
@@ -18,22 +17,18 @@ import PostPointsShowPage from './containers/PostPointsShowPage';
 import CommentPointsShowPage from './containers/CommentPointsShowPage';
 
 class App extends Component {
-
-
-
   render() {
-    const renderMyLinks = (
-      <div>
-        <hr />
-        <MyLinks userId={this.props.userId} />
-      </div>
-    );
-
     return (
       <Router>
         <Route path={'/'}>
           <div className="App">
-            <NavBar />
+            <NavBar
+              session={{
+                loggedIn: this.props.session.loggedIn,
+                username: this.props.session.username
+              }}
+              logoutUser={this.props.logoutUser}
+            />
             <div className="wrapper">
               <Row>
                 <Col sm={9} md={10}>
@@ -49,13 +44,14 @@ class App extends Component {
                   </Switch>
                 </Col>
                 <Col sm={3} md={2}>
-                  <div className="sidebar">
-                    <Preferences
-                      updateSort={this.props.updateSort}
-                      sortMethod={this.props.sortMethod}
-                    />
-                    {this.props.loggedIn ? renderMyLinks : ''}
-                  </div>
+                  <SideBar
+                    updateSort={this.props.updateSort}
+                    session={{
+                      sortMethod: this.props.session.sortMethod,
+                      userId: this.props.session.userId,
+                      loggedIn: this.props.session.loggedIn
+                    }}
+                  />
                 </Col>
               </Row>
             </div>
@@ -68,15 +64,19 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    sortMethod: state.session.sortMethod,
-    userId: state.session.id,
-    loggedIn: state.session.loggedIn
+    session: {
+      sortMethod: state.session.sortMethod,
+      userId: state.session.id,
+      loggedIn: state.session.loggedIn,
+      username: state.session.username
+    }
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators({
-    updateSort
+    updateSort,
+    logoutUser
   }, dispatch)
 }
 
