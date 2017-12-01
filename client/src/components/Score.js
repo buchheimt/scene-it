@@ -21,6 +21,7 @@ const Score = props => {
         <button
           className="vote center"
           onClick={e => {
+            e.stopPropagation()
             props.voted !== 0 ? props.updatePoint(props.pointId, props.format, 1) : props.createPoint(props.id, props.format, 1)
           }}
           disabled={props.voted === 1}
@@ -35,6 +36,7 @@ const Score = props => {
         <button
           className="vote center"
           onClick={e => {
+            e.stopPropagation()
             props.voted !== 0 ? props.updatePoint(props.pointId, props.format, -1) : props.createPoint(props.id, props.format, -1)
           }}
           disabled={props.voted === -1}

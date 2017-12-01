@@ -24,13 +24,13 @@ const PostCard = props => {
   )
 
   return (
-    <div className="postCard" >
+    <div onClick={handleOnClick} className="postCard" >
       <Row className="show-grid">
         <Col xs={2} sm={1} >
           {renderScore}
         </Col>
         <Col xs={10} sm={11} >
-          <div className="postCardBody" onClick={handleOnClick} >
+          <div className="postCardBody">
             <h4>
               <span className="title">{props.post.title}</span>
               <span className="secondary">{props.post.username}</span>
