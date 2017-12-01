@@ -29,6 +29,10 @@ class Comment < ApplicationRecord
     "#{time_ago_in_words(self.created_at)} ago"
   end
 
+  def post_short
+    "#{self.post.movie_short} - #{self.post.title}"
+  end
+
   def self.find_by_post(post_id)
     where(post_id: post_id.to_i)
   end

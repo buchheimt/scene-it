@@ -193,6 +193,7 @@ class CommentCard extends React.Component {
             {renderScore}
           </Col>
           <Col xs={10} sm={11}>
+            {this.props.displayPost ? (<h4>{this.props.comment.post_short}<br/></h4>) : ""}
             <p>
               {!!this.props.comment.status ? this.props.comment.username : '[removed]'}<span className="tertiary"> |  {this.props.comment.timestamp}</span>
             </p>

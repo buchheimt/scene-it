@@ -32,6 +32,7 @@ class PostPointsPage extends React.Component {
             voted: !!postPoint ? postPoint.value : 0
           }}
           routeToPostShow={this.routeToPostShow}
+          displayMovie={true}
         />
       )
     })

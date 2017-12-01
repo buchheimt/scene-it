@@ -32,6 +32,7 @@ const PostCard = props => {
         <Col xs={10} sm={11} >
           <div className="postCardBody">
             <h4>
+              {props.displayMovie ? (<span>{props.post.movie_short}<br/><br/></span>) : ""}
               <span className="title">{props.post.title}</span>
               <span className="secondary">{props.post.username}</span>
               <span className="tertiary"> | {props.post.timestamp}</span>

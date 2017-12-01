@@ -20,6 +20,7 @@ class CommentsPage extends React.Component {
         addComment={this.props.addComment}
         commentId={comment.id}
         renderChildren={false}
+        displayPost={true}
       />
     ))
 
