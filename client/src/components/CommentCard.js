@@ -185,7 +185,7 @@ class CommentCard extends React.Component {
           </Col>
           <Col xs={10} sm={11}>
             <p>
-              {!!this.props.comment.status ? this.props.comment.username : '[removed]'} - <span className="tertiary">{this.props.comment.timestamp}</span>
+              {!!this.props.comment.status ? this.props.comment.username : '[removed]'}<span className="tertiary"> |  {this.props.comment.timestamp}</span>
             </p>
             {this.props.renderChildren ? renderEditOptions : this.props.comment.content}
             {this.props.session.loggedIn && this.props.renderChildren ? renderReply : ''}

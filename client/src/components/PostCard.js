@@ -31,7 +31,11 @@ const PostCard = props => {
         </Col>
         <Col xs={10} sm={11} >
           <div className="postCardBody" onClick={handleOnClick} >
-            <h4>{props.post.title}</h4>
+            <h4>
+              <span className="title">{props.post.title}</span>
+              <span className="secondary">{props.post.username}</span>
+              <span className="tertiary"> | {props.post.timestamp}</span>
+            </h4>
             <p className="secondary">{props.post.content.split(" ").slice(0, 40).join(' ')}...</p>
             <p className="tertiary">{props.post.comment_count} comments</p>
           </div>

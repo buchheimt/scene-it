@@ -10,7 +10,7 @@
 .wrapper {
   position: relative;
   max-width: 1080px;
-  width: 100%;
+  width: 95%;
   margin: 0 auto;
   top: 60px;
 }
@@ -56,6 +56,10 @@
 
 .pageTitle {
   background: #EEE;
+}
+
+.title {
+  margin-right: 25px;
 }
 
 .postCard {

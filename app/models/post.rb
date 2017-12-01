@@ -31,6 +31,10 @@ class Post < ApplicationRecord
     self.post_points.size
   end
 
+  def timestamp
+    "#{time_ago_in_words(self.created_at)} ago"
+  end
+
   def self.find_by_movie(movie_id)
     where(movie_id: movie_id.to_i)
   end

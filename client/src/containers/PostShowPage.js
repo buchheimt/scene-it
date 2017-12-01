@@ -37,6 +37,10 @@ class PostShowPage extends React.Component {
       <div>
         <div className="text-center">
           <h3>{this.props.post.title}</h3>
+          <p>
+            <span>{this.props.post.username}</span>
+            <span className="secondary"> | {this.props.post.timestamp}</span>
+          </p>
           <p>{this.props.post.content}</p><br/>
           { this.props.session.loggedIn ? renderRootForm :  ''}
         </div>
