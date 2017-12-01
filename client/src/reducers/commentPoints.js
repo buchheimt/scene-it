@@ -1,5 +1,5 @@
 const commentPoints = (state = [], action) => {
-  console.log(action);
+  //console.log(action);
   let commentPointIndex;
   switch (action.type) {
     case 'LOG_IN_SUCCESS':
@@ -19,7 +19,7 @@ const commentPoints = (state = [], action) => {
       return [
         ...state,
         action.comment_point
-      ].sort((a,b) => a.id - b.id);
+      ];
 
     case 'UPDATE_COMMENT_SCORE':
       commentPointIndex = state.indexOf(state.find(cp => cp.id == action.comment_point.id));
@@ -27,7 +27,7 @@ const commentPoints = (state = [], action) => {
         ...state.slice(0, commentPointIndex),
         action.comment_point,
         ...state.slice(commentPointIndex + 1)
-      ]
+      ];
     default:
       return state;
   }

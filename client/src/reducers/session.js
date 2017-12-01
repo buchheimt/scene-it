@@ -2,6 +2,7 @@ export default function sessionReducer(state = {
     loggedIn: !!sessionStorage.jwt,
     sortMethod: 'recent'
   }, action) {
+  //console.log(action);
   switch (action.type) {
     case 'LOG_IN_SUCCESS':
       return {
@@ -9,7 +10,7 @@ export default function sessionReducer(state = {
         loggedIn: !!sessionStorage.jwt,
         username: action.credentials.username,
         id: action.credentials.id,
-      }
+      };
     case 'AUTHENTICATE_USER':
       if (!!sessionStorage.jwt) {
         return {
@@ -17,7 +18,7 @@ export default function sessionReducer(state = {
           loggedIn: !!sessionStorage.jwt,
           username: action.credentials.username,
           id: action.credentials.id
-        }
+        };
       } else {
         return state;
       }
