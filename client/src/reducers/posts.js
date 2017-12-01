@@ -5,6 +5,14 @@ const posts = (state = [], action) => {
   switch (action.type) {
     case 'START_ADDING_POSTS':
       return state;
+    case 'START_ADDING_POST':
+      return state;
+    case 'START_CREATING_POST':
+      return state;
+    case 'START_CREATING_POINT':
+      return state;
+    case 'START_UPDATING_POINT':
+      return state;
     case 'ADD_MOVIE':
       if (!!action.movie.posts) {
         return [

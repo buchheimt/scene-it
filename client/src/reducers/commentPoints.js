@@ -2,6 +2,12 @@ const commentPoints = (state = [], action) => {
   //console.log(action);
   let commentPointIndex;
   switch (action.type) {
+    case 'START_ADDING_COMMENT_POINTS':
+      return state;
+    case 'START_CREATING_POINT':
+      return state;
+    case 'START_UPDATING_POINT':
+      return state;
     case 'LOG_IN_SUCCESS':
       return action.credentials.comment_points;
     case 'AUTHENTICATE_USER':

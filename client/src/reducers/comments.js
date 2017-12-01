@@ -6,6 +6,16 @@ const comments = (state = [], action) => {
   switch (action.type) {
     case 'START_ADDING_COMMENTS':
       return state;
+    case 'START_ADDING_COMMENT':
+      return state;
+    case 'START_CREATING_POINT':
+      return state;
+    case 'START_UPDATING_POINT':
+      return state;
+    case 'START_UPDATING_COMMENT':
+      return state;
+    case 'START_REMOVING_COMMENT':
+      return state;
     case 'ADD_POST':
       if (!!action.post.comments) {
         return [

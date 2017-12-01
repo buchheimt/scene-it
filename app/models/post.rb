@@ -35,6 +35,10 @@ class Post < ApplicationRecord
     "#{time_ago_in_words(self.created_at)} ago"
   end
 
+  def movie_short
+    "#{self.movie.title} (#{self.movie.release_year})"
+  end
+
   def self.find_by_movie(movie_id)
     where(movie_id: movie_id.to_i)
   end

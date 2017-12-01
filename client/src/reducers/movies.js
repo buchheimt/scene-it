@@ -5,6 +5,14 @@ const movies = (state = [], action) => {
   switch (action.type) {
     case 'START_ADDING_MOVIES':
       return state;
+    case 'START_ADDING_MOVIE':
+      return state;
+    case 'START_CREATING_MOVIE':
+      return state;
+    case 'START_CREATING_POINT':
+      return state;
+    case 'START_UPDATING_POINT':
+      return state;
     case 'ADD_MOVIES':
       return action.movies;
     case 'ADD_MOVIE':

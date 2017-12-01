@@ -4,6 +4,8 @@ export default function sessionReducer(state = {
   }, action) {
   //console.log(action);
   switch (action.type) {
+    case 'STARTING_AUTHENTICATION':
+      return state;
     case 'LOG_IN_SUCCESS':
       return {
         sortMethod: state.sortMethod,

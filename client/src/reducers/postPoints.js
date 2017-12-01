@@ -2,6 +2,12 @@ const postPoints = (state = [], action) => {
   //console.log(action);
   let postPointIndex;
   switch (action.type) {
+    case 'START_ADDING_POST_POINTS':
+      return state;
+    case 'START_CREATING_POINT':
+      return state;
+    case 'START_UPDATING_POINT':
+      return state;
     case 'LOG_IN_SUCCESS':
       return action.credentials.post_points;
     case 'AUTHENTICATE_USER':

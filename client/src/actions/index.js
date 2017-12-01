@@ -18,21 +18,21 @@ export function fetchMovie(movieId) {
   }
 }
 
-export function fetchPost(postId) {
-  return (dispatch) => {
-    dispatch({type: 'STARTING_ADDING_POST'});
-    return fetch(`/posts/${postId}`)
-      .then(resp => resp.json())
-      .then(post => dispatch({type: 'ADD_POST', post}));
-  }
-}
-
 export function fetchPosts(user_id) {
   return (dispatch) => {
     dispatch({type: 'STARTING_ADDING_POSTS'});
     return fetch(`/users/${user_id}/posts`)
       .then(resp => resp.json())
       .then(posts => dispatch({type: 'ADD_POSTS', posts}));
+  }
+}
+
+export function fetchPost(postId) {
+  return (dispatch) => {
+    dispatch({type: 'STARTING_ADDING_POST'});
+    return fetch(`/posts/${postId}`)
+      .then(resp => resp.json())
+      .then(post => dispatch({type: 'ADD_POST', post}));
   }
 }
 
@@ -78,10 +78,6 @@ export function fetchCommentPoints(id) {
   }
 }
 
-export function toggleActive(commentId) {
-  return {type: 'TOGGLE_ACTIVE', commentId};
-}
-
 export function createComment(comment) {
   return (dispatch) => {
     dispatch({type: 'START_ADDING_COMMENT'});
@@ -120,8 +116,12 @@ export function signupUser(credentials) {
       body: JSON.stringify({user: credentials})
     }).then(resp => resp.json())
       .then(credentials => {
-        sessionStorage.setItem('jwt', credentials.jwt);
-        return dispatch({type: 'LOG_IN_SUCCESS', credentials});
+        if (credentials.jwt) {
+          sessionStorage.setItem('jwt', credentials.jwt);
+          return dispatch({type: 'LOG_IN_SUCCESS', credentials});
+        } else {
+          return dispatch({type: 'LOG_IN_FAIL', errors: credentials.errors})
+        }
       })
   }
 }
@@ -146,6 +146,7 @@ export function logoutUser() {
 
 export function createPoint(id, format, value) {
   return (dispatch) => {
+    dispatch({type: "START_CREATING_POINT"});
     return fetch(`/${format}_points`, {
       method: 'POST',
       headers: {
@@ -163,27 +164,9 @@ export function createPoint(id, format, value) {
   }
 }
 
-export function subtractPoint(id, format) {
-  return (dispatch) => {
-    return fetch(`/${format}_points`, {
-      method: 'POST',
-      headers: {
-        'AUTHORIZATION': `Bearer ${sessionStorage.jwt}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        [`${format}_point`]: {
-          [`${format}_id`]: id,
-          value: -1
-        }
-      })
-    }).then(resp => resp.json())
-      .then(content => dispatch({type: `CREATE_${format.toUpperCase()}_SCORE`, [`${format}_point`]: content}));
-  }
-}
-
 export function updatePoint(id, format, value) {
   return (dispatch) => {
+    dispatch({type: "START_UPDATING_POINT"});
     return fetch(`/${format}_points/${id}`, {
       method: 'PATCH',
       headers: {
@@ -202,7 +185,7 @@ export function updatePoint(id, format, value) {
 
 export function createMovie(values) {
   return (dispatch) => {
-    dispatch({type: "CREATING_Movie"});
+    dispatch({type: "START_CREATING_MOVIE"});
     return fetch('/movies', {
       method: 'POST',
       headers: {
@@ -217,7 +200,7 @@ export function createMovie(values) {
 
 export function createPost(values) {
   return (dispatch) => {
-    dispatch({type: "CREATING_POST"});
+    dispatch({type: "START_CREATING_POST"});
     return fetch('/posts', {
       method: 'POST',
       headers: {
@@ -230,13 +213,17 @@ export function createPost(values) {
   }
 }
 
+export function toggleActive(commentId) {
+  return {type: 'TOGGLE_ACTIVE', commentId};
+}
+
 export function toggleEdit(commentId) {
   return {type: 'TOGGLE_EDIT', commentId}
 }
 
 export function updateComment(comment) {
   return (dispatch) => {
-    dispatch({type: 'UPDATING_COMMENT'});
+    dispatch({type: 'START_UPDATING_COMMENT'});
     return fetch(`/comments/${comment.id}`, {
       method: 'PATCH',
       headers: {
@@ -251,7 +238,7 @@ export function updateComment(comment) {
 
 export function removeComment(id) {
   return (dispatch) => {
-    dispatch({type: 'REMOVING_COMMENT'});
+    dispatch({type: 'START_REMOVING_COMMENT'});
     return fetch(`/comments/${id}`, {
       method: "DELETE",
       headers: {

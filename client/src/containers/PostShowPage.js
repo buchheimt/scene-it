@@ -77,6 +77,7 @@ class PostShowPage extends React.Component {
           </Col>
           <Col xs={11} >
             <div className="text-center">
+              <h2>{this.props.post.movie_short}</h2>
               <h3>{this.props.post.title}</h3>
               <p>
                 <span>{this.props.post.username}</span>

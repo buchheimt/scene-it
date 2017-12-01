@@ -2,6 +2,12 @@ const moviePoints = (state = [], action) => {
   //console.log(action);
   let moviePointIndex;
   switch (action.type) {
+    case 'START_ADDING_MOVIE_POINTS':
+      return state;
+    case 'START_CREATING_POINT':
+      return state;
+    case 'START_UPDATING_POINT':
+      return state;
     case 'LOG_IN_SUCCESS':
       return action.credentials.movie_points;
     case 'AUTHENTICATE_USER':

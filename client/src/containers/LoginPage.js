@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { logInUser } from '../actions/index';
-import { Row, Col, FormGroup, FormControl, Button } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 import MyForm from '../components/MyForm';
 
 class LoginPage extends React.Component {
