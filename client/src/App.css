@@ -109,7 +109,16 @@
 }
 
 .nav-username {
-  padding-top: 5px;
+  display: inline-block;
+  padding-top: 6px;
+}
+
+.filmIcon {
+  margin: 0 0 7px 10px;
+}
+
+.userIcon {
+  margin: 0 7px 3px 0;
 }
 
 .plusIcon:hover {

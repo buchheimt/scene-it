@@ -5,6 +5,8 @@ import { bindActionCreators } from 'redux';
 import { Button, Grid, Row, Col } from 'react-bootstrap';
 import { logoutUser } from '../actions/index';
 import LoginForm from './LoginForm';
+import FAFilm from 'react-icons/lib/fa/film';
+import FAUser from 'react-icons/lib/fa/user';
 
 const NavBar = props => {
 
@@ -13,7 +15,12 @@ const NavBar = props => {
     renderSession = (
       <Row>
         <Col xs={3} xsOffset={6}>
-          <p className="nav-username">{props.username}</p>
+          <FAUser
+            className='userIcon'
+            color={"#DDD"}
+            size={15}
+          />
+          <span className="nav-username">{props.username}</span>
         </Col>
         <Col xs={3}>
           <Button bsSize="small" onClick={props.logoutUser}>Sign Out</Button>
@@ -32,7 +39,12 @@ const NavBar = props => {
         <Row className="show-grid">
           <Col xs={4} md={3}>
             <NavLink to="/" >
-              <p className="App-title">Scene It</p>
+              <span className="App-title">Scene It</span>
+              <FAFilm
+                className='filmIcon'
+                color={"#DDD"}
+                size={18}
+              />
             </NavLink>
           </Col>
           <Col xs={8} md={9}>
