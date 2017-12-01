@@ -20,8 +20,6 @@ class CommentsController < ApplicationController
     authorize comment
     if comment.update(comment_params)
       render json: comment
-    else
-      binding.pry
     end
   end
 
@@ -31,8 +29,6 @@ class CommentsController < ApplicationController
     authorize comment
     if comment.update(content: '[removed]', status: 0)
       render json: comment
-    else
-      binding.pry
     end
   end
 

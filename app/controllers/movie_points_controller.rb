@@ -11,22 +11,14 @@ class MoviePointsController < ApplicationController
     movie_point.user = current_user
     if movie_point.save
       render json: movie_point, serializer: MoviePointDetailedSerializer
-    else
-      binding.pry
     end
   end
 
   def update
     authenticate
     movie_point = MoviePoint.find_by_id(params[:id])
-    if movie_point.user == current_user
-      if movie_point.update(movie_point_params)
-        render json: movie_point, serializer: MoviePointDetailedSerializer
-      else
-        binding.pry
-      end
-    else
-      binding.pry
+    if movie_point.user == current_user && movie_point.update(movie_point_params)
+      render json: movie_point, serializer: MoviePointDetailedSerializer
     end
 
   end

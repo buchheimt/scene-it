@@ -13,6 +13,10 @@ class SessionsController < ApplicationController
         post_points: PostPoint.find_by_user(user.id),
         comment_points: CommentPoint.find_by_user(user.id)
       }
+    else
+      render json: {
+        errors: "invalid login credentials"
+      }
     end
   end
 

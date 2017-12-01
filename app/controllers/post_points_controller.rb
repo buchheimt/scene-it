@@ -11,22 +11,14 @@ class PostPointsController < ApplicationController
     post_point.user = current_user
     if post_point.save
       render json: post_point, serializer: PostPointDetailedSerializer
-    else
-      binding.pry
     end
   end
 
   def update
     authenticate
     post_point = PostPoint.find_by_id(params[:id])
-    if post_point.user == current_user
-      if post_point.update(post_point_params)
-        render json: post_point, serializer: PostPointDetailedSerializer
-      else
-        binding.pry
-      end
-    else
-      binding.pry
+    if post_point.user == current_user && post_point.update(post_point_params)
+      render json: post_point, serializer: PostPointDetailedSerializer
     end
 
   end

@@ -13,6 +13,8 @@ class UsersController < ApplicationController
         post_points: [],
         comment_points: []
       }
+    else
+      render json: {errors: "Something went wrong..."}
     end
   end
 

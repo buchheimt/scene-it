@@ -14,7 +14,7 @@ class MoviesController < ApplicationController
     if movie.save
       render json: movie
     else
-      binding.pry
+      render json: {errors: "There was a problem creating movie"}
     end
   end
 

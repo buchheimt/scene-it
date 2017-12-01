@@ -11,22 +11,14 @@ class CommentPointsController < ApplicationController
     comment_point.user = current_user
     if comment_point.save
       render json: comment_point, serializer: CommentPointDetailedSerializer
-    else
-      binding.pry
     end
   end
 
   def update
     authenticate
     comment_point = CommentPoint.find_by_id(params[:id])
-    if comment_point.user == current_user
-      if comment_point.update(comment_point_params)
-        render json: comment_point, serializer: CommentPointDetailedSerializer
-      else
-        binding.pry
-      end
-    else
-      binding.pry
+    if comment_point.user == current_user && comment_point.update(comment_point_params)
+      render json: comment_point, serializer: CommentPointDetailedSerializer
     end
 
   end
