@@ -5,6 +5,9 @@ import { addPoint, subtractPoint, updatePoint, removeComment, toggleEdit, update
 import customSort from '../actions/sort';
 import { Grid, Row, Col, Button, FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
 import Score from './Score';
+import FAReply from 'react-icons/lib/fa/mail-reply';
+import FAPencil from 'react-icons/lib/fa/pencil';
+import FARemove from 'react-icons/lib/fa/trash';
 
 class CommentCard extends React.Component {
   constructor() {
@@ -109,7 +112,14 @@ class CommentCard extends React.Component {
         </form>
       )
     } else {
-      renderReply = (<Button bsSize="small" onClick={this.handleOnReply}>Reply</Button>)
+      renderReply = (
+        <Button bsSize="small" onClick={this.handleOnReply}>
+          <FAReply
+            className='commentIcon'
+            color={'#555'}
+            size={12}
+          />
+        </Button>)
     }
 
     const sortedChildrenComments = customSort[this.props.session.sortMethod](this.props.childrenComments);
@@ -156,7 +166,11 @@ class CommentCard extends React.Component {
           <span>
             <p>{this.props.comment.content}</p>
             <Button bsSize={'small'} onClick={this.handleEditClick} >
-              Edit
+              <FAPencil
+                className='commentIcon'
+                color={'#555'}
+                size={14}
+              />
             </Button>
           </span>
         )
@@ -164,7 +178,11 @@ class CommentCard extends React.Component {
 
       renderRemoveOption = (
         <Button bsSize={'small'} onClick={this.handleRemoveClick} >
-          Remove
+          <FARemove
+            className='commentIcon'
+            color={'#555'}
+            size={14}
+          />
         </Button>
       )
     }
