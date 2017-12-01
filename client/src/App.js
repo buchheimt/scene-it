@@ -35,6 +35,7 @@ class App extends Component {
                   <Switch>
                     <Route exact path={'/'} component={HomePage} />
                     <Route exact path={'/login'} component={LoginPage} />
+                    <Route exact path={'/signup'} component={SignupPage} />
                     <Route exact path={'/movies/:movieId'} component={MovieShowPage} />
                     <Route exact path={'/movies/:movieId/posts/:postId'} component={PostShowPage} />
                     <Route exact path={'/users/:userId/movie_points'} component={MoviePointsShowPage} />

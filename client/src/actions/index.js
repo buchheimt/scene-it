@@ -78,10 +78,6 @@ export function addComment(comment) {
   }
 }
 
-export function loginSuccess(credentials) {
-  return {type: 'LOG_IN_SUCCESS', credentials}
-}
-
 export function logInUser(credentials) {
   return (dispatch) => {
     return sessionApi.login(credentials)
@@ -89,6 +85,22 @@ export function logInUser(credentials) {
         sessionStorage.setItem('jwt', credentials.jwt);
         return dispatch({type: 'LOG_IN_SUCCESS', credentials});
     });
+  }
+}
+
+export function signupUser(credentials) {
+  return (dispatch) => {
+    return fetch('/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({user: credentials})
+    }).then(resp => resp.json())
+      .then(credentials => {
+        sessionStorage.setItem('jwt', credentials.jwt);
+        return dispatch({type: 'LOG_IN_SUCCESS', credentials});
+      })
   }
 }
 
