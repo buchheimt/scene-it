@@ -3,11 +3,15 @@ import { Button, FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-b
 
 class MyForm extends React.Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
+    const valuesInitial = this.props.fields.reduce((output, field) => {
+      output[field] = "";
+      return output
+    }, {});
     this.state = {
-      values: {}
+      values: valuesInitial
     }
   }
 
@@ -22,10 +26,16 @@ class MyForm extends React.Component {
 
   handleOnSubmit = e => {
     e.preventDefault();
-    this.props.onSubmit({...this.state.values, ...this.props.hiddenValues});
-    this.setState({
-      values: {}
-    })
+    if (!this.props.fields.map(field => !!this.state.values[field]).includes(false)) {
+      this.props.onSubmit({...this.state.values, ...this.props.hiddenValues});
+      const valuesReset = this.props.fields.reduce((output, field) => {
+        output[field] = "";
+        return output
+      }, {});
+      this.setState({
+        values: valuesReset
+      });
+    }
   }
 
   render() {
@@ -35,7 +45,7 @@ class MyForm extends React.Component {
         key={index}
         type={field === 'password' ? 'password' : 'text'}
         name={field}
-        value={this.state[field]}
+        value={this.state.values[field]}
         placeholder={field}
         onChange={this.handleChange}
       />

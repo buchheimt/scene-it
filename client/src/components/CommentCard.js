@@ -119,6 +119,7 @@ class CommentCard extends React.Component {
         toggleActive={this.props.toggleActive}
         addComment={this.props.addComment}
         commentId={comment.id}
+        renderChildren={true}
       />
     ))
 
@@ -148,6 +149,15 @@ class CommentCard extends React.Component {
               </Row>
             </FormGroup>
           </form>
+        )
+      } else {
+        renderEditOptions = (
+          <span>
+            <p>{this.props.comment.content}</p>
+            <Button bsSize={'small'} onClick={this.handleEditClick} >
+              Edit
+            </Button>
+          </span>
         )
       }
 

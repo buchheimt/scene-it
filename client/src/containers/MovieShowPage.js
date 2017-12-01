@@ -51,8 +51,8 @@ class MovieShowPage extends React.Component {
 
     return (
       <div>
-        <div className="movieCard text-center">
-          <h3 className="">{this.props.movie.title} ({this.props.movie.release_year})</h3>
+        <div className="text-center">
+          <h3>{this.props.movie.title} ({this.props.movie.release_year})</h3>
           <p>{this.props.movie.description}</p>
           {this.props.session.loggedIn ? renderPostForm : ''}
         </div>

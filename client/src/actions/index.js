@@ -86,10 +86,8 @@ export function logInUser(credentials) {
   return (dispatch) => {
     return sessionApi.login(credentials)
       .then(credentials => {
-        debugger
         sessionStorage.setItem('jwt', credentials.jwt);
-        console.log("!!!!see meeee!", credentials)
-        dispatch(loginSuccess({credentials}));
+        return dispatch({type: 'LOG_IN_SUCCESS', credentials});
     });
   }
 }
