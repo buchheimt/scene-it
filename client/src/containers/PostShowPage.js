@@ -21,6 +21,7 @@ class PostShowPage extends React.Component {
         addComment={this.props.addComment}
         commentId={comment.id}
         renderChildren={true}
+        depth={1}
       />
     ))
 
@@ -36,7 +37,7 @@ class PostShowPage extends React.Component {
       <div>
         <div className="text-center">
           <h3>{this.props.post.title}</h3>
-          <p>{this.props.post.content}</p>
+          <p>{this.props.post.content}</p><br/>
           { this.props.session.loggedIn ? renderRootForm :  ''}
         </div>
         <h5 className="text-center">{this.props.post.comment_count} comments</h5>

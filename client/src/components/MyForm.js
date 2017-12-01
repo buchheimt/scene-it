@@ -26,7 +26,8 @@ class MyForm extends React.Component {
 
   handleOnSubmit = e => {
     e.preventDefault();
-    if (!this.props.fields.map(field => !!this.state.values[field]).includes(false)) {
+    const anyEmptyFields = this.props.fields.map(field => !!this.state.values[field]).includes(false)
+    if (!anyEmptyFields) {
       this.props.onSubmit({...this.state.values, ...this.props.hiddenValues});
       const valuesReset = this.props.fields.reduce((output, field) => {
         output[field] = "";
@@ -55,6 +56,7 @@ class MyForm extends React.Component {
       <form onSubmit={this.handleOnSubmit}>
         <FormGroup>
           {renderFields}
+          <br/>
           <Button bsSize="small" type="submit">
             {this.props.onSubmitText}
           </Button>

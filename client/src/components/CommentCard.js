@@ -120,6 +120,7 @@ class CommentCard extends React.Component {
         addComment={this.props.addComment}
         commentId={comment.id}
         renderChildren={true}
+        depth={!!this.props.depth ? this.props.depth + 1 : 0}
       />
     ))
 
@@ -177,7 +178,7 @@ class CommentCard extends React.Component {
     }
 
     return (
-      <div className="commentCard" >
+      <div className={!!this.props.depth && this.props.depth % 2 === 0 ? "commentCardDark" : "commentCard"} >
         <Row className="show-grid">
           <Col xs={2} sm={1}>
             {this.props.session.loggedIn ? renderScore : ''}
