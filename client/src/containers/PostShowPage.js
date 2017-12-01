@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { fetchPost, createPoint, updatePoint, toggleActive, createComment } from '../actions/index';
 import { Row, Col, Button } from 'react-bootstrap';
 import FABackArrow from 'react-icons/lib/fa/arrow-left';
-import customSort from '../actions/sort';
+import customSort from '../lib/sort';
 import MyForm from '../components/MyForm';
 import ConnectedCommentCard from '../components/CommentCard';
 import Score from '../components/Score';

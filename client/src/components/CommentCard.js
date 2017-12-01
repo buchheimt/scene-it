@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { createPoint, updatePoint, removeComment, toggleEdit, updateComment } from '../actions/index';
-import customSort from '../actions/sort';
+import customSort from '../lib/sort';
 import { Grid, Row, Col, Button, FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
 import Score from './Score';
 import FAReply from 'react-icons/lib/fa/mail-reply';

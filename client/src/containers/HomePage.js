@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchMovies, createMovie, createPoint, updatePoint } from '../actions/index';
-import customSort from '../actions/sort';
+import customSort from '../lib/sort';
 import MyForm from '../components/MyForm';
 import MovieCard from '../components/MovieCard';
 

@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { fetchMovie, createPost, createPoint, updatePoint } from '../actions/index';
 import { Row, Col, Button } from 'react-bootstrap';
 import FABackArrow from 'react-icons/lib/fa/arrow-left';
-import customSort from '../actions/sort';
+import customSort from '../lib/sort';
 import PostCard from '../components/PostCard';
 import MyForm from '../components/MyForm';
 import Score from '../components/Score';

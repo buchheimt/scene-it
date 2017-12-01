@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchCommentPoints } from '../actions/index';
-import customSort from '../actions/sort';
+import customSort from '../lib/sort';
 import MyForm from '../components/MyForm';
 import ConnectedCommentCard from '../components/CommentCard';
 
