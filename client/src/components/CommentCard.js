@@ -76,6 +76,7 @@ class CommentCard extends React.Component {
           net: this.props.comment.net_score,
           percentage: this.props.comment.percentage_score}}
         voted={this.props.session.voted}
+        loggedIn={this.props.session.loggedIn}
         format='comment'
       />
     )
@@ -190,7 +191,7 @@ class CommentCard extends React.Component {
       <div className={!!this.props.depth && this.props.depth % 2 === 0 ? "commentCardDark" : "commentCard"} >
         <Row className="show-grid">
           <Col xs={2} sm={1}>
-            {this.props.session.loggedIn ? renderScore : ''}
+            {renderScore}
           </Col>
           <Col xs={10} sm={11}>
             <p>

@@ -19,6 +19,7 @@ const MovieCard = props => {
         net: props.movie.net_score,
         percentage: props.movie.percentage_score}}
       voted={props.session.voted}
+      loggedIn={props.loggedIn}
       format='movie'
     />
   )
@@ -27,7 +28,7 @@ const MovieCard = props => {
     <div className="movieCard" >
       <Row className="show-grid">
         <Col xs={2} sm={1}>
-          {props.loggedIn ? renderScore : ''}
+          {renderScore}
         </Col>
         <Col xs={10} sm={11} >
           <div onClick={handleOnClick} >

@@ -19,6 +19,7 @@ const PostCard = props => {
         net: props.post.net_score,
         percentage: props.post.percentage_score}}
       voted={props.session.voted}
+      loggedIn={props.loggedIn}
       format='post'
     />
   )
@@ -27,7 +28,7 @@ const PostCard = props => {
     <div className="postCard" >
       <Row className="show-grid">
         <Col xs={2} sm={1} >
-          {props.loggedIn ? renderScore : ''}
+          {renderScore}
         </Col>
         <Col xs={10} sm={11} >
           <div className="postCardBody" onClick={handleOnClick} >
