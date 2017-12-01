@@ -1,11 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { addPoint, subtractPoint, updatePoint } from '../actions/index';
+import { fetchMovies, addPoint, subtractPoint, updatePoint } from '../actions/index';
 import customSort from '../actions/sort';
 import MovieCard from '../components/MovieCard';
 
 class HomePage extends React.Component {
+
+  componentDidMount() {
+    this.props.fetchMovies();
+  }
 
   routeToMovieShow = id => {
     this.props.history.push(`/movies/${id}`)
@@ -61,6 +65,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators({
+    fetchMovies,
     addPoint,
     subtractPoint,
     updatePoint

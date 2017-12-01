@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Row, Col } from 'react-bootstrap';
 import './App.css';
-import { fetchMovies, updateSort } from './actions/index';
+import { updateSort } from './actions/index';
 import NavBar from './components/NavBar';
 import Preferences from './components/Preferences';
 import MyLinks from './components/MyLinks';
@@ -19,9 +19,7 @@ import CommentPointsShowPage from './containers/CommentPointsShowPage';
 
 class App extends Component {
 
-  componentDidMount() {
-    this.props.fetchMovies();
-  }
+
 
   render() {
     const renderMyLinks = (
@@ -78,7 +76,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators({
-    fetchMovies,
     updateSort
   }, dispatch)
 }
