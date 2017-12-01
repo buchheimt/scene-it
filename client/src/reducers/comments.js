@@ -19,14 +19,14 @@ const comments = (state = [], action) => {
     case 'TOGGLE_ACTIVE':
       comment = state.find(comment => comment.id == action.commentId);
       newComments = state.map(comment => {
-        return {...comment, active: false};
+        return {...comment, active: false, editable: false};
       })
       return [
         ...newComments.slice(0, state.indexOf(comment)),
-        {...comment, active: !comment.active},
+        {...comment, active: !comment.active, editable: false},
         ...newComments.slice(state.indexOf(comment) + 1)
       ]
-    case 'ADD_COMMENT':
+    case 'CREATE_COMMENT':
       return [
         ...state,
         action.comment
@@ -57,11 +57,11 @@ const comments = (state = [], action) => {
     case 'TOGGLE_EDIT':
       comment = state.find(comment => comment.id == action.commentId);
       newComments = state.map(comment => {
-        return {...comment, active: false};
+        return {...comment, active: false, editable: false};
       })
       return [
         ...newComments.slice(0, state.indexOf(comment)),
-        {...comment, editable: !comment.editable},
+        {...comment, active: false, editable: !comment.editable},
         ...newComments.slice(state.indexOf(comment) + 1)
       ]
     default:

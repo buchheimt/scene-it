@@ -1,12 +1,6 @@
 const postPoints = (state = [], action) => {
   console.log(action);
-  let postPoints;
-  let postsNonmatch;
-  let postPointsNonmatch;
-  let postIndex;
   let postPointIndex;
-  let commentPointIndex;
-  let post;
   switch (action.type) {
     case 'LOG_IN_SUCCESS':
       return action.credentials.post_points;

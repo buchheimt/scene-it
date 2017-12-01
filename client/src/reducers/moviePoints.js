@@ -1,16 +1,8 @@
 const moviePoints = (state = [], action) => {
   console.log(action);
-  let moviePoints;
-  let moviesNonmatch;
-  let moviePointsNonmatch;
-  let movieIndex;
-  let postPointIndex;
   let moviePointIndex;
-  let movie;
-  //debugger
   switch (action.type) {
     case 'LOG_IN_SUCCESS':
-      console.log(action)
       return action.credentials.movie_points;
     case 'AUTHENTICATE_USER':
       if (!!sessionStorage.jwt) {

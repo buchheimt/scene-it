@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchPost, toggleActive, addComment } from '../actions/index';
+import { fetchPost, toggleActive, createComment } from '../actions/index';
 import { Button } from 'react-bootstrap';
 import FABackArrow from 'react-icons/lib/fa/arrow-left';
 import customSort from '../actions/sort';
@@ -24,7 +24,7 @@ class PostShowPage extends React.Component {
       <ConnectedCommentCard
         key={index}
         toggleActive={this.props.toggleActive}
-        addComment={this.props.addComment}
+        createComment={this.props.createComment}
         commentId={comment.id}
         renderChildren={true}
         depth={1}
@@ -34,7 +34,7 @@ class PostShowPage extends React.Component {
     const renderRootForm = (
       <MyForm
         fields={['content']}
-        onSubmit={this.props.addComment}
+        onSubmit={this.props.createComment}
         onSubmitText="Reply"
         hiddenValues={{post_id: this.props.post.id}}
       />
@@ -89,7 +89,7 @@ const mapDispatchToProps = dispatch => {
   return bindActionCreators({
     fetchPost,
     toggleActive,
-    addComment
+    createComment
   }, dispatch)
 }
 

@@ -1,8 +1,6 @@
 const movies = (state = [], action) => {
   console.log(action);
-  let moviesNonmatch;
   let movieIndex;
-  let postPointIndex;
   let movie;
   switch (action.type) {
     case 'START_ADDING_MOVIES':

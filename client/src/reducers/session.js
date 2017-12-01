@@ -1,5 +1,3 @@
-import { browserHistory } from 'react-router';
-
 export default function sessionReducer(state = {
     loggedIn: !!sessionStorage.jwt,
     sortMethod: 'recent'
@@ -10,7 +8,6 @@ export default function sessionReducer(state = {
         sortMethod: state.sortMethod,
         loggedIn: !!sessionStorage.jwt,
         username: action.credentials.username,
-        email: action.credentials.email,
         id: action.credentials.id,
       }
     case 'AUTHENTICATE_USER':
@@ -19,7 +16,6 @@ export default function sessionReducer(state = {
           sortMethod: state.sortMethod,
           loggedIn: !!sessionStorage.jwt,
           username: action.credentials.username,
-          email: action.credentials.email,
           id: action.credentials.id
         }
       } else {

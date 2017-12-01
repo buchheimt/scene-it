@@ -64,7 +64,7 @@ export function toggleActive(commentId) {
   return {type: 'TOGGLE_ACTIVE', commentId};
 }
 
-export function addComment(comment) {
+export function createComment(comment) {
   return (dispatch) => {
     dispatch({type: 'START_ADDING_COMMENT'});
     return fetch('/comments', {
@@ -74,7 +74,7 @@ export function addComment(comment) {
         'AUTHORIZATION': `Bearer ${sessionStorage.jwt}`},
       body: JSON.stringify({comment})
     }).then(resp => resp.json())
-      .then(comment => dispatch({type: 'ADD_COMMENT', comment}));
+      .then(comment => dispatch({type: 'CREATE_COMMENT', comment}));
   }
 }
 

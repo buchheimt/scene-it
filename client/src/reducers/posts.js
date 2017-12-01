@@ -3,7 +3,6 @@ const posts = (state = [], action) => {
   let post;
   let postIndex;
   let postsNonmatch;
-  let commentPointIndex;
   switch (action.type) {
     case 'START_ADDING_POSTS':
       return state;
@@ -48,7 +47,7 @@ const posts = (state = [], action) => {
         action.post_point.post,
         ...state.slice(postIndex + 1)
       ].sort((a,b) => a.id - b.id);
-    case 'ADD_COMMENT':
+    case 'CREATE_COMMENT':
       post = state.find(post => post.id == action.comment.post_id);
       postIndex = state.indexOf(post);
       return [

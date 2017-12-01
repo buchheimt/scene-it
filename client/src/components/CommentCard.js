@@ -46,7 +46,7 @@ class CommentCard extends React.Component {
   handleReplySubmit = e => {
     e.preventDefault();
     if (this.state.reply !== '') {
-      this.props.addComment({
+      this.props.createComment({
         content: this.state.reply,
         post_id: this.props.comment.post_id,
         parent_id: this.props.comment.id
@@ -127,7 +127,7 @@ class CommentCard extends React.Component {
       <ConnectedCommentCard
         key={index}
         toggleActive={this.props.toggleActive}
-        addComment={this.props.addComment}
+        createComment={this.props.createComment}
         commentId={comment.id}
         renderChildren={true}
         depth={!!this.props.depth ? this.props.depth + 1 : 0}
