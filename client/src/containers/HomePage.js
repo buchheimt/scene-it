@@ -24,7 +24,11 @@ class HomePage extends React.Component {
         <Row>
           <Col xs={8} xsOffset={2} >
             <MyForm
-              fields={['title', 'release_year', 'description']}
+              fields={[
+                {varName: 'title', display: 'Title'},
+                {varName: 'release_year', display: 'Release Year'},
+                {varName: 'description', display: 'Description', type: 'textarea'}
+              ]}
               onSubmit={this.props.createMovie}
               onSubmitText="Add Movie"
             />

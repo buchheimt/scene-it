@@ -51,7 +51,10 @@ class MovieShowPage extends React.Component {
       <Row>
         <Col xs={8} xsOffset={2} >
           <MyForm
-            fields={['title', 'content']}
+            fields={[
+              {varName: 'title', display: 'Post Title'},
+              {varName: 'content', display: 'Post Content', type: 'textarea'},
+            ]}
             onSubmit={this.props.createPost}
             onSubmitText="Create Post"
             hiddenValues={{movie_id: this.props.movie.id}}

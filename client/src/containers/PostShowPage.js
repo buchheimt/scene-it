@@ -39,7 +39,7 @@ class PostShowPage extends React.Component {
       <Row>
         <Col xs={8} xsOffset={2} >
         <MyForm
-          fields={['content']}
+          fields={[{varName: 'content', display: 'Comment', type: 'textarea'}]}
           onSubmit={this.props.createComment}
           onSubmitText="Reply"
           hiddenValues={{post_id: this.props.post.id}}

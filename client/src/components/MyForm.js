@@ -7,7 +7,7 @@ class MyForm extends React.Component {
     super(props);
 
     const valuesInitial = this.props.fields.reduce((output, field) => {
-      output[field] = "";
+      output[field.varName] = "";
       return output
     }, {});
     this.state = {
@@ -18,7 +18,7 @@ class MyForm extends React.Component {
 
   handleChange = e => {
     const values = {...this.state.values, [e.target.name]: e.target.value};
-    const anyEmptyFields = this.props.fields.map(field => !!values[field]).includes(false);
+    const anyEmptyFields = this.props.fields.map(field => !!values[field.varName]).includes(false);
     this.setState({
       validValues: !anyEmptyFields,
       values
@@ -27,11 +27,11 @@ class MyForm extends React.Component {
 
   handleOnSubmit = e => {
     e.preventDefault();
-    const anyEmptyFields = this.props.fields.map(field => !!this.state.values[field]).includes(false);
+    const anyEmptyFields = this.props.fields.map(field => !!this.state.values[field.varName]).includes(false);
     if (!anyEmptyFields) {
       this.props.onSubmit({...this.state.values, ...this.props.hiddenValues});
       const valuesReset = this.props.fields.reduce((output, field) => {
-        output[field] = "";
+        output[field.varName] = "";
         return output
       }, {});
       this.setState({
@@ -44,12 +44,13 @@ class MyForm extends React.Component {
   render() {
     const renderFields = this.props.fields.map((field, index) => (
       <FormControl
+        componentClass={field.type ? field.type : 'input'}
         bsSize="small"
         key={index}
-        type={field === 'password' ? 'password' : 'text'}
-        name={field}
-        value={this.state.values[field]}
-        placeholder={field}
+        type={field.varName === 'password' ? 'password' : 'text'}
+        name={field.varName}
+        value={this.state.values[field.varName]}
+        placeholder={field.display}
         onChange={this.handleChange}
       />
     ))

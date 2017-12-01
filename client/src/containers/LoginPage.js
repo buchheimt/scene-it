@@ -20,7 +20,10 @@ class LoginPage extends React.Component {
             <h3 className="text-center">Sign In</h3>
             <br/>
             <MyForm
-              fields={['email', 'password']}
+              fields={[
+                {varName: 'email', display: 'Email'},
+                {varName: 'password', display: 'Password'}
+              ]}
               onSubmit={this.handleOnSubmit}
               onSubmitText="Sign in"
             />
