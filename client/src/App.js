@@ -24,6 +24,13 @@ class App extends Component {
   }
 
   render() {
+    const renderMyLinks = (
+      <div>
+        <hr />
+        <MyLinks userId={this.props.userId} />
+      </div>
+    );
+
     return (
       <Router>
         <Route path={'/'}>
@@ -49,8 +56,7 @@ class App extends Component {
                       updateSort={this.props.updateSort}
                       sortMethod={this.props.sortMethod}
                     />
-                    <hr />
-                    <MyLinks userId={this.props.userId} />
+                    {this.props.loggedIn ? renderMyLinks : ''}
                   </div>
                 </Col>
               </Row>
@@ -65,7 +71,8 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
     sortMethod: state.session.sortMethod,
-    userId: state.session.id
+    userId: state.session.id,
+    loggedIn: state.session.loggedIn
   }
 }
 
