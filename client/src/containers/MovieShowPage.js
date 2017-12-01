@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchMovie, createPost, addPoint, subtractPoint, updatePoint } from '../actions/index';
+import { Button } from 'react-bootstrap';
+import FABackArrow from 'react-icons/lib/fa/arrow-left';
 import customSort from '../actions/sort';
 import PostCard from '../components/PostCard';
 import MyForm from '../components/MyForm';
@@ -14,6 +16,10 @@ class MovieShowPage extends React.Component {
 
   routeToPostShow = post => {
     this.props.history.push(`${post.movie_id}/posts/${post.id}`)
+  }
+
+  routeBackToMovies = () => {
+    this.props.history.push(`/`)
   }
 
   render() {
@@ -38,8 +44,6 @@ class MovieShowPage extends React.Component {
       )
     })
 
-
-
     const renderPostForm = (
       <MyForm
         fields={['title', 'content']}
@@ -51,6 +55,14 @@ class MovieShowPage extends React.Component {
 
     return (
       <div>
+        <br/>
+        <Button bsSize="small" onClick={this.routeBackToMovies} >
+          <FABackArrow
+            className='commentIcon'
+            color={'#555'}
+            size={14}
+          />
+        </Button>
         <div className="text-center">
           <h3>{this.props.movie.title} ({this.props.movie.release_year})</h3>
           <p>{this.props.movie.description}</p>

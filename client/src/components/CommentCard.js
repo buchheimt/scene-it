@@ -113,7 +113,7 @@ class CommentCard extends React.Component {
       )
     } else {
       renderReply = (
-        <Button bsSize="small" onClick={this.handleOnReply}>
+        <Button bsSize="small" onClick={this.handleOnReply} >
           <FAReply
             className='commentIcon'
             color={'#555'}

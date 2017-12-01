@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchPost, toggleActive, addComment } from '../actions/index';
+import { Button } from 'react-bootstrap';
+import FABackArrow from 'react-icons/lib/fa/arrow-left';
 import customSort from '../actions/sort';
 import MyForm from '../components/MyForm';
 import ConnectedCommentCard from '../components/CommentCard';
@@ -10,6 +12,10 @@ class PostShowPage extends React.Component {
 
   componentDidMount() {
     this.props.fetchPost(this.props.match.params.postId);
+  }
+
+  routeBackToMovie = () => {
+    this.props.history.push(`/movies/${this.props.match.params.movieId}`)
   }
 
   render() {
@@ -35,6 +41,14 @@ class PostShowPage extends React.Component {
     )
     return (
       <div>
+        <br/>
+        <Button bsSize="small" onClick={this.routeBackToMovie} >
+          <FABackArrow
+            className='commentIcon'
+            color={'#555'}
+            size={14}
+          />
+        </Button>
         <div className="text-center">
           <h3>{this.props.post.title}</h3>
           <p>
