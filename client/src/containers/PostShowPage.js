@@ -22,23 +22,32 @@ class PostShowPage extends React.Component {
   render() {
     const sortedComments = customSort[this.props.session.sortMethod](this.props.comments);
     const renderComments = sortedComments.map((comment, index) => (
-      <ConnectedCommentCard
-        key={index}
-        toggleActive={this.props.toggleActive}
-        createComment={this.props.createComment}
-        commentId={comment.id}
-        renderChildren={true}
-        depth={1}
-      />
+      <Row key={index}>
+        <Col xs={11} xsOffset={1} >
+          <ConnectedCommentCard
+            toggleActive={this.props.toggleActive}
+            createComment={this.props.createComment}
+            commentId={comment.id}
+            renderChildren={true}
+            depth={1}
+          />
+        </Col>
+      </Row>
     ))
 
     const renderRootForm = (
-      <MyForm
-        fields={['content']}
-        onSubmit={this.props.createComment}
-        onSubmitText="Reply"
-        hiddenValues={{post_id: this.props.post.id}}
-      />
+      <Row>
+        <Col xs={8} xsOffset={2} >
+        <MyForm
+          fields={['content']}
+          onSubmit={this.props.createComment}
+          onSubmitText="Reply"
+          hiddenValues={{post_id: this.props.post.id}}
+        />
+        <h5 className="text-center">{this.props.post.comment_count} comments</h5>
+        </Col>
+      </Row>
+
     )
     return (
       <div>
@@ -78,7 +87,6 @@ class PostShowPage extends React.Component {
             </div>
           </Col>
         </Row>
-        <h5 className="text-center">{this.props.post.comment_count} comments</h5>
         {renderComments}
       </div>
     )

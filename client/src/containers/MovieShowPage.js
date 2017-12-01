@@ -29,28 +29,36 @@ class MovieShowPage extends React.Component {
       const postPoint = this.props.postPoints.find(pp => pp.user_id == this.props.session.id && pp.post_id == post.id);
 
       return (
-        <PostCard
-          key={index}
-          post={post}
-          loggedIn={this.props.session.loggedIn}
-          createPoint={this.props.createPoint}
-          updatePoint={this.props.updatePoint}
-          session={{
-            pointId: !!postPoint ? postPoint.id : 0,
-            voted: !!postPoint ? postPoint.value : 0
-          }}
-          routeToPostShow={this.routeToPostShow}
-        />
+        <Row key={index}>
+          <Col xs={11} xsOffset={1} >
+            <PostCard
+              post={post}
+              loggedIn={this.props.session.loggedIn}
+              createPoint={this.props.createPoint}
+              updatePoint={this.props.updatePoint}
+              session={{
+                pointId: !!postPoint ? postPoint.id : 0,
+                voted: !!postPoint ? postPoint.value : 0
+              }}
+              routeToPostShow={this.routeToPostShow}
+            />
+          </Col>
+        </Row>
       )
     })
 
     const renderPostForm = (
-      <MyForm
-        fields={['title', 'content']}
-        onSubmit={this.props.createPost}
-        onSubmitText="Create Post"
-        hiddenValues={{movie_id: this.props.movie.id}}
-      />
+      <Row>
+        <Col xs={8} xsOffset={2} >
+          <MyForm
+            fields={['title', 'content']}
+            onSubmit={this.props.createPost}
+            onSubmitText="Create Post"
+            hiddenValues={{movie_id: this.props.movie.id}}
+          />
+          <h5 className="text-center">{this.props.movie.post_count} posts ({this.props.movie.comment_count} comments)</h5>
+        </Col>
+      </Row>
     )
 
     return (
@@ -87,8 +95,6 @@ class MovieShowPage extends React.Component {
             </div>
           </Col>
         </Row>
-
-        <h5 className="text-center">{this.props.movie.post_count} posts ({this.props.movie.comment_count} comments)</h5>
         {renderPosts}
       </div>
     )

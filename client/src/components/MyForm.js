@@ -57,7 +57,7 @@ class MyForm extends React.Component {
         <FormGroup>
           {renderFields}
           <br/>
-          <Button bsSize="small" type="submit">
+          <Button bsSize="small" type="submit" className="center-button text-center">
             {this.props.onSubmitText}
           </Button>
         </FormGroup>

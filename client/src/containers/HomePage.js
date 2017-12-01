@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchMovies, createMovie, createPoint, updatePoint } from '../actions/index';
+import { Row, Col } from 'react-bootstrap';
 import customSort from '../lib/sort';
 import MyForm from '../components/MyForm';
 import MovieCard from '../components/MovieCard';
@@ -20,11 +21,15 @@ class HomePage extends React.Component {
     let renderMovieForm;
     if (!!this.props.session.loggedIn) {
       renderMovieForm = (
-        <MyForm
-          fields={['title', 'release_year', 'description']}
-          onSubmit={this.props.createMovie}
-          onSubmitText="Add Movie"
-        />
+        <Row>
+          <Col xs={8} xsOffset={2} >
+            <MyForm
+              fields={['title', 'release_year', 'description']}
+              onSubmit={this.props.createMovie}
+              onSubmitText="Add Movie"
+            />
+          </Col>
+        </Row>
       )
     }
 
