@@ -122,7 +122,7 @@ export function logoutUser() {
   return {type: 'LOGOUT_USER'};
 }
 
-export function addPoint(id, format) {
+export function createPoint(id, format, value) {
   return (dispatch) => {
     return fetch(`/${format}_points`, {
       method: 'POST',
@@ -133,7 +133,7 @@ export function addPoint(id, format) {
       body: JSON.stringify({
         [`${format}_point`]: {
           [`${format}_id`]: id,
-          value: 1
+          value
         }
       })
     }).then(resp => resp.json())

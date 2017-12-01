@@ -10,8 +10,7 @@ const PostCard = props => {
 
   let renderScore = (
     <Score
-      addPoint={props.addPoint}
-      subtractPoint={props.subtractPoint}
+      createPoint={props.createPoint}
       updatePoint={props.updatePoint}
       id={props.post.id}
       pointId={props.session.pointId}

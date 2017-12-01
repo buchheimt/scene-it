@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { addPoint, subtractPoint, updatePoint, removeComment, toggleEdit, updateComment } from '../actions/index';
+import { createPoint, updatePoint, removeComment, toggleEdit, updateComment } from '../actions/index';
 import customSort from '../actions/sort';
 import { Grid, Row, Col, Button, FormGroup, ControlLabel, FormControl, HelpBlock } from 'react-bootstrap';
 import Score from './Score';
@@ -67,8 +67,7 @@ class CommentCard extends React.Component {
     let renderReply;
     let renderScore = (
       <Score
-        addPoint={this.props.addPoint}
-        subtractPoint={this.props.subtractPoint}
+        createPoint={this.props.createPoint}
         updatePoint={this.props.updatePoint}
         id={this.props.comment.id}
         pointId={this.props.session.pointId}
@@ -197,8 +196,8 @@ class CommentCard extends React.Component {
             <p>
               {!!this.props.comment.status ? this.props.comment.username : '[removed]'}<span className="tertiary"> |  {this.props.comment.timestamp}</span>
             </p>
-            {this.props.renderChildren ? renderEditOptions : this.props.comment.content}
-            {this.props.session.loggedIn && this.props.renderChildren ? renderReply : ''}
+            {this.props.renderChildren && !!this.props.comment.status ? renderEditOptions : this.props.comment.content}
+            {this.props.session.loggedIn && this.props.renderChildren && !!this.props.comment.status ? renderReply : ''}
             {this.props.renderChildren && !!this.props.comment.status ? renderRemoveOption : ""}
           </Col>
         </Row>
@@ -233,8 +232,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    addPoint,
-    subtractPoint,
+    createPoint,
     updatePoint,
     removeComment,
     toggleEdit,

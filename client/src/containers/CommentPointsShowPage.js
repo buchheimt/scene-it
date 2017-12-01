@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchCommentPoints, addPoint, subtractPoint, updatePoint } from '../actions/index';
+import { fetchCommentPoints } from '../actions/index';
 import customSort from '../actions/sort';
 import MyForm from '../components/MyForm';
 import ConnectedCommentCard from '../components/CommentCard';
@@ -48,9 +48,6 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
   return bindActionCreators({
     fetchCommentPoints,
-    addPoint,
-    subtractPoint,
-    updatePoint,
     customSort
   }, dispatch)
 }

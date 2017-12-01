@@ -10,8 +10,7 @@ const MovieCard = props => {
 
   let renderScore = (
     <Score
-      addPoint={props.addPoint}
-      subtractPoint={props.subtractPoint}
+      createPoint={props.createPoint}
       updatePoint={props.updatePoint}
       id={props.movie.id}
       pointId={props.session.pointId}

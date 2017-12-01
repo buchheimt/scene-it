@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchPostPoints, addPoint, subtractPoint, updatePoint } from '../actions/index';
+import { fetchPostPoints, createPoint, updatePoint } from '../actions/index';
 import customSort from '../actions/sort';
 import PostCard from '../components/PostCard';
 import MyForm from '../components/MyForm';
@@ -26,8 +26,7 @@ class PostPointsShowPage extends React.Component {
           key={index}
           post={post}
           loggedIn={this.props.session.loggedIn}
-          addPoint={this.props.addPoint}
-          subtractPoint={this.props.subtractPoint}
+          createPoint={this.props.createPoint}
           updatePoint={this.props.updatePoint}
           session={{
             pointId: !!postPoint ? postPoint.id : 0,
@@ -48,7 +47,6 @@ class PostPointsShowPage extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  // debugger
   return {
     posts: state.posts.filter(post => !!state.postPoints.find(pp => pp.user_id == state.session.id && pp.post_id == post.id)),
     postPoints: state.postPoints.filter(pp => pp.user_id == state.session.id),
@@ -63,8 +61,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
   return bindActionCreators({
     fetchPostPoints,
-    addPoint,
-    subtractPoint,
+    createPoint,
     updatePoint,
     customSort
   }, dispatch)
