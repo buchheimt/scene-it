@@ -33,4 +33,8 @@ class Comment < ApplicationRecord
     where(post_id: post_id.to_i)
   end
 
+  def self.find_by_user(user_id)
+    where(user_id: user_id.to_i)
+  end
+
 end

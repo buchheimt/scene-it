@@ -1,5 +1,10 @@
 class CommentsController < ApplicationController
 
+  def index
+    comments = Comment.find_by_user(params[:user_id])
+    render json: comments
+  end
+
   def create
     authenticate
     comment = Comment.new(comment_params)

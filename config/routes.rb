@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
   resources :users, only: [] do
+    resources :posts, only: [:index]
+    resources :comments, only: [:index]
     resources :movie_points, only: [:index]
     resources :post_points, only: [:index]
     resources :comment_points, only: [:index]

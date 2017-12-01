@@ -1,5 +1,10 @@
 class PostsController < ApplicationController
 
+  def index
+    posts = Post.find_by_user(params[:user_id])
+    render json: posts
+  end
+
   def show
     render json: Post.find_by_id(params[:id]), serializer: PostDetailedSerializer, include: 'comments'
   end
