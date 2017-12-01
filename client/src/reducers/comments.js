@@ -16,6 +16,12 @@ const comments = (state = [], action) => {
       } else {
         return state;
       }
+    case 'ADD_COMMENTS':
+      commentsNonmatch = state.filter(comment => !action.comments.find(aComment => aComment.id == comment.id));
+      return [
+        ...commentsNonmatch,
+        ...action.comments
+      ].sort((a,b) => a.id > b.id);
     case 'TOGGLE_ACTIVE':
       comment = state.find(comment => comment.id == action.commentId);
       newComments = state.map(comment => {

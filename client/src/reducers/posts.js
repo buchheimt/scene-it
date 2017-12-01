@@ -8,7 +8,7 @@ const posts = (state = [], action) => {
       return state;
     case 'ADD_MOVIE':
       if (!!action.movie.posts) {
-        const postsNonmatch = state.filter(post => post.movie_id !== action.movie.id);
+        postsNonmatch = state.filter(post => post.movie_id !== action.movie.id);
         return [
           ...postsNonmatch,
           ...action.movie.posts
@@ -23,6 +23,12 @@ const posts = (state = [], action) => {
         action.post,
         ...state.slice(postIndex + 1)
       ]
+    case 'ADD_POSTS':
+      postsNonmatch = state.filter(post => !action.posts.find(aPost => aPost.id == post.id));
+      return [
+        ...postsNonmatch,
+        ...action.posts
+      ].sort((a,b) => a.id > b.id);
     case 'CREATE_POST':
       return [
         ...state,

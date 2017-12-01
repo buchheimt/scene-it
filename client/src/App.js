@@ -15,6 +15,8 @@ import PostShowPage from './containers/PostShowPage';
 import MoviePointsShowPage from './containers/MoviePointsShowPage';
 import PostPointsShowPage from './containers/PostPointsShowPage';
 import CommentPointsShowPage from './containers/CommentPointsShowPage';
+import PostsPage from './containers/PostsPage';
+import CommentsPage from './containers/CommentsPage';
 
 class App extends Component {
 
@@ -46,6 +48,8 @@ class App extends Component {
                     <Route exact path={'/users/:userId/movie_points'} component={MoviePointsShowPage} />
                     <Route exact path={'/users/:userId/post_points'} component={PostPointsShowPage} />
                     <Route exact path={'/users/:userId/comment_points'} component={CommentPointsShowPage} />
+                    <Route exact path={'/users/:userId/posts'} component={PostsPage} />
+                    <Route exact path={'/users/:userId/comments'} component={CommentsPage} />
                   </Switch>
                 </Col>
                 <Col sm={3} md={2}>

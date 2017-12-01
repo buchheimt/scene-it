@@ -27,6 +27,24 @@ export function fetchPost(postId) {
   }
 }
 
+export function fetchPosts(user_id) {
+  return (dispatch) => {
+    dispatch({type: 'STARTING_ADDING_POSTS'});
+    return fetch(`/users/${user_id}/posts`)
+      .then(resp => resp.json())
+      .then(posts => dispatch({type: 'ADD_POSTS', posts}));
+  }
+}
+
+export function fetchComments(user_id) {
+  return (dispatch) => {
+    dispatch({type: 'STARTING_ADDING_COMMENTS'});
+    return fetch(`/users/${user_id}/comments`)
+      .then(resp => resp.json())
+      .then(comments => dispatch({type: 'ADD_COMMENTS', comments}));
+  }
+}
+
 export function fetchMoviePoints(id) {
   return (dispatch) => {
     dispatch({type: 'STARTING_ADDING_MOVIE_POINTS'});
