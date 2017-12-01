@@ -30,12 +30,16 @@ const NavBar = props => {
   } else {
     renderSession = (
       <div>
-        <NavLink to="/login" className="navbar-link">
-          <span>Login</span>
-        </NavLink>
-        <NavLink to="/signup" className="navbar-link">
-          <span>Signup</span>
-        </NavLink>
+        <Col xs={3} xsOffset={6}>
+          <NavLink to="/login" className="navbar-link">
+            <span>Login</span>
+          </NavLink>
+        </Col>
+        <Col xs={3}>
+          <NavLink to="/signup" className="navbar-link">
+            <span>Signup</span>
+          </NavLink>
+        </Col>
       </div>
     )
   }

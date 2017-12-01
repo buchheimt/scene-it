@@ -10,19 +10,13 @@ import FAPencil from 'react-icons/lib/fa/pencil';
 import FARemove from 'react-icons/lib/fa/trash';
 
 class CommentCard extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       reply: '',
-      edit: ''
+      edit: props.comment.content
     }
-  }
-
-  componentDidMount() {
-    this.setState({
-      edit: this.props.comment.content
-    })
   }
 
   handleChange = e => {
@@ -64,9 +58,6 @@ class CommentCard extends React.Component {
       this.props.updateComment({
         content: this.state.edit,
         id: this.props.comment.id
-      });
-      this.setState({
-        edit: ''
       });
       this.props.toggleEdit(this.props.comment.id);
     }
