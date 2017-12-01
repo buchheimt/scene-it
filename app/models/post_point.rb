@@ -4,6 +4,7 @@ class PostPoint < ApplicationRecord
   belongs_to :post
 
   validate :unique_join, on: :create
+  validates_inclusion_of :value, in: -1..1
 
   def unique_join
     unless PostPoint.find_on_join(self.user_id, self.post_id).empty?

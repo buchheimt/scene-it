@@ -40,6 +40,7 @@ class HomePage extends React.Component {
 
     return (
       <div>
+        <h3 className="text-center">Movies</h3>
         {renderMovies}
       </div>
     )

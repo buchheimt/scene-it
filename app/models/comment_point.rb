@@ -4,6 +4,7 @@ class CommentPoint < ApplicationRecord
   belongs_to :comment
 
   validate :unique_join, on: :create
+  validates_inclusion_of :value, in: -1..1
 
   def unique_join
     unless CommentPoint.find_on_join(self.user_id, self.comment_id).empty?

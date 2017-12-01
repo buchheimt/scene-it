@@ -4,6 +4,7 @@ class MoviePoint < ApplicationRecord
   belongs_to :movie
 
   validate :unique_join, on: :create
+  validates_inclusion_of :value, in: -1..1
 
   def unique_join
     unless MoviePoint.find_on_join(self.user_id, self.movie_id).empty?
