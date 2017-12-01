@@ -11,22 +11,23 @@ class MyForm extends React.Component {
       return output
     }, {});
     this.state = {
+      validValues: false,
       values: valuesInitial
     }
   }
 
   handleChange = e => {
+    const values = {...this.state.values, [e.target.name]: e.target.value};
+    const anyEmptyFields = this.props.fields.map(field => !!values[field]).includes(false);
     this.setState({
-      values: {
-        ...this.state.values,
-        [e.target.name]: e.target.value
-      }
-    })
+      validValues: !anyEmptyFields,
+      values
+    });
   }
 
   handleOnSubmit = e => {
     e.preventDefault();
-    const anyEmptyFields = this.props.fields.map(field => !!this.state.values[field]).includes(false)
+    const anyEmptyFields = this.props.fields.map(field => !!this.state.values[field]).includes(false);
     if (!anyEmptyFields) {
       this.props.onSubmit({...this.state.values, ...this.props.hiddenValues});
       const valuesReset = this.props.fields.reduce((output, field) => {
@@ -34,6 +35,7 @@ class MyForm extends React.Component {
         return output
       }, {});
       this.setState({
+        validValues: false,
         values: valuesReset
       });
     }
@@ -57,7 +59,7 @@ class MyForm extends React.Component {
         <FormGroup>
           {renderFields}
           <br/>
-          <Button bsSize="small" type="submit" className="center-button text-center">
+          <Button bsSize="small" type="submit" className="center-button text-center" disabled={!this.state.validValues}>
             {this.props.onSubmitText}
           </Button>
         </FormGroup>
