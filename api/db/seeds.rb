@@ -97,10 +97,10 @@ User.all.each do |user|
   (1..10).to_a.sample(6).each do |i|
     MoviePoint.create(user_id: user.id, movie_id: i, value: [-1, 1].sample)
   end
-  (1..50).to_a.sample(20).each do |i|
+  (1..50).to_a.sample(10).each do |i|
     PostPoint.create(user_id: user.id, post_id: i, value: [-1, 1].sample)
   end
-  (1..600).to_a.sample(50).each do |i|
+  (1..600).to_a.sample(15).each do |i|
     CommentPoint.create(user_id: user.id, comment_id: i, value: [-1, 1].sample)
   end
 end
