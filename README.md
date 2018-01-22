@@ -14,15 +14,32 @@ This project utilizes a PostgreSQL database. You'll need to have PostgreSQL set 
 
 Start off by forking and/or cloning this repo.
 
-Next, make sure all gem/dependencies are installed on both sides
-(from the root directory)
+Front End:
+
+Navigate to the client directory from the root directory
 ```
-bundle install
+cd client
 ```
-(from the client directory)
+Install dependencies
 ```
 npm install
 ```
+Start up the front end server
+```
+npm start
+```
+
+Back End:
+
+Navigate to the api directory from the root directory
+```
+cd api
+```
+Install dependencies
+```
+bundle install
+```
+
 (Assuming PostgreSQL is properly set up)
 Create the database
 ```
@@ -39,10 +56,6 @@ rake db:seed
 Start up the Rails server on port 4000
 ```
 rails s -p 4000
-```
-Start up the front end server
-```
-npm start
 ```
 
 Now just navigate to localhost:3000 on your web browser and get started! You can experiment with the API via localhost:4000 as well.
